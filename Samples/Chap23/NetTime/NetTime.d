@@ -17,7 +17,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -240,7 +240,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     // through the WM_SOCKET_NOTIFY message.
                     // Set timer and change the button to "Cancel"
                     SetTimer(hwnd, ID_TIMER, 1000, NULL);
-                    GetWindowText(hwndButton, szOKLabel.ptr, szOKLabel.length);
+                    GetWindowText(hwndButton, szOKLabel.ptr, szOKLabel.count);
                     SetWindowText(hwndButton, ("Cancel"));
                     SetWindowLong(hwndButton, GWL_ID, IDCANCEL);
                     return TRUE;
@@ -365,7 +365,7 @@ BOOL ServerDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     return TRUE;
 
                 case IDOK:
-                    GetDlgItemTextA(hwnd, wServer, szLabel.ptr, szLabel.length);
+                    GetDlgItemTextA(hwnd, wServer, szLabel.ptr, szLabel.count);
                 
                     szServer = cast(char*)szLabel[szLabel.indexOf("(") .. szLabel.indexOf(")")].toStringz;
                     EndDialog(hwnd, TRUE);
@@ -427,18 +427,18 @@ void FormatUpdatedTime(HWND hwndEdit, SYSTEMTIME* pstOld, SYSTEMTIME* pstNew)
     
     
     GetDateFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE | DATE_SHORTDATE,
-                  pstOld, NULL, szDateOld.ptr, szDateOld.length);
+                  pstOld, NULL, szDateOld.ptr, szDateOld.count);
 
     GetTimeFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE |
                   TIME_NOTIMEMARKER | TIME_FORCE24HOURFORMAT,
-                  pstOld, NULL, szTimeOld.ptr, szTimeOld.length);
+                  pstOld, NULL, szTimeOld.ptr, szTimeOld.count);
 
     GetDateFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE | DATE_SHORTDATE,
-                  pstNew, NULL, szDateNew.ptr, szDateNew.length);
+                  pstNew, NULL, szDateNew.ptr, szDateNew.count);
 
     GetTimeFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE |
                   TIME_NOTIMEMARKER | TIME_FORCE24HOURFORMAT,
-                  pstNew, NULL, szTimeNew.ptr, szTimeNew.length);
+                  pstNew, NULL, szTimeNew.ptr, szTimeNew.count);
 
     EditPrintf(hwndEdit,
                format("System date and time successfully changed from\r\n\t%s, %s.%03s to\r\n\t%s, %s.%03s.",

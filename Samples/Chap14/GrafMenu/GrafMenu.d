@@ -12,10 +12,9 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -284,12 +283,12 @@ HBITMAP GetBitmapFont(int i)
 
     hFont = cast(HFONT)SelectObject(hdcMem, hFont);
     GetTextExtentPoint32(hdcMem, szFaceName[i].toUTF16z,
-                         szFaceName[i].length, &size);
+                         szFaceName[i].count, &size);
 
     hBitmap = CreateBitmap(size.cx, size.cy, 1, 1, NULL);
     SelectObject(hdcMem, hBitmap);
 
-    TextOut(hdcMem, 0, 0, szFaceName[i].toUTF16z, szFaceName[i].length);
+    TextOut(hdcMem, 0, 0, szFaceName[i].toUTF16z, szFaceName[i].count);
 
     DeleteObject(SelectObject(hdcMem, hFont));
     DeleteDC(hdcMem);

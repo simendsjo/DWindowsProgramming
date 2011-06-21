@@ -13,7 +13,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -155,7 +155,7 @@ TCHAR* DrumFileWrite(DRUM* pdrum, TCHAR* szFileName)
     mmckinfo[2].ckid = mmioStringToFOURCC(szDateID, 0);
 
     wError |= mmioCreateChunk(hmmio, &mmckinfo[2], 0);
-    wError |= (mmioWrite(hmmio, szDateBuf.toStringz, szDateBuf.length) != cast(int)(szDateBuf.length));
+    wError |= (mmioWrite(hmmio, szDateBuf.toStringz, szDateBuf.count) != cast(int)(szDateBuf.count));
     wError |= mmioAscend(hmmio, &mmckinfo[2], 0);
     wError |= mmioAscend(hmmio, &mmckinfo[1], 0);
 

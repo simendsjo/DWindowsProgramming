@@ -18,7 +18,7 @@ import std.math;
 import std.range;
 import std.string;
 import std.stdio;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "winspool.lib");
@@ -314,7 +314,7 @@ void DoBasicInfo(HDC hdc, HDC hdcInfo, int cxChar, int cyChar)
     foreach (index, info; infos)
     {
         buffer = format("%-45s%8s", info.description, GetDeviceCaps(hdcInfo, info.nIndex));
-        TextOut(hdc, cxChar, (index + 1) * cyChar, buffer.toUTF16z, buffer.length);
+        TextOut(hdc, cxChar, (index + 1) * cyChar, buffer.toUTF16z, buffer.count);
     }
 }
 
@@ -355,25 +355,25 @@ void DoOtherInfo(HDC hdc, HDC hdcInfo, int cxChar, int cyChar)
     string buffer;
 
     buffer = format("%-24s%04s", "DRIVERVERSION:", GetDeviceCaps(hdcInfo, DRIVERVERSION));
-    TextOut(hdc, cxChar, cyChar, buffer.toUTF16z, buffer.length);
+    TextOut(hdc, cxChar, cyChar, buffer.toUTF16z, buffer.count);
 
     buffer = format("%-24s%40s", "TECHNOLOGY:", szTechs[GetDeviceCaps(hdcInfo, TECHNOLOGY)]);
-    TextOut(hdc, cxChar, 2 * cyChar, buffer.toUTF16z, buffer.length);
+    TextOut(hdc, cxChar, 2 * cyChar, buffer.toUTF16z, buffer.count);
 
     buffer = "CLIPCAPS (Clipping capabilities)";
-    TextOut(hdc, cxChar, 4 * cyChar, buffer.toUTF16z, buffer.length);
+    TextOut(hdc, cxChar, 4 * cyChar, buffer.toUTF16z, buffer.count);
     foreach (index, clip; clips)
     {
         buffer = format("%-45s %3s", clip.description, (GetDeviceCaps(hdcInfo, CLIPCAPS) & clip.iMask) ? "Yes" : "No");
-        TextOut(hdc, 9 * cxChar, (index + 6) * cyChar, buffer.toUTF16z, buffer.length);
+        TextOut(hdc, 9 * cxChar, (index + 6) * cyChar, buffer.toUTF16z, buffer.count);
     }
 
     buffer = "RASTERCAPS (Raster capabilities)";
-    TextOut(hdc, cxChar, 8 * cyChar, buffer.toUTF16z, buffer.length);
+    TextOut(hdc, cxChar, 8 * cyChar, buffer.toUTF16z, buffer.count);
     foreach (index, raster; rasters)
     {
         buffer = format("%-45s %3s", raster.description, (GetDeviceCaps(hdcInfo, RASTERCAPS) & raster.iMask) ? "Yes" : "No");
-        TextOut(hdc, 9 * cxChar, (index + 10) * cyChar, buffer.toUTF16z, buffer.length);
+        TextOut(hdc, 9 * cxChar, (index + 10) * cyChar, buffer.toUTF16z, buffer.count);
     }
 }
 
@@ -451,11 +451,11 @@ void DoBitCodedCaps(HDC hdc, HDC hdcInfo, int cxChar, int cyChar, int iType)
     static string buffer;
     auto iDevCaps = GetDeviceCaps(hdcInfo, bitinfos[iType].iIndex);
 
-    TextOut(hdc, cxChar, cyChar, bitinfos[iType].title.toUTF16z, bitinfos[iType].title.length);
+    TextOut(hdc, cxChar, cyChar, bitinfos[iType].title.toUTF16z, bitinfos[iType].title.count);
 
     foreach (index, bit; bitinfos[iType].bitarray)
     {
         buffer = format("%-55s %3s", bit.description, (iDevCaps & bit.iMask) ? "Yes" : "No");
-        TextOut(hdc, cxChar, (index + 3) * cyChar, buffer.toUTF16z, buffer.length);
+        TextOut(hdc, cxChar, (index + 3) * cyChar, buffer.toUTF16z, buffer.count);
     }
 }

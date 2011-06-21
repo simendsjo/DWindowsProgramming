@@ -6,15 +6,14 @@
 module DevCaps1;
 
 import core.runtime;
-import std.string;
-import std.utf;
-import std.math;
-import std.conv;
 import std.algorithm : min, max;
+import std.conv;
+import std.math;
+import std.string;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "winmm.lib");
-
 import win32.mmsystem;
 import win32.windef;
 import win32.winuser;
@@ -163,12 +162,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             foreach (index, caps; devCaps)
             {
-                TextOut(hdc, 0, cyChar * index, caps.label.toUTF16z, caps.label.length);
-                TextOut(hdc, 14 * cxCaps, cyChar * index, caps.desc.toUTF16z, caps.desc.length);
+                TextOut(hdc, 0, cyChar * index, caps.label.toUTF16z, caps.label.count);
+                TextOut(hdc, 14 * cxCaps, cyChar * index, caps.desc.toUTF16z, caps.desc.count);
                 SetTextAlign(hdc, TA_RIGHT | TA_TOP);
 
                 auto value = format("%5s", GetDeviceCaps(hdc, caps.index));
-                TextOut(hdc, 14 * cxCaps + 35 * cxChar, cyChar * index, value.toUTF16z, value.length);
+                TextOut(hdc, 14 * cxCaps + 35 * cxChar, cyChar * index, value.toUTF16z, value.count);
                 SetTextAlign(hdc, TA_LEFT | TA_TOP);
             }
 

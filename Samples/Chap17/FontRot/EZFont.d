@@ -78,6 +78,8 @@ HFONT EzCreateFont(HDC hdc, string szFaceName, int iDeciPtHeight,
 
     
     lf.lfFaceName[] = ' ';
+    
+    // unsure about this, investigate
     lf.lfFaceName[0..szFaceName.length] = szFaceName.toUTF16;
 
     hFont = CreateFontIndirect(&lf);

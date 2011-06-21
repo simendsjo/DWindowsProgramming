@@ -9,7 +9,7 @@ import std.math;
 //~ import std.random;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");

@@ -14,7 +14,7 @@ import std.math;
 import std.random;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -153,7 +153,7 @@ void Thread1()
         hdc = GetDC(params1.hwnd);
 
         szBuffer = format("%s", iNum++);
-        TextOut(hdc, 0, iLine * params1.cyChar, szBuffer.toUTF16z, szBuffer.length);
+        TextOut(hdc, 0, iLine * params1.cyChar, szBuffer.toUTF16z, szBuffer.count);
 
         ReleaseDC(params1.hwnd, hdc);
         iLine++;
@@ -215,7 +215,7 @@ void Thread2()
         hdc = GetDC(params2.hwnd);
 
         szBuffer = format("%s", iNum);
-        TextOut(hdc, 0, iLine * params2.cyChar, szBuffer.toUTF16z, szBuffer.length);
+        TextOut(hdc, 0, iLine * params2.cyChar, szBuffer.toUTF16z, szBuffer.count);
 
         ReleaseDC(params2.hwnd, hdc);
         iLine++;
@@ -269,7 +269,7 @@ void Thread3()
         hdc = GetDC(params3.hwnd);
 
         szBuffer = format("%s", iNum);
-        TextOut(hdc, 0, iLine * params3.cyChar, szBuffer.toUTF16z, szBuffer.length);        
+        TextOut(hdc, 0, iLine * params3.cyChar, szBuffer.toUTF16z, szBuffer.count);        
 
         ReleaseDC(params3.hwnd, hdc);
         iTemp  = iNum;

@@ -12,7 +12,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -175,7 +175,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Create and select the font; display the text
 
             SelectObject(hdc, CreateFontIndirect(&dp.lf));
-            TextOut(hdc, rect.left, rect.bottom, to!string(szText).toUTF16z, szText.length);
+            TextOut(hdc, rect.left, rect.bottom, to!string(szText).toUTF16z, szText.count);
 
             DeleteObject(SelectObject(hdc, GetStockObject(SYSTEM_FONT)));
             EndPaint(hwnd, &ps);

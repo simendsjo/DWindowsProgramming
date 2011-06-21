@@ -13,7 +13,7 @@ import std.math;
 import std.random;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -222,7 +222,7 @@ void PaintRoutine(HWND hwnd, HDC hdc, int cxArea, int cyArea)
         lf.lfEscapement = lf.lfOrientation = i * 300;
         SelectObject(hdc, CreateFontIndirect(&lf));
 
-        TextOut(hdc, 0, 0, szString.toUTF16z, szString.length);
+        TextOut(hdc, 0, 0, szString.toUTF16z, szString.count);
 
         DeleteObject(SelectObject(hdc, GetStockObject(SYSTEM_FONT)));
     }

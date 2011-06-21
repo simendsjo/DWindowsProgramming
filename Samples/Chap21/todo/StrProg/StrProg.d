@@ -144,9 +144,9 @@ void WriteStrings(string[] strings, CBPARAM pcbp)
 {
     foreach (str; strings)
     {
-        import std.stdio;
-        writeln(str.length);
-        writeln(str);
+        //~ import std.stdio;
+        //~ writeln(str.length);
+        //~ writeln(str);
         
         TextOut(pcbp.hdc, pcbp.xText, pcbp.yText, str.toUTF16z, str.length);
 

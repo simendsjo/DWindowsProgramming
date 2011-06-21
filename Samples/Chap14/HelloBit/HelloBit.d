@@ -12,10 +12,9 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -116,7 +115,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hdc    = GetDC(hwnd);
             hdcMem = CreateCompatibleDC(hdc);
 
-            GetTextExtentPoint32(hdc, szText.toUTF16z, szText.length, &size);
+            GetTextExtentPoint32(hdc, szText.toUTF16z, szText.count, &size);
             cxBitmap = size.cx;
             cyBitmap = size.cy;
             hBitmap  = CreateCompatibleBitmap(hdc, cxBitmap, cyBitmap);
@@ -124,7 +123,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             ReleaseDC(hwnd, hdc);
 
             SelectObject(hdcMem, hBitmap);
-            TextOut(hdcMem, 0, 0, szText.toUTF16z, szText.length);
+            TextOut(hdcMem, 0, 0, szText.toUTF16z, szText.count);
             return 0;
 
         case WM_SIZE:

@@ -13,7 +13,7 @@ import std.math;
 import std.random;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -138,7 +138,7 @@ LRESULT WndProc1(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hdc   = GetDC(hwnd);
 
             szBuffer = format("%s", iNum++);
-            TextOut(hdc, 0, iLine * cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, iLine * cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             ReleaseDC(hwnd, hdc);
             iLine++;
@@ -187,7 +187,7 @@ LRESULT WndProc2(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hdc   = GetDC(hwnd);
 
             szBuffer = format("%s", iNum);
-            TextOut(hdc, 0, iLine * cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, iLine * cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             ReleaseDC(hwnd, hdc);
             iLine++;
@@ -228,7 +228,7 @@ LRESULT WndProc3(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hdc   = GetDC(hwnd);
 
             szBuffer = format("%s", iNum);
-            TextOut(hdc, 0, iLine * cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, iLine * cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             ReleaseDC(hwnd, hdc);
             iTemp  = iNum;

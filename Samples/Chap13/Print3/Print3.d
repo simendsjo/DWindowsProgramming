@@ -12,13 +12,12 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 import resource;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "winspool.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -164,7 +163,7 @@ void PageGDICalls(HDC hdcPrn, int cxPage, int cyPage)
     Ellipse(hdcPrn, -500, 500, 500, -500);
 
     SetTextAlign(hdcPrn, TA_BASELINE | TA_CENTER);
-    TextOut(hdcPrn, 0, 0, szTextStr.toUTF16z, szTextStr.length);
+    TextOut(hdcPrn, 0, 0, szTextStr.toUTF16z, szTextStr.count);
 
     RestoreDC(hdcPrn, -1);
 }

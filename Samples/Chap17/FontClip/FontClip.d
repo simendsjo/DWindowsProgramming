@@ -13,7 +13,7 @@ import std.math;
 import std.random;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -213,10 +213,10 @@ void PaintRoutine(HWND hwnd, HDC hdc, int cxArea, int cyArea)
 
     SelectObject(hdc, hFont);
 
-    GetTextExtentPoint32(hdc, szString.toUTF16z, szString.length, &size);
+    GetTextExtentPoint32(hdc, szString.toUTF16z, szString.count, &size);
 
     BeginPath(hdc);
-    TextOut(hdc, (cxArea - size.cx) / 2, (cyArea - size.cy) / 2, szString.toUTF16z, szString.length);
+    TextOut(hdc, (cxArea - size.cx) / 2, (cyArea - size.cy) / 2, szString.toUTF16z, szString.count);
     EndPath(hdc);
 
     // Set clipping area

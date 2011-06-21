@@ -13,10 +13,9 @@ import std.math;
 import std.range;
 import std.string;
 import std.stdio;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -234,10 +233,10 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             szBuffer = format("%s: Face Name = %s, CharSet = %s",
                               stockfont[iFont].szStockFont,
-                              szFaceName[0..newlength],
+                              szFaceName[0..newlength-1],
                               tm.tmCharSet);
 
-            TextOut(hdc, 0, 0, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, 0, szBuffer.toUTF16z, szBuffer.count);
 
             SetTextAlign(hdc, TA_TOP | TA_CENTER);
 
@@ -255,8 +254,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             foreach (index; 0 .. 16)
             {
                 szBuffer = format("%X-", index);
-                TextOut(hdc,(2 * index + 5) * cxGrid / 2, 2 * cyGrid + 2, szBuffer.toUTF16z, szBuffer.length);
-                TextOut(hdc, 3 * cxGrid / 2,(index + 3) * cyGrid + 2, szBuffer.toUTF16z, szBuffer.length);
+                TextOut(hdc,(2 * index + 5) * cxGrid / 2, 2 * cyGrid + 2, szBuffer.toUTF16z, szBuffer.count);
+                TextOut(hdc, 3 * cxGrid / 2,(index + 3) * cyGrid + 2, szBuffer.toUTF16z, szBuffer.count);
             }
 
             // draw chars

@@ -18,10 +18,9 @@ import std.math;
 import std.range;
 import std.string;
 import std.stdio;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -63,8 +62,8 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     MSG  msg;
     WNDCLASS wndclass;
 
-    LoadString(hInstance, IDS_APPNAME, szAppName.ptr, szAppName.length);
-    LoadString(hInstance, IDS_CAPTION, szCaption.ptr, szCaption.length);
+    LoadString(hInstance, IDS_APPNAME, szAppName.ptr, szAppName.count);
+    LoadString(hInstance, IDS_CAPTION, szCaption.ptr, szCaption.count);
 
     wndclass.style         = CS_HREDRAW | CS_VREDRAW;
     wndclass.lpfnWndProc   = &WndProc;
@@ -84,16 +83,16 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     }
 
     hwnd = CreateWindow(szAppName.ptr,              // window class name
-                        szCaption.ptr,                    // window caption
-                        WS_OVERLAPPEDWINDOW,           // window style
-                        CW_USEDEFAULT,                 // initial x position
-                        CW_USEDEFAULT,                 // initial y position
-                        CW_USEDEFAULT,                 // initial x size
-                        CW_USEDEFAULT,                 // initial y size
-                        NULL,                          // parent window handle
-                        NULL,                          // window menu handle
-                        hInstance,                     // program instance handle
-                        NULL);                         // creation parameters
+                        szCaption.ptr,              // window caption
+                        WS_OVERLAPPEDWINDOW,        // window style
+                        CW_USEDEFAULT,              // initial x position
+                        CW_USEDEFAULT,              // initial y position
+                        CW_USEDEFAULT,              // initial x size
+                        CW_USEDEFAULT,              // initial y size
+                        NULL,                       // parent window handle
+                        NULL,                       // window menu handle
+                        hInstance,                  // program instance handle
+                        NULL);                      // creation parameters
 
     ShowWindow(hwnd, iCmdShow);
     UpdateWindow(hwnd);

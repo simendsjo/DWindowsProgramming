@@ -11,10 +11,9 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -185,7 +184,7 @@ LRESULT EllipPushWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
         case WM_PAINT:
             GetClientRect(hwnd, &rect);
-            GetWindowText(hwnd, szText.ptr, szText.length);
+            GetWindowText(hwnd, szText.ptr, szText.count);
 
             hdc = BeginPaint(hwnd, &ps);
 

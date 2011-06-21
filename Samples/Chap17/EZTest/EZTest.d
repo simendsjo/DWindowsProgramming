@@ -12,7 +12,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -125,7 +125,7 @@ void PaintRoutine(HWND hwnd, HDC hdc, int cxArea, int cyArea)
         szBuffer = format("Times New Roman font of %s.%s points, lf.lfHeight = %s, tm.tmHeight = %s",
                           iPointSize / 10, iPointSize % 10, lf.lfHeight, tm.tmHeight);
 
-        TextOut(hdc, 0, y, szBuffer.toUTF16z, szBuffer.length);
+        TextOut(hdc, 0, y, szBuffer.toUTF16z, szBuffer.count);
 
         DeleteObject(SelectObject(hdc, GetStockObject(SYSTEM_FONT)));
         y += tm.tmHeight;

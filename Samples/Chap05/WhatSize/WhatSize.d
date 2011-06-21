@@ -8,11 +8,10 @@ module WhatSize;
 import core.runtime;
 import core.thread;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 import std.math;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -100,7 +99,7 @@ void Show(HWND hwnd, HDC hdc, int xText, int yText, int iMapMode, string mapMode
     RestoreDC(hdc, -1);
 
     auto value = format("%-20s %7s %7s %7s %7s", mapMode, rect.left, rect.right, rect.top, rect.bottom);
-    TextOut(hdc, xText, yText, value.toUTF16z, value.length);
+    TextOut(hdc, xText, yText, value.toUTF16z, value.count);
 }
 
 extern (Windows)
@@ -137,8 +136,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             SetWindowExtEx(hdc, 1, 1, NULL);
             SetViewportExtEx(hdc, cxChar, cyChar, NULL);
 
-            TextOut(hdc, 1, 1, heading.toUTF16z, heading.length);
-            TextOut(hdc, 1, 2, underline.toUTF16z, underline.length);
+            TextOut(hdc, 1, 1, heading.toUTF16z, heading.count);
+            TextOut(hdc, 1, 2, underline.toUTF16z, underline.count);
 
             Show(hwnd, hdc, 1, 3, MM_TEXT,      "pixels)");
             Show(hwnd, hdc, 1, 4, MM_LOMETRIC,  "LOMETRIC(.1 mm)");

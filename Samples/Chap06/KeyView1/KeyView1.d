@@ -11,10 +11,9 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -188,8 +187,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             SelectObject(hdc, GetStockObject(SYSTEM_FIXED_FONT));
             SetBkMode(hdc, TRANSPARENT);
-            TextOut(hdc, 0, 0, szTop.toUTF16z, szTop.length);
-            TextOut(hdc, 0, 0, szUnd.toUTF16z, szUnd.length);
+            TextOut(hdc, 0, 0, szTop.toUTF16z, szTop.count);
+            TextOut(hdc, 0, 0, szUnd.toUTF16z, szUnd.count);
 
             foreach (index, myMsg; lockstep(iota(0, min(cLines, cyClient / cyChar - 1)), retro(msgArr)))
             {
@@ -215,7 +214,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                   (0x80000000 & myMsg.lParam ? szUp   : szDown)
                 );
 
-                TextOut(hdc, 0, (cyClient / cyChar - 1 - index) * cyChar, szBuffer.toUTF16z, szBuffer.length);
+                TextOut(hdc, 0, (cyClient / cyChar - 1 - index) * cyChar, szBuffer.toUTF16z, szBuffer.count);
             }
 
             return 0;

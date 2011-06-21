@@ -12,7 +12,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -102,7 +102,7 @@ BOOL PopFindFindText(HWND hwndEdit, int* piSearchOffset, LPFINDREPLACE pfr)
 
     // Find the position in the document and the new start offset
     auto oldPos = *piSearchOffset + pos;
-    *piSearchOffset += pos + needle.length;
+    *piSearchOffset += pos + needle.count;
 
     // Select the found text
     SendMessage(hwndEdit, EM_SETSEL, oldPos, *piSearchOffset);

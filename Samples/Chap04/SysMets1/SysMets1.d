@@ -9,10 +9,9 @@ import core.runtime;
 import std.algorithm : max, min;
 import std.string;
 import std.conv;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -212,14 +211,14 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 y = cyChar * (index - iVScrollPos);
 
-                TextOut(hdc, 0, y, metric.label.toUTF16z, metric.label.length);
-                TextOut(hdc, 22 * cxCaps, y, metric.desc.toUTF16z, metric.desc.length);
+                TextOut(hdc, 0, y, metric.label.toUTF16z, metric.label.count);
+                TextOut(hdc, 22 * cxCaps, y, metric.desc.toUTF16z, metric.desc.count);
 
                 string value = to!string(GetSystemMetrics(metric.index));
 
                 // right-align
                 SetTextAlign(hdc, TA_RIGHT | TA_TOP);
-                TextOut(hdc, 22 * cxCaps + 40 * cxChar, y, value.toUTF16z, value.length);
+                TextOut(hdc, 22 * cxCaps + 40 * cxChar, y, value.toUTF16z, value.count);
 
                 // restore alignment
                 SetTextAlign(hdc, TA_LEFT | TA_TOP);

@@ -16,10 +16,9 @@ import std.file;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z, UtfException;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -256,7 +255,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             SetTextColor(hdc, GetSysColor(COLOR_BTNTEXT));
             SetBkColor  (hdc, GetSysColor(COLOR_BTNFACE));
 
-            DrawText(hdc, buffer.toUTF16z, buffer.length, &rect, DTFLAGS);
+            DrawText(hdc, buffer.toUTF16z, buffer.count, &rect, DTFLAGS);
 
             EndPaint(hwnd, &ps);
             return 0;

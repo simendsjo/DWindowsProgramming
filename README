@@ -109,13 +109,6 @@ Optional Tools:
       investigated to see what's wrong.
     - Replace calls to wsprintf in Chap18\EmfView18.d with std.string.format(). (Note: 
       wsprintf returns the length of the written string)
-    - Calling TextOut(char[].toUTF16z, char[].length) is not correct. 
-      This code is present in numerous examples since the examples
-      were small and self-contained and will therefore work. To be absolutely safe I could 
-      use dchar[] and dstring types to make sure there's a 1 to 1 relation between code unit 
-      and code point count. Either that, or we could count code points via Phobos UTF 
-      functions, although this comes with a performance overhead of its own. Feel free to 
-      improve this.
     - Get rid of malloc/free calls and replace pointers with arrays where appropriate.
     - Replace Windows type aliases like TCHAR to wchar, since I'm exclusively using Unicode. 
     - Replace excessive string copying with saner code. This is mostly caused by my own 
@@ -188,6 +181,9 @@ Optional Tools:
     - Convert -> to .
     - Change all TCHAR[] types to either strings, and then use toUTF16z when calling WinAPI 
       functions, or change them to wchar[] if they're going to be written to.
+    - To call WinAPI functions which require the character length, I've used std.utf.count,
+      which returns the count of code points. Using the .length field directly would be
+      incorrect, as that is the code unit count, not code point count.
     - Change "LRESULT CALLBACK WndProc" to "extern (Windows) LRESULT WndProc"
     - Add default cases to all switch statements.
     - Change fallbacks to "goto case;" statements (fallback are banned in 2.054+)
@@ -197,16 +193,8 @@ Optional Tools:
         
         to this (also replace any special specifiers with %s):
             szBuffer = format("lfWidht = %s", lf.lfWidth);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
-            
-        Note: Some WinAPI functions take the character length, others take the count of bytes 
-        as  the length parameter.
-        In some cases I should have taken into account that the .length property doesn't 
-        count actual code points in UTF8/UTF16 strings,
-        but code units instead. To work around this you can change string types to dstring to 
-        make the .length property mean code point count.
-        At the time of writing toUTF16z doesn't accept dstrings and wstrings in the 2.053 
-        implementation, so I've used workarounds.
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
+    
     - Pass static and dynamic arrays by using their .ptr field. 
     - Floats and Doubles are default-initialized to NaN. This causes hardware halts or throws 
       exceptions, based on the configuration. Since C doesn't have this initializer, most C 

@@ -12,7 +12,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -163,53 +163,53 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             SelectObject(hdc, CreateFontIndirect(&lf));
             GetTextMetrics(hdc, &tm);
             SetTextColor(hdc, cf.rgbColors);
-            TextOut(hdc, 0, y = tm.tmExternalLeading, to!string(szText).toUTF16z, szText.length);
+            TextOut(hdc, 0, y = tm.tmExternalLeading, to!string(szText).toUTF16z, szText.count);
 
             // Display LOGFONT structure fields using system font
             DeleteObject(SelectObject(hdc, GetStockObject(SYSTEM_FONT)));
             SetTextColor(hdc, 0);
 
             szBuffer = format("lfHeight = %s", lf.lfHeight);
-            TextOut(hdc, 0, y += tm.tmHeight, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += tm.tmHeight, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfWidth = %s", lf.lfWidth);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfEscapement = %s", lf.lfEscapement);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfOrientation = %s", lf.lfOrientation);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfWeight = %s", lf.lfWeight);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfItalic = %s", lf.lfItalic);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfUnderline = %s", lf.lfUnderline);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfStrikeOut = %s", lf.lfStrikeOut);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfCharSet = %s", lf.lfCharSet);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfOutPrecision = %s", lf.lfOutPrecision);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfClipPrecision = %s", lf.lfClipPrecision);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfQuality = %s", lf.lfQuality);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfPitchAndFamily = 0x%02X", lf.lfPitchAndFamily);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             szBuffer = format("lfFaceName = %s", lf.lfFaceName);
-            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.count);
 
             EndPaint(hwnd, &ps);
             return 0;

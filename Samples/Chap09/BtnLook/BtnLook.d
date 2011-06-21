@@ -11,10 +11,9 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
-
 import win32.windef;
 import win32.winuser;
 import win32.wingdi;
@@ -172,8 +171,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             SelectObject(hdc, GetStockObject(SYSTEM_FIXED_FONT));
             SetBkMode(hdc, TRANSPARENT);
 
-            TextOut(hdc, 24 * cxChar, cyChar, szTop.toUTF16z, szTop.length);
-            TextOut(hdc, 24 * cxChar, cyChar, szUnd.toUTF16z, szUnd.length);
+            TextOut(hdc, 24 * cxChar, cyChar, szTop.toUTF16z, szTop.count);
+            TextOut(hdc, 24 * cxChar, cyChar, szUnd.toUTF16z, szUnd.count);
 
             EndPaint(hwnd, &ps);
             return 0;
@@ -191,7 +190,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                               HIWORD(lParam), LOWORD(lParam)).dup;
 
             TextOut(hdc, 24 * cxChar, cyChar * (rect.bottom / cyChar - 1),
-                    szBuffer.toUTF16z, szBuffer.length);
+                    szBuffer.toUTF16z, szBuffer.count);
 
             ReleaseDC(hwnd, hdc);
             ValidateRect(hwnd, &rect);

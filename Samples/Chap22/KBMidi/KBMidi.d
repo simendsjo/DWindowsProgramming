@@ -12,7 +12,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -736,12 +736,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 
             auto deviceName = to!string(fromWStringz(moc.szPname.ptr));
 
-            TextOut(hdc, cxCaps, 2 * cyChar, deviceName.toUTF16z, deviceName.length);
+            TextOut(hdc, cxCaps, 2 * cyChar, deviceName.toUTF16z, deviceName.count);
             TextOut(hdc, cxCaps, 2 * cyChar, moc.szPname.ptr, 0);
-            TextOut(hdc, cxCaps, 3 * cyChar, szBuffer.toUTF16z, szBuffer.length);
+            TextOut(hdc, cxCaps, 3 * cyChar, szBuffer.toUTF16z, szBuffer.count);
             TextOut(hdc, cxCaps, 4 * cyChar,
                     fam[iVoice / 8].inst[iVoice % 8].szInst.toUTF16z,
-                    fam[iVoice / 8].inst[iVoice % 8].szInst.length);
+                    fam[iVoice / 8].inst[iVoice % 8].szInst.count);
 
             EndPaint(hwnd, &ps);
             return 0;

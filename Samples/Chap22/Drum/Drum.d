@@ -13,7 +13,7 @@ import std.conv;
 import std.math;
 import std.range;
 import std.string;
-import std.utf;
+import std.utf : count, toUTF16z;
 
 pragma(lib, "gdi32.lib");
 pragma(lib, "comdlg32.lib");
@@ -420,7 +420,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 MoveToEx(hdc, i & 1 ? 20 * cxChar : cxChar,
                          (2 * i + 3) * cyChar / 4, NULL);
 
-                TextOut(hdc, 0, 0, szPerc[i].toUTF16z, szPerc[i].length);
+                TextOut(hdc, 0, 0, szPerc[i].toUTF16z, szPerc[i].count);
 
                 GetCurrentPositionEx(hdc, &point);
 
