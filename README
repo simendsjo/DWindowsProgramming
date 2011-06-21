@@ -37,7 +37,7 @@
     - Clean .obj, .map, .exe files:
         rdmd build.d clean
         
-    - Debug version that spawns a console for printing, and buidls with debug flags for 
+    - Debug version that spawns a console for printing, and builds with debug flags for 
       debugging via ddbg:
         rdmd build.d debug
     
