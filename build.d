@@ -103,7 +103,6 @@ void build(string dir)
     if (sources.length)
     {
         writeln("Building " ~ exeName);
-        writeln(rel2abs(dir) ~ r"\");
         auto res = system(" dmd -of" ~ exeName ~
                           " -od" ~ rel2abs(dir) ~ r"\" ~ 
                           " -I" ~ LIBPATH ~ r"\" ~ 
