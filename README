@@ -1,8 +1,10 @@
 == About Windows Programming in D ==
-    This is a translation project of Charles Petzold's Programming Windows (5th edition) book code samples.
+    This is a translation project of Charles Petzold's Programming Windows (5th edition) book 
+    code samples.
     
-    The code samples show the use of various Windows API systems, such as GDI and multimedia. There are over
-    140 C code samples from the original book, all of which will be translated to D (most already are).
+    The code samples show the use of various Windows API systems, such as GDI and multimedia. 
+    There are over 140 C code samples from the original book, all of which will be translated
+    to D (most already are).
     
     This project has been created by Andrej Mitrovic.
     
@@ -12,16 +14,19 @@
     21st June 2011, built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.043.
 
 == Building Requirements ==
-    - XP 32bit or Win7 32bit system, 64bit versions haven't been tested but they might work (let me know if it works for you or not).
+    - XP 32bit or Win7 32bit system, 64bit versions haven't been tested but they might work 
+      (let me know if it works for you or not).
       Older systems are not supported.
 
-    - DMD v2.043 compiler (Newer versions might not work if there are language/library changes).
-        Download it from: http://www.digitalmars.com/d/download.html
-        Usage instructions (nice to bookmark): http://d-programming-language.org/dmd-windows.html
+    - DMD v2.043 compiler (Newer versions might not work if there are language/library
+      changes). 
+      Download it from: http://www.digitalmars.com/d/download.html
+      Usage instructions (nice bookmark): http://d-programming-language.org/dmd-windows.html
 
 == Building ==
     - Make sure you've installed DMD and have it in the PATH environment variable.
-        If you don't know how to set up environment variables, see this guide: http://www.computerhope.com/issues/ch000549.htm
+        If you don't know how to set up environment variables, see this guide: 
+        http://www.computerhope.com/issues/ch000549.htm
     
     - Build the samples by issuing this call from the command line:
         rdmd build.d
@@ -32,70 +37,105 @@
     - Clean .obj, .map, .exe files:
         rdmd build.d clean
         
-    - Debug version that spawns a console for printing, and buidls with debug flags for debugging via ddbg:
+    - Debug version that spawns a console for printing, and buidls with debug flags for 
+      debugging via ddbg:
         rdmd build.d debug
     
     If there are any errors when building you should get an information error message back.
 
-    Note: Currently parallel builds are not incorporated. This is due to a bug related to how the chdir() call works.
-    Note: At the time of writing DMD can't build 64 binaries. Alternatively the GDC compiler could be used, however at the time of writing it doesn't seem to support pragma lib linking. 
+    Note: Currently parallel builds are not incorporated. This is due to a bug related to how 
+          the chdir() call works.
+    Note: At the time of writing DMD can't build 64 binaries. Alternatively the GDC compiler
+          could be used, however at the time of writing it doesn't seem to support pragma lib
+          linking. 
 
 Optional Tools:
     - HTOD: http://www.digitalmars.com/d/2.0/htod.html    
-        HTOD needs to be in your PATH. It's probably best to put it in the \DMD2\Windows\Bin directory.
+        HTOD needs to be in your PATH. It's probably best to put it in the \DMD2\Windows\Bin 
+        directory.
 
-    - Microsoft RC compiler and header files. Without these the build script will use precompiled .res files.
-        - Get it from: http://www.microsoft.com/downloads/en/details.aspx?FamilyID=c17ba869-9671-4330-a63e-1fd44e0e2505&displaylang=en
+    - Microsoft RC compiler and header files. Without these the build script will use 
+      precompiled .res files.
+        - Get it from:        
+        http://www.microsoft.com/downloads/en/details.aspx?FamilyID=c17ba869-9671-4330-a63e-1fd44e0e2505&displaylang=en
         - RC needs to be in your PATH if you want to compile resources.
         
         Note: This is a big download, depending on what you select in the setup.
         Note: DigitalMars have a resource compiler, but it still requires header files. 
               See the "Using Resources in D" Tutorial in the Links section.
 
-        - Create the RCINCLUDES environment variable and add paths to the header files needed by the RC resource compiler. 
+        - Create the RCINCLUDES environment variable and add paths to the header files needed
+          by the RC resource compiler. 
           On an XP system these paths could be:
             C:\Program Files\Microsoft SDKs\Windows\v7.1\Include
             C:\Program Files\Microsoft Visual Studio 10.0\VC\include
             C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include
             
-          Typically the include paths for resource header files are different on each system, so you will have to adjust these.    
+          Typically the include paths for resource header files are different on each system, 
+          so you will have to adjust these.    
               
-        Note: The build script will attempt to find these default paths if you don't have RCINCLUDES already set up.
-        Note: Setting up an environment variable might require you to log off and log on again before the build script can pick up the new changes.
+        Note: The build script will attempt to find these default paths if you don't have 
+              RCINCLUDES already set up.
+        Note: Setting up an environment variable might require you to log off and log on
+              again before the build script can pick up the new changes.
 
-    - The uncrustify executable bundled with UniversalIndentGUI could be outdated compared to the latest Uncrustify version.
-      Please see the Uncrustify homepage in the Links section in this Readme to get the latest binary or to compile from source.
+    - The uncrustify executable bundled with UniversalIndentGUI could be outdated compared to
+      the latest Uncrustify version.
+      Please see the Uncrustify homepage in the Links section in this Readme to get the
+      latest binary or to compile from source.
 
 == Contact ==
     Please do not e-mail Charles Petzold about bugs in these examples,
     any bugs or inconsistencies in the D examples are entirely my fault.
 
-    To contact me, send me a message via Github @ https://github.com/AndrejMitrovic, or e-mail me at:
-    andrej.mitrovich<at>gmail.com
+    To contact me, send me a message via Github @ https://github.com/AndrejMitrovic, 
+    or e-mail me at: andrej.mitrovich<at>gmail.com
 
 == Todo ==
-    - Examples in Chap21\todo are fully functional, however they require DMD 2.054 due to the function imports feature, which hasn't been released yet at time of writing.
+    - Examples in Chap21\todo are fully functional, however they require DMD 2.054 due to the
+      function imports feature, which hasn't been released yet at time of writing.
     - Examples in Chap22\todo have not been translated yet.
     - Try compiling 64bit binaries via GDC.
-    - Some examples have a Note at the top, saying they're not tested. They need to be investigated to see what's wrong.
-    - Replace calls to wsprintf in Chap18\EmfView18.d with std.string.format(). (Note: wsprintf returns the length of the written string)
-    - Calling TextOut(char[].toUTF16z, char[].length) is not correct. This code is present in numerous examples since the examples
-      were small and self-contained and will therefore work. To be absolutely safe I could use dchar[] and dstring types to make sure there's a 1 to 1 relation between code unit and code point count. Either that, or we could count code points via Phobos UTF functions, although this comes with a performance overhead of its own. Feel free to improve this.
+    - Some examples have a Note at the top, saying they're not tested. They need to be
+      investigated to see what's wrong.
+    - Replace calls to wsprintf in Chap18\EmfView18.d with std.string.format(). (Note: 
+      wsprintf returns the length of the written string)
+    - Calling TextOut(char[].toUTF16z, char[].length) is not correct. 
+      This code is present in numerous examples since the examples
+      were small and self-contained and will therefore work. To be absolutely safe I could 
+      use dchar[] and dstring types to make sure there's a 1 to 1 relation between code unit 
+      and code point count. Either that, or we could count code points via Phobos UTF 
+      functions, although this comes with a performance overhead of its own. Feel free to 
+      improve this.
     - Get rid of malloc/free calls and replace pointers with arrays where appropriate.
     - Replace Windows type aliases like TCHAR to wchar, since I'm exclusively using Unicode. 
-    - Replace excessive string copying with saner code. This is mostly caused by my own lazyness (This will be improved upon later. I mean the examples, not my lazyness :p).
-    - Go through the Errata pages to see if any examples have resource leaks or other bugs, and fix the equivalent D examples.
-    - In many cases variables with Hungarian notation should be renamed. Most pTypeVar variables no longer reflect their true type.
-    - Various syntax issues were left unresolved. In particular the C code used the form `TEXT("SomeString")` throughout the code to make it Unicode-safe. I simply replaced most of these calls by removing the TEXT symbol, which left a lot of weird-looking `("SomeString")` code snippets. The parenthesis need to go.
-    - For loops should be replaced with foreach loops where this makes sense. For loops work fine in most cases, but I prefer the latter.
-    - Due to the usage of a prewritten main.d prototype there are a lot of unecessary imports in various modules. Removing them would be tedious by hand, and there doesn't seem to be any tool yet that could help us resolve this.
-    - UpdDemo was not ported since it cannot work due to a missing FTP server. See Errata2 in the links section, Chapter23.
+    - Replace excessive string copying with saner code. This is mostly caused by my own 
+      lazyness (This will be improved upon later. I mean the examples, not my lazyness :p).
+    - Go through the Errata pages to see if any examples have resource leaks or other bugs, 
+      and fix the equivalent D examples.
+    - In many cases variables with Hungarian notation should be renamed. Most pTypeVar 
+      variables no longer reflect their true type.
+    - Various syntax issues were left unresolved. In particular the C code used the form 
+      `TEXT("SomeString")` throughout the code to make it Unicode-safe. I simply replaced 
+      most of these calls by removing the TEXT symbol, which left a lot of weird-looking 
+      `("SomeString")` code snippets. The parenthesis need to go.
+    - For loops should be replaced with foreach loops where this makes sense. For loops work 
+      fine in most cases, but I prefer the latter.
+    - Due to the usage of a prewritten main.d prototype there are a lot of unecessary imports 
+      in various modules. Removing them would be tedious by hand, and there doesn't seem to 
+      be any tool yet that could help us resolve this.
+    - UpdDemo was not ported since it cannot work due to a missing FTP server. See Errata2 in 
+      the links section, Chapter23.
 
-    Note: If you find any bugs that you'd like to fix or just want to improve the examples, feel free to contribute by forking the repo and making pull requests.
+    Note: If you find any bugs that you'd like to fix or just want to improve the examples, 
+          feel free to contribute by forking the repo and making pull requests.
 
 == Acknowledgments ==
-    My salutes go out to the guys at the WindowsAPI translation project: http://dsource.org/projects/bindings/wiki/WindowsApi
-    A Big Thanks to Charles Petzold for writing a fantastic Windows API programming book and for allowing me to host these code samples online.
+    My salutes go out to the guys at the WindowsAPI translation project: 
+    http://dsource.org/projects/bindings/wiki/WindowsApi
+    
+    A Big Thanks to Charles Petzold for writing a fantastic Windows API programming book and 
+    for allowing me to host these code samples online.
 
 == Licensing ==
     All code examples' original copyright belongs to Charles Petzold.
@@ -104,7 +144,8 @@ Optional Tools:
 
 == Links ==
     Programming Windows Homepage: http://www.charlespetzold.com/pw5/
-    Programming Windows C Code Samples: http://www.charlespetzold.com/books.html (search for ProgWin5.zip)
+    Programming Windows C Code Samples: http://www.charlespetzold.com/books.html 
+    (search for ProgWin5.zip)
     Charles Petzold FAQ: http://www.charlespetzold.com/faq.html
     Programming Windows Errata #1: http://www.computersciencelab.com/PetzoldErrata.htm
     Programming Windows Errata #2: http://www.jasondoucette.com/books/pw5/pw5errata.html
@@ -114,67 +155,115 @@ Optional Tools:
     HTOD: http://www.digitalmars.com/d/2.0/htod.html
     DDBG D Debugger: http://ddbg.mainia.de/doc.html
     Uncrustify - Code Beautifier: http://sourceforge.net/projects/uncrustify/develop
-    UniversalIndentGUI - GUI Frontend for Code Beautifiers: http://universalindent.sourceforge.net/
+    UniversalIndentGUI - GUI Frontend for Code Beautifiers: 
+    http://universalindent.sourceforge.net/
     Using Resources in D: http://prowiki.org/wiki4d/wiki.cgi?D__Tutorial/WindowsResources
 
 == How the examples were ported ==
-    I've made a stub file which contains the basic winmain function which calls mywinmain to set things up.
-    I've also made a batch file which automatically builds the project based on the folder contents (i.e. it will build resources if found, set the app name to the folder name, convert header files to D files). 
+    I've made a stub file which contains the basic winmain function which calls mywinmain to 
+    set things up.
+    I've also made a batch file which automatically builds the project based on the folder 
+    contents (i.e. it will build resources if found, set the app name to the folder name, 
+    convert header files to D files). 
 
     The porting process is:
     - Run Uncrustify on the file to format the code to a specific look.
-    - Copy the contents of the stub file, paste it at the top of an existing .c project. See the .c file's winmain function and see if there's anything different (i.e. the app might have keyboard translators, or it creates menus and windows programatically, etc.). Copy any new or changed stuff to our D MyWinMain function.
+    - Copy the contents of the stub file, paste it at the top of an existing .c project. See 
+      the .c file's winmain function and see if there's anything different (i.e. the app 
+      might have keyboard translators, or it creates menus and windows programatically, 
+      etc.). Copy any new or changed stuff to our D MyWinMain function.
     - If the app uses resources just uncomment the "import resource;" statement.
-    - Change 'appName' to match the .c file's 'szAppName'. This is important as resources are usually tied to a name and won't load unless you specify the exact name.
+    - Change 'appName' to match the .c file's 'szAppName'. This is important as resources are 
+      usually tied to a name and won't load unless you specify the exact name.
     - Convert -> to .
-    - Change all TCHAR[] types to either strings, and then use toUTF16z when calling WinAPI functions. Or change then to wchar[] if they're going to be written to.
+    - Change all TCHAR[] types to either strings, and then use toUTF16z when calling WinAPI 
+      functions. Or change then to wchar[] if they're going to be written to.
     - Change "LRESULT CALLBACK WndProc" to "extern (Windows) LRESULT WndProc"
     - Add default cases to all switch statements.
     - Change fallbacks to goto statements (fallback are banned in 2.054+)
     - Change any sizeof(var) to var.sizeof
-    - Replace inline calls to wsprintf such as:
-        TextOut(hdc, 0, y += cyChar, szBuffer, wsprintf(szBuffer, ("lfWidth = %i"), lf.lfWidth));
+    - Replace inline calls to wsprintf such as:      
+      TextOut(hdc, 0, y += cyChar, szBuffer, wsprintf(szBuffer, ("lfWidth = %i"), lf.lfWidth));
         
         to this (also replace any special specifiers with %s):
             szBuffer = format("lfWidht = %s", lf.lfWidth);
             TextOut(hdc, 0, y += cyChar, szBuffer.toUTF16z, szBuffer.length);
             
-        Note: Some WinAPI functions take the character length, other the count of bytes as the length parameter.
-        In some cases I should have taken into account that the .length property doesn't count actual code points in UTF8/UTF16 strings,
-        but code units instead. To work around this you can change string types to dstring to make the .length property mean code point count.
-        At the time of writing toUTF16z doesn't accept dstrings and wstrings in the 2.053 implementation, so I've used workarounds.
+        Note: Some WinAPI functions take the character length, other the count of bytes as 
+        the length parameter.
+        In some cases I should have taken into account that the .length property doesn't 
+        count actual code points in UTF8/UTF16 strings,
+        but code units instead. To work around this you can change string types to dstring to 
+        make the .length property mean code point count.
+        At the time of writing toUTF16z doesn't accept dstrings and wstrings in the 2.053 
+        implementation, so I've used workarounds.
     - Pass static and dynamic arrays by using their .ptr field. 
-    - Floats and Doubles are default-initialized to NaN. This causes hardware halts or throws exceptions, based on the configuration. Since C doesn't have this initializer, most C code doesn't explicitly initialize floats/doubles to 0.0 where this was implicit. A good way to catch exactly where a fault occured is to use the DDBG debugger.
+    - Floats and Doubles are default-initialized to NaN. This causes hardware halts or throws 
+      exceptions, based on the configuration. Since C doesn't have this initializer, most C 
+      code doesn't explicitly initialize floats/doubles to 0.0 where this was implicit. A 
+      good way to catch exactly where a fault occured is to use the DDBG debugger.
     - UTF note: 
 
 
-    At this point I try to compile and I usually get a list of errors, which is nice because I get back the line numbers for invalid code, which is harder to spot in a text editor alone. Then I usually fix the following:
-    - For linker errors, it usually means we're missing a pragma call. E.g. if you import 'import win32.wingdi;', you should also add 'pragma(lib, "gdi32.lib");'. The WindowsAPI modules each have a pragma at the top which you can copy into your projects.
+    At this point I try to compile and I usually get a list of errors, which is nice because 
+    I get back the line numbers for invalid code, which is harder to spot in a text editor 
+    alone. Then I usually fix the following:
+    - For linker errors, it usually means we're missing a pragma call. E.g. if you import 
+      'import win32.wingdi;', you should also add 'pragma(lib, "gdi32.lib");'. The WindowsAPI 
+      modules each have a pragma at the top which you can copy into your projects.
     - Change implicit casts e.g. (HBRUSH)GetStockObject to cast(HBRUSH)GetStockObject
     - Change assignment of strings to fields that expect pointers by using .toUTF16z
-    - Change any malloc and free calls to GC.malloc and GC.free (Note: I could replace these with arrays and just change the length of these arrays instead of calling malloc, but maybe that would be too much of a change for the reader of the book).
-    - 'PNTR var = GC.malloc()' itself has to be replaced with 'PNTR var = cast(typeof(var))GC.malloc().
-    - Change C-style struct initializers with explicit D ctor calls. This is always problematic to convert, but it helps if your editor supports macros or simultaneous multiline editing.
-    - Change C-style multidimensional arrays to D ones. Sometimes it's a simple conversion of TCHAR[][] to string[].
-    - Replace calls to TEXT("string") to either ("string") or "string". Either will work, while the conversion to latter might be harder to automate unless you're a happy regex hacker.
-    - Fix implicit conversions of 0 to void*, this won't compile in D so we use null here instead.
-    - Sometimes calls to LOWORD and HIWORD have to be casted to a short or some other type. In some C examples this was missing and produced erratic GUI behavior due to various implicit unsigned int<>short conversions. (See Chap7/BlokOut2/BlokOut2.c and its executable for an example. Try making a selection beyond the border of the window to see the bug.)
-    - Change static vars to enums where appropriate. Some statics are used as immutable values in C, in those cases we can use enums (this might not always work due to CTFE limitations).
+    - Change any malloc and free calls to GC.malloc and GC.free (Note: I could replace these 
+      with arrays and just change the length of these arrays instead of calling malloc, but 
+      maybe that would be too much of a change for the reader of the book).
+    - 'PNTR var = GC.malloc()' itself has to be replaced with 'PNTR var = 
+      cast(typeof(var))GC.malloc().
+    - Change C-style struct initializers with explicit D ctor calls. This is always 
+      problematic to convert, but it helps if your editor supports macros or simultaneous 
+      multiline editing.
+    - Change C-style multidimensional arrays to D ones. Sometimes it's a simple conversion of 
+      TCHAR[][] to string[].
+    - Replace calls to TEXT("string") to either ("string") or "string". Either will work, 
+      while the conversion to latter might be harder to automate unless you're a happy regex 
+      hacker.
+    - Fix implicit conversions of 0 to void*, this won't compile in D so we use null here 
+      instead.
+    - Sometimes calls to LOWORD and HIWORD have to be casted to a short or some other type. 
+      In some C examples this was missing and produced erratic GUI behavior due to various 
+      implicit unsigned int<>short conversions. (See Chap7/BlokOut2/BlokOut2.c and its 
+      executable for an example. Try making a selection beyond the border of the window to 
+      see the bug.)
+    - Change static vars to enums where appropriate. Some statics are used as immutable 
+      values in C, in those cases we can use enums (this might not always work due to CTFE 
+      limitations).
     - Replace comparisons with null with 'is null' and '!is null'.
     - Add any missing imports. There are usually two cases:
-        1. We're missing a winapi prototype, so we find it in the WindowsAPI library and do an import to a specific module.
-        2. There was a .c file with various functions which is used in multiple examples. Sometimes its missing in the current directory, so I had to copy it from the other examples.
-    - Some API calls write to a static array by giving them the .ptr field of such an array. To retrieve a D string out of such an array, we have to treat it as a wchar* zero-terminated string. So I've had to write a fromWStringz function for this purpose. This should all be avoided by writing better code, code like this will be improved later.
+      1. We're missing a winapi prototype, so we find it in the WindowsAPI library and do an 
+         import to a specific module.
+      2. There was a .c file with various functions which is used in multiple examples. 
+         Sometimes its missing in the current directory, so I had to copy it from the other 
+         examples.
+    - Some API calls write to a static array by giving them the .ptr field of such an array. 
+      To retrieve a D string out of such an array, we have to treat it as a wchar* 
+      zero-terminated string. So I've had to write a fromWStringz function for this purpose. 
+      This should all be avoided by writing better code, code like this will be improved later.
 
     Additional changes:
-    - Put BeginPaint and EndPaint next to each other by using 'scope(exit) EndPaint' after the call to BeginPaint. Same thing for SelectObject - DeleteObject.
-    - Speed issues: There was an example or two where the speed of drawing shapes was extremely fast (the book was written for 1998 machines). In those cases I've added a call to Thread.sleep() in the example's drawing loop.
+    - Put BeginPaint and EndPaint next to each other by using 'scope(exit) EndPaint' after 
+      the call to BeginPaint. Same thing for SelectObject - DeleteObject.
+    - Speed issues: There was an example or two where the speed of drawing shapes was 
+      extremely fast (the book was written for 1998 machines). In those cases I've added a 
+      call to Thread.sleep() in the example's drawing loop.
     - Replace for loops with foreach loops.
 
     Final steps:
-    - Make sure the example compiles and actually runs and performs the same as the C example (unless the C example was buggy to begin with). There are various things to notice at this stage that can be caused by accidents:
+    - Make sure the example compiles and actually runs and performs the same as the C example 
+      (unless the C example was buggy to begin with). There are various things to notice at 
+      this stage that can be caused by accidents:
         - Missing menus
-        - Missing or incorrect icons (e.g. forgot to replace a call like 'LoadIcon(NULL, IDI_APPLICATION);' to 'LoadIcon(NULL, IDI_INFORMATION);
-        - Incorrect background color (e.g. used 'wndclass.hbrBackground = cast(HBRUSH) GetStockObject(WHITE_BRUSH);' instead of 'wndclass.hbrBackground = cast(HBRUSH) GetStockObject(BLACK_BRUSH);'
+        - Missing or incorrect icons (e.g. forgot to replace a call like 'LoadIcon(NULL, 
+          IDI_APPLICATION);' to 'LoadIcon(NULL, IDI_INFORMATION);
+        - Incorrect background color (e.g. used 'wndclass.hbrBackground = cast(HBRUSH) 
+          GetStockObject(WHITE_BRUSH);' instead of 'wndclass.hbrBackground = cast(HBRUSH) 
+          GetStockObject(BLACK_BRUSH);'
         - I could have forgot to uncomment "import resource;" in the code.
-
