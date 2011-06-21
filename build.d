@@ -169,8 +169,7 @@ void main(string[] args)
             }
         }
         
-        //~ foreach (dir; dirs)
-        foreach (dir; taskPool.parallel(dirs, 1))
+        foreach (dir; parallel(dirs, 1))
         {
             // the DLL examples are special, for one thing the std.c.windows.windows
             // module clashes with the WindowsAPI bindings, and the 
