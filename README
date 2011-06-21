@@ -168,6 +168,7 @@ Optional Tools:
 
     The porting process is:
     - Run Uncrustify on the file to format the code to a specific look.
+      A configuration file that was used with Uncrustify is provided in the root directory.
     - Copy the contents of the stub file, paste it at the top of an existing .c project. See 
       the .c file's winmain function and see if there's anything different (i.e. the app 
       might have keyboard translators, or it creates menus and windows programatically, 
