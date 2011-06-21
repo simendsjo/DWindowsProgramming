@@ -10,7 +10,6 @@ import std.file;
 import std.process;
 import std.parallelism;
 
-// Update these to reflect the state on your system, these are the default on XP32.
 string RC_INCLUDE_1 = r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include";
 string RC_INCLUDE_2 = r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include";
 string RC_INCLUDE_3 = r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include";
@@ -204,8 +203,6 @@ void main(string[] args)
             }
         }
     }
-    
-    
     
     if (failedBuilds.length)
     {

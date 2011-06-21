@@ -4,3 +4,4 @@ todo2.txt
 appendLicense.d
 license.txt
 .gitignore
+build.d.deps
