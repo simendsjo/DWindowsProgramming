@@ -171,9 +171,9 @@ Optional Tools:
 == How the examples were ported ==
     I've made a stub file which contains the basic winmain function which calls mywinmain to 
     set things up.
-    I've also made a batch file which automatically builds the project based on the folder 
-    contents (i.e. it will build resources if found, set the app name to the folder name, 
-    convert header files to D files). 
+    Originally I've made a batch file build script but replaced this with a more safer D
+    build script which doesn't assume you have all the dependencies and will warn you about
+    errors.
 
     The porting process is:
     - Run Uncrustify on the file to format the code to a specific look.
