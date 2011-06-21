@@ -13,14 +13,14 @@
 == Latest Update  ==
     22nd June 2011 - Added single-project compilation by CD-ing to the directory and issuing
                      the call `rdmd ..\..\..\build "%cd%`
-    21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.043.
+    21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.053.
 
 == Building Requirements ==
     - XP 32bit or Win7 32bit system, 64bit versions haven't been tested but they might work 
       (let me know if it works for you or not).
       Older systems are not supported.
 
-    - DMD v2.043 compiler (Newer versions might not work if there are language/library
+    - DMD v2.053 compiler (Newer versions might not work if there are language/library
       changes). 
       Download it from: http://www.digitalmars.com/d/download.html
       Usage instructions (nice bookmark): http://d-programming-language.org/dmd-windows.html
