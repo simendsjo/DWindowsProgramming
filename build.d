@@ -4,6 +4,7 @@ import core.thread : Thread, dur;
 import std.algorithm;
 import std.array;
 import std.stdio;
+import std.string;
 import std.path;
 import std.file;
 import std.process;
@@ -118,57 +119,78 @@ void main(string[] args)
     args.popFront;
     bool clean   = (args.length && args[0] == "clean");
     Debug        = (args.length && args[0] == "debug");
-
-    if (!clean) checkDependencies();
+    string projectPath;
     
-    // direntries is not a range in 2.053:
-    string[] dirs;
-    foreach (string dir; dirEntries(rel2abs(curdir ~ r"\Samples"), SpanMode.shallow))
+    if (args.length && getDrive(args[0]))
     {
-        if (dir.isdir) 
+        if (exists(args[0]) && isdir(args[0]))
         {
-            foreach (string subdir; dirEntries(dir, SpanMode.shallow))
-            {
-                if (subdir.isdir && subdir.basename != "todo")
-                    dirs ~= subdir;
-            }
-        }
-    }
-    
-    foreach (dir; dirs)
-    {
-        chdir(dir);
-
-        // the DLL examples are special, for one thing the std.c.windows.windows
-        // module clashes with the WindowsAPI bindings, and the 
-        // DLLs require special DMD flags. Each dir has its own batch file.
-        if (dir.basename == "EdrTest" ||
-            dir.basename == "ShowBit" ||
-            dir.basename == "StrProg")
-        {
-            if (clean)
-            {
-                try { system("del *.obj"); } catch{};
-                try { system("del *.map"); } catch{};
-                try { system("del *.exe"); } catch{};
-            }
-            else
-            {
-                auto res = system(r"build.bat");
-                if (res == 1 || res == -1)
-                    failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
-            }
+            projectPath = args[0];
         }
         else
+            assert(0, "Cannot build project in path: \"" ~ args[0] ~ 
+                      "\". Try wrapping %CD% with quotes when calling build: \"%CD%\"");
+    }
+    
+    if (!clean) checkDependencies();
+    
+    // build a single project only
+    if (projectPath.length)
+    {
+        chdir(projectPath);
+        build(curdir);
+    }
+    else
+    {
+        // direntries is not a range in 2.053:
+        string[] dirs;
+        foreach (string dir; dirEntries(rel2abs(curdir ~ r"\Samples"), SpanMode.shallow))
         {
-            if (clean)
+            if (dir.isdir) 
             {
-                try { system("del *.obj"); } catch{};
-                try { system("del *.map"); } catch{};
-                try { system("del *.exe"); } catch{};
+                foreach (string subdir; dirEntries(dir, SpanMode.shallow))
+                {
+                    if (subdir.isdir && subdir.basename != "todo")
+                        dirs ~= subdir;
+                }
+            }
+        }
+        
+        foreach (dir; dirs)
+        {
+            chdir(dir);
+
+            // the DLL examples are special, for one thing the std.c.windows.windows
+            // module clashes with the WindowsAPI bindings, and the 
+            // DLLs require special DMD flags. Each dir has its own batch file.
+            if (dir.basename == "EdrTest" ||
+                dir.basename == "ShowBit" ||
+                dir.basename == "StrProg")
+            {
+                if (clean)
+                {
+                    try { system("del *.obj"); } catch{};
+                    try { system("del *.map"); } catch{};
+                    try { system("del *.exe"); } catch{};
+                }
+                else
+                {
+                    auto res = system(r"build.bat");
+                    if (res == 1 || res == -1)
+                        failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
+                }
             }
             else
-                build(curdir);
+            {
+                if (clean)
+                {
+                    try { system("del *.obj"); } catch{};
+                    try { system("del *.map"); } catch{};
+                    try { system("del *.exe"); } catch{};
+                }
+                else
+                    build(curdir);
+            }
         }
     }
     

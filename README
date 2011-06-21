@@ -11,7 +11,9 @@
     Project Homepage: https://github.com/AndrejMitrovic/Windows_Programming_in_D
 
 == Latest Update  ==
-    21st June 2011, built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.043.
+    22nd June 2011 - Added single-project compilation by CD-ing to the directory and issuing
+                     the call `rdmd ..\..\..\build "%cd%`
+    21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.043.
 
 == Building Requirements ==
     - XP 32bit or Win7 32bit system, 64bit versions haven't been tested but they might work 
@@ -30,6 +32,11 @@
     
     - Build the samples by issuing this call from the command line:
         rdmd build.d
+        
+    - To build only a single example, CD to its directory and run:
+        rdmd ..\..\..\build.d "%cd%"
+        
+    Note: The quotes are important
         
     Note: The script will likely emit some warnings, but you don't have to worry about those.
         
