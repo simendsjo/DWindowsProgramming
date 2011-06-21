@@ -214,16 +214,13 @@ Optional Tools:
       where a fault occured is to use the DDBG debugger.
 
     At this point I try to compile and I usually get a list of errors, which is nice because 
-    I get back the line numbers for invalid code, which is harder to spot in a text editor 
-    alone. Then I usually fix the following:
-    - For linker errors, it usually means we're missing a pragma call. E.g. if you import 
+    I get back the line numbers for invalid code. Then I usually have to fix the following:
+    - For linker errors, it probably means we're missing a pragma call. E.g. if you import 
       'import win32.wingdi;', you should also add 'pragma(lib, "gdi32.lib");'. The WindowsAPI 
       modules each have a pragma at the top which you can copy into your projects.
     - Change implicit casts e.g. (HBRUSH)GetStockObject to cast(HBRUSH)GetStockObject
     - Change assignment of strings to fields that expect pointers by using .toUTF16z
-    - Change any malloc and free calls to GC.malloc and GC.free (Note: I could replace these 
-      with arrays and just change the length of these arrays instead of calling malloc, but 
-      maybe that would be too much of a change for the reader of the book).
+    - Change any malloc and free calls to GC.malloc and GC.free (there are plenty left)
     - 'PNTR var = GC.malloc()' itself has to be replaced with 'PNTR var = 
       cast(typeof(var))GC.malloc().
     - Change C-style struct initializers with explicit D ctor calls. This is always 

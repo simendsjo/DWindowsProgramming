@@ -26,14 +26,8 @@ import win32.mmsystem;
 
 enum MAX_STRING_LEN = 256;
 
-wchar[MAX_STRING_LEN] szFindText;
-wchar[MAX_STRING_LEN] szReplText;
-
-static this()
-{
-    szFindText[] = '\0';
-    szReplText[] = '\0';
-}
+wchar[MAX_STRING_LEN] szFindText = 0;
+wchar[MAX_STRING_LEN] szReplText = 0;
 
 wstring fromWStringz(const wchar* s)
 {

@@ -75,7 +75,7 @@ void build(string dir)
 {
     string appName = rel2abs(dir).basename;
     string exeName = rel2abs(dir) ~ r"\" ~ appName ~ ".exe";
-    string LIBPATH = r"..\..\..";
+    string LIBPATH = r".";
     string FLAGS = Debug ? 
                    "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -g" 
                  : "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -L-Subsystem:Windows";
@@ -103,7 +103,9 @@ void build(string dir)
     if (sources.length)
     {
         writeln("Building " ~ exeName);
-        auto res = system("dmd -of" ~ appName ~ ".exe" ~ 
+        writeln(rel2abs(dir) ~ r"\");
+        auto res = system(" dmd -of" ~ exeName ~
+                          " -od" ~ rel2abs(dir) ~ r"\" ~ 
                           " -I" ~ LIBPATH ~ r"\" ~ 
                           " " ~ LIBPATH ~ r"\win32.lib" ~
                           " " ~ FLAGS ~ 
@@ -111,6 +113,16 @@ void build(string dir)
         
         if (res == -1 || res == 1)
             failedBuilds ~= exeName;
+        
+        try { system("del " ~ appName ~ ".map"); } catch{};
+    }
+}
+
+void checkLibExists()
+{
+    if (!exists("win32.lib"))
+    {
+        assert(0, "You have to compile the WindowsAPI bindings first. Use the build_unicode.bat script in the win32 folder");
     }
 }
 
@@ -120,7 +132,7 @@ void main(string[] args)
     bool clean   = (args.length && args[0] == "clean");
     Debug        = (args.length && args[0] == "debug");
     string projectPath;
-    
+ 
     if (args.length && getDrive(args[0]))
     {
         if (exists(args[0]) && isdir(args[0]))
@@ -137,11 +149,13 @@ void main(string[] args)
     // build a single project only
     if (projectPath.length)
     {
-        chdir(projectPath);
-        build(curdir);
+        chdir(r"..\..\..\");
+        checkLibExists();
+        build(projectPath);
     }
     else
     {
+        checkLibExists();
         // direntries is not a range in 2.053:
         string[] dirs;
         foreach (string dir; dirEntries(rel2abs(curdir ~ r"\Samples"), SpanMode.shallow))
@@ -156,10 +170,9 @@ void main(string[] args)
             }
         }
         
-        foreach (dir; dirs)
+        //~ foreach (dir; dirs)
+        foreach (dir; taskPool.parallel(dirs, 1))
         {
-            chdir(dir);
-
             // the DLL examples are special, for one thing the std.c.windows.windows
             // module clashes with the WindowsAPI bindings, and the 
             // DLLs require special DMD flags. Each dir has its own batch file.
@@ -169,13 +182,13 @@ void main(string[] args)
             {
                 if (clean)
                 {
-                    try { system("del *.obj"); } catch{};
-                    try { system("del *.map"); } catch{};
-                    try { system("del *.exe"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
                 }
                 else
                 {
-                    auto res = system(r"build.bat");
+                    auto res = system(dir ~ r"\" ~ "build.bat");
                     if (res == 1 || res == -1)
                         failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
                 }
@@ -184,15 +197,17 @@ void main(string[] args)
             {
                 if (clean)
                 {
-                    try { system("del *.obj"); } catch{};
-                    try { system("del *.map"); } catch{};
-                    try { system("del *.exe"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
                 }
                 else
-                    build(curdir);
+                    build(dir);
             }
         }
     }
+    
+    
     
     if (failedBuilds.length)
     {
@@ -202,7 +217,7 @@ void main(string[] args)
             writeln(file);
         }
     }
-    else if (!clean)
+    else if (!clean && !projectPath.length)
     {
         writeln("All examples succesfully built.");
     }

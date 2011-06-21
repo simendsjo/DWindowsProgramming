@@ -98,15 +98,8 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     return msg.wParam;
 }
 
-__gshared wchar[MAX_PATH] szFileName;
-__gshared wchar[MAX_PATH] szTitleName;
-
-static this()
-{
-    szFileName[]  = '\0';
-    szTitleName[] = '\0';
-}
-
+__gshared wchar[MAX_PATH] szFileName  = 0;
+__gshared wchar[MAX_PATH] szTitleName = 0;
 extern (Windows)
 LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

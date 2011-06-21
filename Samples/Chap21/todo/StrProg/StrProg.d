@@ -107,12 +107,7 @@ struct CBPARAM
     int yMax;
 }
 
-__gshared wchar[] szString;
-static this()
-{
-    szString = new wchar[](MAX_LENGTH);
-    szString[] = '\0';
-}
+__gshared wchar[MAX_LENGTH] szString = 0;
 
 extern (Windows)
 BOOL DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)

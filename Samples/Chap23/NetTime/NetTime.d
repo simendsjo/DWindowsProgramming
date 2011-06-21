@@ -148,12 +148,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, message, wParam, lParam);
 }
 
-TCHAR[32] szOKLabel;
-
-static this()
-{
-    szOKLabel[] = '\0';
-}
+TCHAR[32] szOKLabel = 0;
 
 extern (Windows)
 BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

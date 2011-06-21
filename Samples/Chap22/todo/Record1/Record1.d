@@ -268,7 +268,7 @@ BOOL DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             pSaveBuffer = pNewBuffer;
             
-            // this abomination really needs to go..
+            // this is broken
             pSaveBuffer[0 .. dwDataLength] = cast(ubyte[])((cast(PWAVEHDR)lParam).lpData)[0 .. (cast(PWAVEHDR)lParam).dwBytesRecorded];
 
             dwDataLength += (cast(PWAVEHDR)lParam).dwBytesRecorded;
