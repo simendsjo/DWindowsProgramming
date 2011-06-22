@@ -36,6 +36,11 @@ class FailedBuildException : Exception
     }    
 }
     
+void checkWinLib()
+{
+    enforce("win32.lib".exists, "You have to compile the WindowsAPI bindings first. Use the build_unicode.bat script in the win32 folder");
+}
+
 void checkTools()
 {
     system("echo int x; > test.h");
@@ -44,7 +49,7 @@ void checkTools()
     if (res == -1 || res == 1)
     {
         skipHeaderCompile = true;
-        writeln(0, "Warning: The builder will use existing D header files and won't generate them dyanimcally. You need to download and install HTOD. Please see the Links section in the Readme file.");
+        writeln(0, "Warning: The builder will use existing D header files and won't generate them dynaimcally. You need to download and install HTOD. Please see the Links section in the Readme file.");
     }
     
     try { std.file.remove("test.h"); } catch {};
@@ -69,11 +74,17 @@ void checkTools()
     {
         auto includes = getenv("RCINCLUDES").split(";");
         
-        if (!includes.length)
+        if (!includes.length || includes.length != 3)
         {
             skipResCompile = true;
             writeln("Warning: RC Compiler Include dirs not found. Builder will will use precompiled resources. See README for more details.");
             Thread.sleep(dur!("seconds")(3));
+        }
+        else
+        {
+            RC_INCLUDE_1 = includes[0];
+            RC_INCLUDE_2 = includes[1];
+            RC_INCLUDE_3 = includes[2];
         }
     }        
     
@@ -99,6 +110,25 @@ __gshared bool silent;
 __gshared string soloProject;
 __gshared alias reduce!("a ~ ' ' ~ b") flatten;
 __gshared string[] failedBuilds;
+
+string[] getProjectDirs(string root)
+{
+    string[] result;
+    
+    // direntries is not a range in 2.053
+    foreach (string dir; dirEntries(root, SpanMode.shallow))
+    {
+        if (dir.isdir)
+        {
+            foreach (string subdir; dirEntries(dir, SpanMode.shallow))
+            {
+                if (subdir.isdir && subdir.basename != "todo")
+                    result ~= subdir;
+            }
+        }
+    }    
+    return result;
+}
 
 bool buildProject(string dir)
 {
@@ -146,30 +176,6 @@ bool buildProject(string dir)
     }
     
     return true;
-}
-
-void checkWinLib()
-{
-    enforce("win32.lib".exists, "You have to compile the WindowsAPI bindings first. Use the build_unicode.bat script in the win32 folder");
-}
-
-string[] getProjectDirs(string root)
-{
-    string[] result;
-    
-    // direntries is not a range in 2.053
-    foreach (string dir; dirEntries(root, SpanMode.shallow))
-    {
-        if (dir.isdir)
-        {
-            foreach (string subdir; dirEntries(dir, SpanMode.shallow))
-            {
-                if (subdir.isdir && subdir.basename != "todo")
-                    result ~= subdir;
-            }
-        }
-    }    
-    return result;
 }
 
 void buildProjectDirs(string[] dirs, bool cleanOnly = false)
@@ -268,14 +274,14 @@ int main(string[] args)
         
         if (!silent)
         {
-            writeln("About to build.");
+            //~ writeln("About to build.");
             
             // @BUG@ The RDMD bundled with DMD 2.053 has input handling bugs,
             // wait for 2.054 to print this out. If you have RDMD from github,
             // you can press 'q' during the build process to force exit.
             
             //~ writeln("About to build. Press 'q' to stop the build process.");
-            Thread.sleep(dur!("seconds")(2));
+            //~ Thread.sleep(dur!("seconds")(2));
         }
     }    
     
