@@ -58,7 +58,7 @@
           could be used, however at the time of writing it doesn't seem to support pragma lib
           linking. 
 
-Optional Tools:
+== Optional Tools ==
     - HTOD: http://www.digitalmars.com/d/2.0/htod.html    
         HTOD needs to be in your PATH. It's probably best to put it in the \DMD2\Windows\Bin 
         directory.
@@ -164,6 +164,9 @@ Optional Tools:
     Using Resources in D: http://prowiki.org/wiki4d/wiki.cgi?D__Tutorial/WindowsResources
 
 == How the examples were ported ==
+    A few notes about the issues found when porting C code to D can be read about here:
+    http://www.digitalmars.com/webnews/newsgroups.php?art_group=digitalmars.D.announce&article_id=20764
+
     I've made a stub file which contains the basic winmain function which calls mywinmain to 
     set things up.
     Originally I've made a batch file build script but replaced this with a more safer D
