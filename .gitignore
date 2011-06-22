@@ -5,3 +5,4 @@ appendLicense.d
 license.txt
 .gitignore
 build.d.deps
+/Samples/Extra/*

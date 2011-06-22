@@ -37,7 +37,6 @@
         rdmd ..\..\..\build.d "%cd%"
         
     Note: The quotes are important
-        
     Note: The script will likely emit some warnings, but you don't have to worry about those.
         
     Other options are:

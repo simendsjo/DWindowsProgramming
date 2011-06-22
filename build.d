@@ -64,11 +64,14 @@ string[] getFilesByExt(string dir, string ext, string ext2 = null)
     return result;
 }
 
-bool Debug;
-bool skipHeaderCompile;
-bool skipResCompile;
-alias reduce!("a ~ ' ' ~ b") flatten;
-string[] failedBuilds;
+__gshared bool Debug;
+__gshared bool clean;
+__gshared bool skipHeaderCompile;
+__gshared bool skipResCompile;
+__gshared bool silent;
+__gshared string projectPath;
+__gshared alias reduce!("a ~ ' ' ~ b") flatten;
+__gshared string[] failedBuilds;
 
 void build(string dir)
 {
@@ -101,7 +104,7 @@ void build(string dir)
     
     if (sources.length)
     {
-        writeln("Building " ~ exeName);
+        if (!silent) writeln("Building " ~ exeName);
         auto res = system(" dmd -of" ~ exeName ~
                           " -od" ~ rel2abs(dir) ~ r"\" ~ 
                           " -I" ~ LIBPATH ~ r"\" ~ 
@@ -112,7 +115,10 @@ void build(string dir)
         if (res == -1 || res == 1)
             failedBuilds ~= exeName;
         
-        try { system("del " ~ appName ~ ".map"); } catch{};
+        if (!projectPath.length)
+        {
+            try { system("del " ~ appName ~ ".map"); } catch{};
+        }
     }
 }
 
@@ -124,22 +130,27 @@ void checkLibExists()
     }
 }
 
-void main(string[] args)
+int main(string[] args)
 {
     args.popFront;
-    bool clean   = (args.length && args[0] == "clean");
-    Debug        = (args.length && args[0] == "debug");
-    string projectPath;
- 
-    if (args.length && getDrive(args[0]))
+    
+    foreach (arg; args)
     {
-        if (exists(args[0]) && isdir(args[0]))
-        {
-            projectPath = args[0];
-        }
+        if (arg == "clean") clean = true;
+        else if (arg == "debug") Debug = true;
         else
-            assert(0, "Cannot build project in path: \"" ~ args[0] ~ 
-                      "\". Try wrapping %CD% with quotes when calling build: \"%CD%\"");
+        {
+            if (getDrive(arg))
+            {
+                if (exists(arg) && isdir(arg))
+                {
+                    projectPath = arg;
+                }
+                else
+                    assert(0, "Cannot build project in path: \"" ~ arg ~ 
+                              "\". Try wrapping %CD% with quotes when calling build: \"%CD%\"");
+            }               
+        }
     }
     
     if (!clean) checkDependencies();
@@ -147,6 +158,7 @@ void main(string[] args)
     // build a single project only
     if (projectPath.length)
     {
+        silent = true;
         chdir(r"..\..\..\");
         checkLibExists();
         build(projectPath);
@@ -206,14 +218,20 @@ void main(string[] args)
     
     if (failedBuilds.length)
     {
-        writeln("The following failed to build:");
-        foreach (file; failedBuilds)
+        if (!projectPath.length)
         {
-            writeln(file);
+            writeln("The following failed to build:");
+            foreach (file; failedBuilds)
+            {
+                writeln(file);
+            }
         }
+        return 1;
     }
     else if (!clean && !projectPath.length)
     {
         writeln("All examples succesfully built.");
+        return 0;
     }
+    return 0;
 }
