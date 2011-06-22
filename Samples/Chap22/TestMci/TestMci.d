@@ -109,7 +109,7 @@ BOOL DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         *cast(WORD*)szCommand = szCommand.sizeof / TCHAR.sizeof;
 
                         iLength = SendMessage(hwndEdit, EM_GETLINE, iLine, cast(LPARAM)szCommand.ptr);
-                        szCommand[iLength] = '\0';
+                        szCommand[iLength] = 0;
 
                         if (iLength == 0)
                             continue;

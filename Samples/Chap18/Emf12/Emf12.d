@@ -136,7 +136,7 @@ void DrawRuler(HDC hdc, int cx, int cy)
     // Create logical font
 
     lf.lfHeight     = cy / 2;
-    lf.lfFaceName[] = '\0';
+    lf.lfFaceName   = 0;
     auto szFaceName = "Times New Roman\0";
     lf.lfFaceName[0..szFaceName.length] = szFaceName.toUTF16;
 

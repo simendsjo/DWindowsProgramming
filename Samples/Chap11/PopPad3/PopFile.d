@@ -98,8 +98,8 @@ BOOL PopFileRead(HWND hwndEdit, PTSTR pstrFileName)
     // Read file and put terminating zeros at end.
     ReadFile(hFile, pBuffer, iFileLength, &dwBytesRead, NULL);
     CloseHandle(hFile);
-    pBuffer[iFileLength]     = '\0';
-    pBuffer[iFileLength + 1] = '\0';
+    pBuffer[iFileLength]     = 0;
+    pBuffer[iFileLength + 1] = 0;
 
     // Test to see if the text is Unicode
     iUniTest = IS_TEXT_UNICODE_SIGNATURE | IS_TEXT_UNICODE_REVERSE_SIGNATURE;

@@ -134,5 +134,5 @@ BOOL PopFindReplaceText(HWND hwndEdit, int* piSearchOffset, LPFINDREPLACE pfr)
 
 BOOL PopFindValidFind()
 {
-    return *szFindText != '\0';
+    return *szFindText;
 }

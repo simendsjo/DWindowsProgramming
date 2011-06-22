@@ -167,7 +167,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hInst = (cast(LPCREATESTRUCT)lParam).hInstance;
 
             // Create the edit control child window
-
             hwndEdit = CreateWindow("edit", NULL,
                                     WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL |
                                     WS_BORDER | ES_LEFT | ES_MULTILINE |
@@ -272,8 +271,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         return 0;
 
                     SetWindowText(hwndEdit, ("\0"));
-                    szFileName[0]  = '\0';
-                    szTitleName[0] = '\0';
+                    szFileName[0]  = 0;
+                    szTitleName[0] = 0;
                     DoCaption(hwnd, to!string(fromWStringz(szTitleName.ptr)));
                     bNeedSave = FALSE;
                     return 0;
@@ -288,8 +287,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         if (!PopFileRead(hwndEdit, szFileName.ptr))
                         {
                             OkMessage(hwnd, ("Could not read file %s!"), to!string(fromWStringz(szTitleName.ptr)));
-                            szFileName[0]  = '\0';
-                            szTitleName[0] = '\0';
+                            szFileName[0]  = 0;
+                            szTitleName[0] = 0;
                         }
                     }
 
@@ -299,7 +298,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 case IDM_FILE_SAVE:
 
-                    if (szFileName[0] != '\0')
+                    if (szFileName[0] != 0)
                     {
                         if (PopFileWrite(hwndEdit, szFileName.ptr))
                         {

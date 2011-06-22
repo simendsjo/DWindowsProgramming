@@ -115,10 +115,7 @@ void build(string dir)
         if (res == -1 || res == 1)
             failedBuilds ~= exeName;
         
-        if (!projectPath.length)
-        {
-            try { system("del " ~ appName ~ ".map"); } catch{};
-        }
+        try { system("del " ~ appName ~ ".map"); } catch{};
     }
 }
 
@@ -170,7 +167,7 @@ int main(string[] args)
         string[] dirs;
         foreach (string dir; dirEntries(rel2abs(curdir ~ r"\Samples"), SpanMode.shallow))
         {
-            if (dir.isdir) 
+            if (dir.isdir)
             {
                 foreach (string subdir; dirEntries(dir, SpanMode.shallow))
                 {
@@ -192,7 +189,7 @@ int main(string[] args)
                 if (clean)
                 {
                     try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
-                    try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
+                    try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};  
                     try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
                 }
                 else
@@ -207,7 +204,10 @@ int main(string[] args)
                 if (clean)
                 {
                     try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
-                    try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
+                        
+                    // @BUG@ DMD 2.053 still outputs map files in CWD instead of project folders,
+                    // update this when 2.054 comes out.                        
+                    //~ try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
                     try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
                 }
                 else

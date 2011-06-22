@@ -162,7 +162,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     ulong ulTime;
     WORD wEvent, wError;
     WSADATA WSAData;
-    WSAData.szDescription[] = '\0';
+    WSAData.szDescription = 0;
     
     switch (message)
     {
@@ -338,7 +338,7 @@ BOOL ServerDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     static char* szServer;
     static WORD  wServer = IDC_SERVER1;
     char[64] szLabel;
-    szLabel[] = '\0';
+    szLabel = 0;
 
     switch (message)
     {
@@ -420,10 +420,10 @@ void ChangeSystemTime(HWND hwndEdit, ULONG ulTime)
 void FormatUpdatedTime(HWND hwndEdit, SYSTEMTIME* pstOld, SYSTEMTIME* pstNew)
 {
     TCHAR[64] szDateOld, szTimeOld, szDateNew, szTimeNew;
-    szDateOld[] = '\0';
-    szTimeOld[] = '\0';
-    szDateNew[] = '\0';
-    szTimeNew[] = '\0';
+    szDateOld = 0;
+    szTimeOld = 0;
+    szDateNew = 0;
+    szTimeNew = 0;
     
     
     GetDateFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE | DATE_SHORTDATE,

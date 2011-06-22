@@ -36,6 +36,9 @@
     - To build only a single example, CD to its directory and run:
         rdmd ..\..\..\build.d "%cd%"
         
+    - To enable the console and add debug symbols, append debug to the call:
+        rdmd ..\..\..\build.d "%cd%" debug
+        
     Note: The quotes are important
     Note: The script will likely emit some warnings, but you don't have to worry about those.
         

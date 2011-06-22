@@ -113,17 +113,6 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     return msg.wParam;
 }
 
-wstring fromWStringz(const wchar* s)
-{
-    if (s is null) return null;
-
-    wchar* ptr;
-    for (ptr = cast(wchar*)s; *ptr; ++ptr) {}
-
-    return to!wstring(s[0..ptr-s]);
-}
-
-
 extern (Windows)
 LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -188,7 +177,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     break;
 
                 SendMessage(hwndList, LB_GETTEXT, i, cast(LPARAM)szBuffer.ptr);
-                auto filename = to!string(fromWStringz(szBuffer.ptr));
+                auto filename = to!string(szBuffer[0..wcslen(szBuffer.ptr)]);
 
                 if (filename == "[..]")
                 {

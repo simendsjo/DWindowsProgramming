@@ -147,7 +147,6 @@ __gshared HMENU hMenu;
 extern (Windows)
 LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
     static int iTempo = 50, iIndexLast;
     
     HDC hdc;
@@ -210,12 +209,11 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 case IDM_FILE_OPEN:
                     // Save previous file
-                    if (bNeedSave && IDCANCEL ==
-                        AskAboutSave(hwnd, to!string(fromWStringz(szTitleName.ptr))))
+                    if (bNeedSave && IDCANCEL == AskAboutSave(hwnd, to!string(fromWStringz(szTitleName.ptr))))
                         return 0;
 
-                    szFileName[] = '\0';
-                    szTitleName[] = '\0';
+                    szFileName = 0;
+                    szTitleName = 0;
                     
                     // Open a drm file
                     if (DrumFileOpenDlg(hwnd, szFileName.ptr, szTitleName.ptr))
@@ -224,7 +222,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         if (szError != NULL)
                         {
                             ErrorMessage(hwnd, to!string(fromWStringz(szError)), to!string(fromWStringz(szTitleName.ptr)));
-                            szTitleName[0] = '\0';
+                            szTitleName[0] = 0;
                         }
                         else
                         {
@@ -258,7 +256,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         if (szError != NULL)
                         {
                             ErrorMessage(hwnd, to!string(fromWStringz(szError)), to!string(fromWStringz(szTitleName.ptr)));
-                            szTitleName[0] = '\0';
+                            szTitleName[0] = 0;
                         }
                         else
                             bNeedSave = FALSE;
