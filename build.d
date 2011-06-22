@@ -33,7 +33,7 @@ void checkDependencies()
     if (res == -1 || res == 1)
     {
         skipResCompile = true;
-        writeln("Warning: The builder will use precompiled .res resource files. But you need to download and install the Microsoft RC resource compiler if you want to edit and compile .rc resource files. Please see the Links section in the Readme file.\n");
+        writeln("Warning: RC Compiler not found. Builder will will use precompiled resources. See README for more details..\n");
         Thread.sleep(dur!("seconds")(5));
     }
     
@@ -48,7 +48,11 @@ void checkDependencies()
         auto includes = getenv("RCINCLUDES").split(";");
         
         if (!includes.length)
-            assert(0, "Your need to download the Windows SDK and set up the RC Include directories. Please see the Building section in the Readme file.");
+        {
+            skipResCompile = true;
+            writeln("Warning: RC Compiler Include dirs not found. Builder will will use precompiled resources. See README for more details.");
+            Thread.sleep(dur!("seconds")(5));
+        }
     }        
     
 }
