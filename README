@@ -18,7 +18,8 @@
 == Building Requirements ==
     - XP 32bit or Win7 32bit system, 64bit versions haven't been tested but they might work 
       (let me know if it works for you or not).
-      Older systems are not supported.
+      
+      Non-NT systems are not suppported.
 
     - DMD v2.053 compiler (Newer versions might not work if there are language/library
       changes). 
@@ -101,6 +102,7 @@
     or e-mail me at: andrej.mitrovich<at>gmail.com
 
 == Todo ==
+    - Check if examples compile and run on Vista.
     - Maybe replace the duplicated winmain() functions with a wrapper.
     - Use with statements where possible.
     - Examples in Chap21\todo are fully functional, however they require DMD 2.054 due to the

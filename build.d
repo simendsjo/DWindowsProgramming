@@ -3,6 +3,7 @@ module build;
 import core.thread : Thread, dur;
 import std.algorithm;
 import std.array;
+import std.exception;
 import std.stdio;
 import std.string;
 import std.path;
@@ -14,7 +15,28 @@ string RC_INCLUDE_1 = r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include";
 string RC_INCLUDE_2 = r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include";
 string RC_INCLUDE_3 = r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include";
     
-void checkDependencies()
+extern(C) int kbhit();
+extern(C) int getch();    
+    
+class ForcedExitException : Exception
+{
+    this()
+    {
+        super("");
+    }    
+}
+
+class FailedBuildException : Exception
+{
+    string[] failedMods;
+    this(string[] failedModules)
+    {
+        this.failedMods = failedModules;
+        super("");
+    }    
+}
+    
+void checkTools()
 {
     system("echo int x; > test.h");
     auto res = system("htod test.h");
@@ -34,7 +56,7 @@ void checkDependencies()
     {
         skipResCompile = true;
         writeln("Warning: RC Compiler not found. Builder will will use precompiled resources. See README for more details..\n");
-        Thread.sleep(dur!("seconds")(5));
+        Thread.sleep(dur!("seconds")(3));
     }
     
     try { std.file.remove("test.rc");  } catch {};
@@ -51,7 +73,7 @@ void checkDependencies()
         {
             skipResCompile = true;
             writeln("Warning: RC Compiler Include dirs not found. Builder will will use precompiled resources. See README for more details.");
-            Thread.sleep(dur!("seconds")(5));
+            Thread.sleep(dur!("seconds")(3));
         }
     }        
     
@@ -68,16 +90,17 @@ string[] getFilesByExt(string dir, string ext, string ext2 = null)
     return result;
 }
 
+__gshared bool forcedExit;
 __gshared bool Debug;
-__gshared bool clean;
+__gshared bool cleanOnly;
 __gshared bool skipHeaderCompile;
 __gshared bool skipResCompile;
 __gshared bool silent;
-__gshared string projectPath;
+__gshared string soloProject;
 __gshared alias reduce!("a ~ ' ' ~ b") flatten;
 __gshared string[] failedBuilds;
 
-void build(string dir)
+bool buildProject(string dir)
 {
     string appName = rel2abs(dir).basename;
     string exeName = rel2abs(dir) ~ r"\" ~ appName ~ ".exe";
@@ -117,18 +140,90 @@ void build(string dir)
                           " " ~ sources.flatten);
         
         if (res == -1 || res == 1)
-            failedBuilds ~= exeName;
+            return false;
         
         try { system("del " ~ appName ~ ".map"); } catch{};
     }
+    
+    return true;
 }
 
-void checkLibExists()
+void checkWinLib()
 {
-    if (!exists("win32.lib"))
+    enforce("win32.lib".exists, "You have to compile the WindowsAPI bindings first. Use the build_unicode.bat script in the win32 folder");
+}
+
+string[] getProjectDirs(string root)
+{
+    string[] result;
+    
+    // direntries is not a range in 2.053
+    foreach (string dir; dirEntries(root, SpanMode.shallow))
     {
-        assert(0, "You have to compile the WindowsAPI bindings first. Use the build_unicode.bat script in the win32 folder");
+        if (dir.isdir)
+        {
+            foreach (string subdir; dirEntries(dir, SpanMode.shallow))
+            {
+                if (subdir.isdir && subdir.basename != "todo")
+                    result ~= subdir;
+            }
+        }
+    }    
+    return result;
+}
+
+void buildProjectDirs(string[] dirs, bool cleanOnly = false)
+{
+    __gshared string[] failedBuilds;
+    
+    foreach (dir; parallel(dirs, 1))
+    {
+        if (!cleanOnly && kbhit())
+        {
+            auto key = cast(dchar)getch();
+            stdin.flush();
+            enforce(key != 'q', new ForcedExitException);
+        }
+        
+        // DLL Examples require special commands, using batch file workarounds for now.
+        if (dir.basename == "EdrTest" ||
+            dir.basename == "ShowBit" ||
+            dir.basename == "StrProg")
+        {
+            if (cleanOnly)
+            {
+                try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
+                try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};  
+                try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
+            }
+            else
+            {
+                auto res = system(dir ~ r"\" ~ "build.bat");
+                if (res == 1 || res == -1)
+                    failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
+            }
+        }
+        else
+        {
+            if (cleanOnly)
+            {
+                try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
+                
+                    // @BUG@ DMD 2.053 still outputs map files in the CWD instead of project folder,
+                // update this when 2.054 comes out.                        
+                //~ try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
+                    
+                try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
+            }
+            else
+            {
+                if (!buildProject(dir))
+                    failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
+            }
+        }
     }
+    
+    enforce(!failedBuilds.length, new FailedBuildException(failedBuilds));
 }
 
 int main(string[] args)
@@ -137,7 +232,7 @@ int main(string[] args)
     
     foreach (arg; args)
     {
-        if (arg == "clean") clean = true;
+        if (arg == "clean") cleanOnly = true;
         else if (arg == "debug") Debug = true;
         else
         {
@@ -145,97 +240,68 @@ int main(string[] args)
             {
                 if (exists(arg) && isdir(arg))
                 {
-                    projectPath = arg;
+                    soloProject = arg;
                 }
                 else
-                    assert(0, "Cannot build project in path: \"" ~ arg ~ 
+                    enforce(0, "Cannot build project in path: \"" ~ arg ~ 
                               "\". Try wrapping %CD% with quotes when calling build: \"%CD%\"");
             }               
         }
     }
     
-    if (!clean) checkDependencies();
-    
-    // build a single project only
-    if (projectPath.length)
+    string[] dirs;
+    if (soloProject.length)
     {
         silent = true;
         chdir(r"..\..\..\");
-        checkLibExists();
-        build(projectPath);
+        dirs = [soloProject];
     }
     else
     {
-        checkLibExists();
-        // direntries is not a range in 2.053:
-        string[] dirs;
-        foreach (string dir; dirEntries(rel2abs(curdir ~ r"\Samples"), SpanMode.shallow))
+        dirs = getProjectDirs(rel2abs(curdir ~ r"\Samples"));  
+    }
+    
+    if (!cleanOnly)
+    {
+        checkTools();
+        checkWinLib();
+        
+        if (!silent)
         {
-            if (dir.isdir)
+            writeln("About to build. Press 'q' to stop the build process.");
+            Thread.sleep(dur!("seconds")(2));
+        }
+    }    
+    
+    try
+    {
+        buildProjectDirs(dirs, cleanOnly);
+    }
+    catch (ForcedExitException)
+    {
+        writeln("\nBuild process halted, about to clean..\n");
+        Thread.sleep(dur!("seconds")(3));
+        cleanOnly = true;
+        buildProjectDirs(dirs, cleanOnly);
+    }
+    catch (FailedBuildException exc)
+    {
+        if (!silent)
+        {
+            writefln("\n%s projects failed to build:", exc.failedMods.length);
+            foreach (mod; exc.failedMods)
             {
-                foreach (string subdir; dirEntries(dir, SpanMode.shallow))
-                {
-                    if (subdir.isdir && subdir.basename != "todo")
-                        dirs ~= subdir;
-                }
+                writeln(mod);
             }
         }
         
-        foreach (dir; parallel(dirs, 1))
-        {
-            // the DLL examples are special, for one thing the std.c.windows.windows
-            // module clashes with the WindowsAPI bindings, and the 
-            // DLLs require special DMD flags. Each dir has its own batch file.
-            if (dir.basename == "EdrTest" ||
-                dir.basename == "ShowBit" ||
-                dir.basename == "StrProg")
-            {
-                if (clean)
-                {
-                    try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
-                    try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};  
-                    try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
-                }
-                else
-                {
-                    auto res = system(dir ~ r"\" ~ "build.bat");
-                    if (res == 1 || res == -1)
-                        failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
-                }
-            }
-            else
-            {
-                if (clean)
-                {
-                    try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
-                        
-                    // @BUG@ DMD 2.053 still outputs map files in CWD instead of project folders,
-                    // update this when 2.054 comes out.                        
-                    //~ try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
-                    try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
-                }
-                else
-                    build(dir);
-            }
-        }
-    }
-    
-    if (failedBuilds.length)
-    {
-        if (!projectPath.length)
-        {
-            writeln("The following failed to build:");
-            foreach (file; failedBuilds)
-            {
-                writeln(file);
-            }
-        }
         return 1;
     }
-    else if (!clean && !projectPath.length)
+    
+    if (!cleanOnly && !silent)
     {
-        writeln("All examples succesfully built.");
-        return 0;
+        writeln("\nAll examples succesfully built.");
     }
+    
     return 0;
 }

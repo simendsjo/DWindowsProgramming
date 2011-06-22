@@ -3,6 +3,6 @@ todo.txt
 todo2.txt
 appendLicense.d
 license.txt
-.gitignore
 build.d.deps
 /Samples/Extra/*
+build-d-*
