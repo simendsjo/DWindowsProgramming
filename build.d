@@ -268,7 +268,13 @@ int main(string[] args)
         
         if (!silent)
         {
-            writeln("About to build. Press 'q' to stop the build process.");
+            writeln("About to build.");
+            
+            // @BUG@ The RDMD bundled with DMD 2.053 has input handling bugs,
+            // wait for 2.054 to print this out. If you have RDMD from github,
+            // you can press 'q' during the build process to force exit.
+            
+            //~ writeln("About to build. Press 'q' to stop the build process.");
             Thread.sleep(dur!("seconds")(2));
         }
     }    
