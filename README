@@ -21,10 +21,11 @@
       
       Non-NT systems are not suppported.
 
-    - DMD v2.053 compiler (Newer versions might not work if there are language/library
-      changes). 
-      Download it from: http://www.digitalmars.com/d/download.html
+    - DMD v2.053 compiler. Download it from: http://www.digitalmars.com/d/download.html
       Usage instructions (nice bookmark): http://d-programming-language.org/dmd-windows.html
+      
+    Note: If you can't compile the samples with a newer version of DMD, file a bug report or 
+    send me an e-mail (see the contact section), and I'll fix the samples as soon as possible.
 
 == Building ==
     - Make sure you've installed DMD and have it in the PATH environment variable.
