@@ -59,7 +59,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 {
     if (DialogBox(hInstance, appName.toUTF16z, NULL, &DlgProc) == -1)
     {
-        MessageBox(NULL, ("This program requires Windows NT!"), appName.toUTF16z, MB_ICONERROR);
+        MessageBox(NULL, "This program requires Windows NT!", appName.toUTF16z, MB_ICONERROR);
     }
 
     return 0;

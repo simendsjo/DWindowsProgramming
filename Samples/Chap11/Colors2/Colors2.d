@@ -89,7 +89,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     ShowWindow(hwnd, iCmdShow);
     UpdateWindow(hwnd);
 
-    hDlgModeless = CreateDialog(hInstance, ("ColorScrDlg"), hwnd, &ColorScrDlg);
+    hDlgModeless = CreateDialog(hInstance, "ColorScrDlg", hwnd, &ColorScrDlg);
 
     while (GetMessage(&msg, NULL, 0, 0))
     {

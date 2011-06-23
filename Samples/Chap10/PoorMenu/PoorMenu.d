@@ -85,9 +85,9 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     hMenu = GetSystemMenu(hwnd, FALSE);
 
     AppendMenu(hMenu, MF_SEPARATOR, 0,           NULL);
-    AppendMenu(hMenu, MF_STRING, IDM_SYS_ABOUT,  ("About..."));
-    AppendMenu(hMenu, MF_STRING, IDM_SYS_HELP,   ("Help..."));
-    AppendMenu(hMenu, MF_STRING, IDM_SYS_REMOVE, ("Remove Additions"));
+    AppendMenu(hMenu, MF_STRING, IDM_SYS_ABOUT,  "About...");
+    AppendMenu(hMenu, MF_STRING, IDM_SYS_HELP,   "Help...");
+    AppendMenu(hMenu, MF_STRING, IDM_SYS_REMOVE, "Remove Additions");
 
     ShowWindow(hwnd, iCmdShow);
     UpdateWindow(hwnd);

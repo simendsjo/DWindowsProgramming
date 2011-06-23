@@ -212,7 +212,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 case IDM_DELETE:
 
-                    if (DialogBox(hInst, ("DeleteDlg"), hwnd, &DlgProc))
+                    if (DialogBox(hInst, "DeleteDlg", hwnd, &DlgProc))
                     {
                         DeleteString(to!string(fromWStringz(szString.ptr)));
                         PostMessage(HWND_BROADCAST, iDataChangeMsg, 0, 0);

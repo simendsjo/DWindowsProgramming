@@ -113,8 +113,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     immutable(wchar) *[] szColorLabel =
     [
-        ("Red"), ("Green"),
-        ("Blue")
+        "Red", "Green",
+        "Blue"
     ];
 
     HINSTANCE hInstance;
@@ -128,7 +128,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             // Create the white-rectangle window against which the
             // scroll bars will be positioned. The child window ID is 9.
-            hwndRect = CreateWindow(("static"), NULL,
+            hwndRect = CreateWindow("static", NULL,
                                     WS_CHILD | WS_VISIBLE | SS_WHITERECT,
                                     0, 0, 0, 0,
                                     hwnd, cast(HMENU)9, hInstance, NULL);
@@ -137,7 +137,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 // The three scroll bars have IDs 0, 1, and 2, with
                 // scroll bar ranges from 0 through 255.
-                hwndScroll[i] = CreateWindow(("scrollbar"), NULL,
+                hwndScroll[i] = CreateWindow("scrollbar", NULL,
                                              WS_CHILD | WS_VISIBLE |
                                              WS_TABSTOP | SBS_VERT,
                                              0, 0, 0, 0,
@@ -148,7 +148,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 // The three color-name labels have IDs 3, 4, and 5,
                 // and text strings "Red", "Green", and "Blue".
-                hwndLabel[i] = CreateWindow(("static"), szColorLabel[i],
+                hwndLabel[i] = CreateWindow("static", szColorLabel[i],
                                             WS_CHILD | WS_VISIBLE | SS_CENTER,
                                             0, 0, 0, 0,
                                             hwnd, cast(HMENU)(i + 3),
@@ -156,7 +156,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 // The three color-value text fields have IDs 6, 7,
                 // and 8, and initial text strings of "0".
-                hwndValue[i] = CreateWindow(("static"), ("0"),
+                hwndValue[i] = CreateWindow("static", "0",
                                             WS_CHILD | WS_VISIBLE | SS_CENTER,
                                             0, 0, 0, 0,
                                             hwnd, cast(HMENU)(i + 6),

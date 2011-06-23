@@ -113,7 +113,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_CREATE:
             hInstance = (cast(LPCREATESTRUCT)lParam).hInstance;
 
-            hBitmap = LoadBitmap(hInstance, ("Bricks"));
+            hBitmap = LoadBitmap(hInstance, "Bricks");
 
             GetObject(hBitmap, BITMAP.sizeof, &bitmap);
 

@@ -128,7 +128,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (NULL == (hdcPrn = pd.hDC))
                     {
-                        MessageBox(hwnd,  ("Cannot obtain Printer DC"),
+                        MessageBox(hwnd,  "Cannot obtain Printer DC",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                         return 0;
                     }
@@ -163,13 +163,13 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (!fSuccess)
                         MessageBox(hwnd,
-                                   ("Error encountered during printing"),
+                                   "Error encountered during printing",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
 
                     return 0;
 
                 case IDM_ABOUT:
-                    MessageBox(hwnd,  ("Font Demonstration Program\n(c) Charles Petzold, 1998"),
+                    MessageBox(hwnd,  "Font Demonstration Program\n(c) Charles Petzold, 1998",
                                appName.toUTF16z, MB_ICONINFORMATION | MB_OK);
                     return 0;
 

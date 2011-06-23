@@ -109,8 +109,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hdcEMF = CreateEnhMetaFile(NULL,  ("emf4.emf"), NULL,
-                                       ("EMF4\0EMF Demo #4\0"));
+            hdcEMF = CreateEnhMetaFile(NULL,  "emf4.emf", NULL,
+                                       "EMF4\0EMF Demo #4\0");
 
             hbm = LoadBitmap(NULL, MAKEINTRESOURCE(OBM_CLOSE));
 
@@ -141,7 +141,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             rect.top    =     rect.bottom / 4;
             rect.bottom = 3 * rect.bottom / 4;
 
-            hemf = GetEnhMetaFile( ("emf4.emf"));
+            hemf = GetEnhMetaFile("emf4.emf");
 
             PlayEnhMetaFile(hdc, hemf, &rect);
             DeleteEnhMetaFile(hemf);

@@ -10,14 +10,14 @@
 
 BOOL CALLBACK DlgProc (HWND, UINT, WPARAM, LPARAM) ;
 
-TCHAR szAppName [] = TEXT ("Record1") ;
+TCHAR szAppName [] = "Record1" ;
 
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     PSTR szCmdLine, int iCmdShow)
 {
-     if (-1 == DialogBox (hInstance, TEXT ("Record"), NULL, DlgProc))
+     if (-1 == DialogBox (hInstance, "Record", NULL, DlgProc))
      {
-          MessageBox (NULL, TEXT ("This program requires Windows NT!"),
+          MessageBox (NULL, "This program requires Windows NT!",
                       szAppName, MB_ICONERROR) ;
      }
      return 0 ;
@@ -45,8 +45,8 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
      static HWAVEOUT     hWaveOut ;
      static PBYTE        pBuffer1, pBuffer2, pSaveBuffer, pNewBuffer ;
      static PWAVEHDR     pWaveHdr1, pWaveHdr2 ;
-     static TCHAR        szOpenError[] = TEXT ("Error opening waveform audio!");
-     static TCHAR        szMemError [] = TEXT ("Error allocating memory!") ;
+     static TCHAR        szOpenError[] = "Error opening waveform audio!";
+     static TCHAR        szMemError [] = "Error allocating memory!" ;
      static WAVEFORMATEX waveform ;
      
      switch (message)
@@ -159,13 +159,13 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                if (!bPaused)
                {
                     waveOutPause (hWaveOut) ;
-                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Resume")) ;
+                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Resume") ;
                     bPaused = TRUE ;
                }
                else
                {
                     waveOutRestart (hWaveOut) ;
-                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Pause")) ;
+                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Pause") ;
                     bPaused = FALSE ;
                }
                return TRUE ;
@@ -361,7 +361,7 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           EnableWindow (GetDlgItem (hwnd, IDC_PLAY_SPEED), TRUE)  ;
           SetFocus (GetDlgItem (hwnd, IDC_PLAY_BEG)) ;
           
-          SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Pause")) ;
+          SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Pause") ;
           bPaused = FALSE ;
           dwRepetitions = 1 ;
           bPlaying = FALSE ;

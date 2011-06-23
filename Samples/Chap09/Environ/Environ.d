@@ -171,7 +171,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             cyChar = HIWORD(GetDialogBaseUnits());
 
             // Create listbox
-            hwndList = CreateWindow(("listbox"), NULL,
+            hwndList = CreateWindow("listbox", NULL,
                                     WS_CHILD | WS_VISIBLE | LBS_STANDARD,
                                     cxChar, cyChar * 6,
                                     cxChar * 48 + GetSystemMetrics(SM_CXVSCROLL),
@@ -181,7 +181,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                     NULL);
 
             // static text window with word wrapping
-            hwndText = CreateWindow(("static"), NULL,
+            hwndText = CreateWindow("static", NULL,
                                     WS_CHILD | WS_VISIBLE | SS_LEFT,
                                     cxChar, cyChar,
                                     GetSystemMetrics(SM_CXSCREEN), cyChar * 4,

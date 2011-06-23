@@ -168,7 +168,7 @@ void PaintRoutine(HWND hwnd, HDC hdc, int cxArea, int cyArea)
     cxPix = GetDeviceCaps(hdc, HORZRES);
     cyPix = GetDeviceCaps(hdc, VERTRES);
 
-    hemf = GetEnhMetaFile( ("..\\emf8\\emf8.emf"));
+    hemf = GetEnhMetaFile("..\\emf8\\emf8.emf");
 
     GetEnhMetaFileHeader(hemf, emh.sizeof, &emh);
 
@@ -269,7 +269,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (!bSuccess)
                         MessageBox(hwnd,
-                                   ("Error encountered during printing"),
+                                   "Error encountered during printing",
                                    szClass.toUTF16z, MB_ICONASTERISK | MB_OK);
 
                     return 0;
@@ -279,7 +279,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     return 0;
 
                 case IDM_ABOUT:
-                    MessageBox(hwnd, ("Enhanced Metafile Demo Program\nCopyright (c) Charles Petzold, 1998"),
+                    MessageBox(hwnd, "Enhanced Metafile Demo Program\nCopyright (c) Charles Petzold, 1998",
                                szClass.toUTF16z, MB_ICONINFORMATION | MB_OK);
                     return 0;
 

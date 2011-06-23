@@ -113,7 +113,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hInstance = (cast(LPCREATESTRUCT)lParam).hInstance;
 
             // Load the original image and get its size
-            hBitmapImag = LoadBitmap(hInstance,  ("Block"));
+            hBitmapImag = LoadBitmap(hInstance,  "Block");
             GetObject(hBitmapImag, BITMAP.sizeof, &bitmap);
             cxBitmap = bitmap.bmWidth;
             cyBitmap = bitmap.bmHeight;

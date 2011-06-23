@@ -8,14 +8,14 @@
 
 BOOL CALLBACK DlgProc (HWND, UINT, WPARAM, LPARAM) ;
 
-TCHAR szAppName [] = TEXT ("Record2") ;
+TCHAR szAppName [] = "Record2" ;
 
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     PSTR szCmdLine, int iCmdShow)
 {
-     if (-1 == DialogBox (hInstance, TEXT ("Record"), NULL, DlgProc))
+     if (-1 == DialogBox (hInstance, "Record", NULL, DlgProc))
      {
-          MessageBox (NULL, TEXT ("This program requires Windows NT!"),
+          MessageBox (NULL, "This program requires Windows NT!",
                       szAppName, MB_ICONERROR) ;
      }
      return 0 ;
@@ -34,7 +34,7 @@ void ShowError (HWND hwnd, DWORD dwError)
 BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
      static BOOL       bRecording, bPlaying, bPaused ;
-     static TCHAR      szFileName[] = TEXT ("record2.wav") ;
+     static TCHAR      szFileName[] = "record2.wav" ;
      static WORD       wDeviceID ;
      DWORD             dwError ;
      MCI_GENERIC_PARMS mciGeneric ;
@@ -57,8 +57,8 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                
                mciOpen.dwCallback       = 0 ;
                mciOpen.wDeviceID        = 0 ;
-               mciOpen.lpstrDeviceType  = TEXT ("waveaudio") ;
-               mciOpen.lpstrElementName = TEXT ("") ; 
+               mciOpen.lpstrDeviceType  = "waveaudio" ;
+               mciOpen.lpstrElementName = "" ; 
                mciOpen.lpstrAlias       = NULL ;
                
                dwError = mciSendCommand (0, MCI_OPEN, 
@@ -179,7 +179,7 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     mciSendCommand (wDeviceID, MCI_PAUSE, MCI_WAIT,
                                     (DWORD) (LPMCI_GENERIC_PARMS) & mciGeneric);
                     
-                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Resume")) ;
+                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Resume") ;
                     bPaused = TRUE ;
                }
                else
@@ -192,7 +192,7 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     mciSendCommand (wDeviceID, MCI_PLAY, MCI_NOTIFY,
                                     (DWORD) (LPMCI_PLAY_PARMS) &mciPlay) ;
                     
-                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Pause")) ;
+                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Pause") ;
                     bPaused = FALSE ;
                }
                

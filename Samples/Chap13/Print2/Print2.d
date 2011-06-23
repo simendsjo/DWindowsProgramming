@@ -149,7 +149,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_CREATE:
             hMenu = GetSystemMenu(hwnd, false);
             AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-            AppendMenu(hMenu, 0, 1, ("&Print"));
+            AppendMenu(hMenu, 0, 1, "&Print");
             return 0;
 
         case WM_SIZE:
@@ -162,7 +162,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (wParam == 1)
             {
                 if (!PrintMyPage(hwnd))
-                    MessageBox(hwnd, ("Could not print page!"),
+                    MessageBox(hwnd, "Could not print page!",
                                appName.toUTF16z, MB_OK | MB_ICONEXCLAMATION);
 
                 return 0;

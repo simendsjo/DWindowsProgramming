@@ -108,7 +108,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             GetClientRect(hwnd, &rect);
 
             EdrCenterText(hdc, &rect,
-                          ("This string was displayed by a DLL"));
+                          "This string was displayed by a DLL");
 
             EndPaint(hwnd, &ps);
             return 0;

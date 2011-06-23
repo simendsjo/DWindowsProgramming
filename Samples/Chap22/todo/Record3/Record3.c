@@ -8,14 +8,14 @@
 
 BOOL CALLBACK DlgProc (HWND, UINT, WPARAM, LPARAM) ;
 
-TCHAR szAppName [] = TEXT ("Record3") ;
+TCHAR szAppName [] = "Record3" ;
 
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     PSTR szCmdLine, int iCmdShow)
 {
-     if (-1 == DialogBox (hInstance, TEXT ("Record"), NULL, DlgProc))
+     if (-1 == DialogBox (hInstance, "Record", NULL, DlgProc))
      {
-          MessageBox (NULL, TEXT ("This program requires Windows NT!"),
+          MessageBox (NULL, "This program requires Windows NT!",
                       szAppName, MB_ICONERROR) ;
      }
      return 0 ;
@@ -31,7 +31,7 @@ BOOL mciExecute (LPCTSTR szCommand)
           mciGetErrorString (error, szErrorStr, 
                              sizeof (szErrorStr) / sizeof (TCHAR)) ;
           MessageBeep (MB_ICONEXCLAMATION) ;
-          MessageBox (NULL, szErrorStr, TEXT ("MCI Error"), 
+          MessageBox (NULL, szErrorStr, "MCI Error", 
                       MB_OK | MB_ICONEXCLAMATION) ;
      }
      return error == 0 ;
@@ -49,14 +49,14 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           case IDC_RECORD_BEG:
                     // Delete existing waveform file
                
-               DeleteFile (TEXT ("record3.wav")) ;
+               DeleteFile "record3.wav" ;
                
                     // Open waveform audio and record
                
-               if (!mciExecute (TEXT ("open new type waveaudio alias mysound")))
+               if (!mciExecute "open new type waveaudio alias mysound")
                     return TRUE ;
                
-               mciExecute (TEXT ("record mysound")) ;
+               mciExecute "record mysound" ;
                
                     // Enable and disable buttons
                
@@ -73,9 +73,9 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           case IDC_RECORD_END:
                     // Stop, save, and close recording
                
-               mciExecute (TEXT ("stop mysound")) ;
-               mciExecute (TEXT ("save mysound record3.wav")) ;
-               mciExecute (TEXT ("close mysound")) ;
+               mciExecute "stop mysound" ;
+               mciExecute "save mysound record3.wav" ;
+               mciExecute "close mysound" ;
                
                     // Enable and disable buttons
                
@@ -92,10 +92,10 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           case IDC_PLAY_BEG:
                     // Open waveform audio and play
                
-               if (!mciExecute (TEXT ("open record3.wav alias mysound")))
+               if (!mciExecute "open record3.wav alias mysound")
                     return TRUE ;
                
-               mciExecute (TEXT ("play mysound")) ;
+               mciExecute "play mysound" ;
                
                     // Enable and disable buttons
                
@@ -113,15 +113,15 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                if (!bPaused)
                          // Pause the play
                {
-                    mciExecute (TEXT ("pause mysound")) ;
-                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Resume")) ;
+                    mciExecute "pause mysound" ;
+                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Resume") ;
                     bPaused = TRUE ;
                }
                else
                          // Begin playing again
                {
-                    mciExecute (TEXT ("play mysound")) ;
-                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, TEXT ("Pause")) ;
+                    mciExecute "play mysound" ;
+                    SetDlgItemText (hwnd, IDC_PLAY_PAUSE, "Pause") ;
                     bPaused = FALSE ;
                }
                
@@ -130,8 +130,8 @@ BOOL CALLBACK DlgProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           case IDC_PLAY_END:
                     // Stop and close
                
-               mciExecute (TEXT ("stop mysound")) ;
-               mciExecute (TEXT ("close mysound")) ;
+               mciExecute "stop mysound" ;
+               mciExecute "close mysound" ;
                
                     // Enable and disable buttons
                

@@ -135,7 +135,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             rect.left = 56 * cxChar;
             rect.top  =  3 * cyChar;
 
-            hwndList = CreateWindow(("listbox"), NULL,
+            hwndList = CreateWindow("listbox", NULL,
                                     WS_CHILDWINDOW | WS_VISIBLE | LBS_STANDARD,
                                     cxChar, cyChar * 3,
                                     cxChar * 48 + GetSystemMetrics(SM_CXVSCROLL),
@@ -146,7 +146,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             GetCurrentDirectory(MAX_PATH + 1, szBuffer.ptr);
 
-            hwndText = CreateWindow(("static"), szBuffer.ptr,
+            hwndText = CreateWindow("static", szBuffer.ptr,
                                     WS_CHILDWINDOW | WS_VISIBLE | SS_LEFT,
                                     cxChar, cyChar, cxChar * MAX_PATH, cyChar,
                                     hwnd, cast(HMENU)ID_TEXT,

@@ -107,8 +107,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hdcEMF = CreateEnhMetaFile(NULL, ("emf2.emf"), NULL,
-                                       ("EMF2\0EMF Demo #2\0"));
+            hdcEMF = CreateEnhMetaFile(NULL, "emf2.emf", NULL,
+                                       "EMF2\0EMF Demo #2\0");
 
             if (!hdcEMF)
                 return 0;

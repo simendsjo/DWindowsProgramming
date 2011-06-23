@@ -300,61 +300,61 @@ Key[] key =
     // ----  ----  ---  ----
     Key(-1, -1, -1, -1, null),      //   0   None
     Key(-1, -1, -1, -1, null),      //   1   Esc
-    Key(-1, -1, 0, 0, ("")),        //   2     1
-    Key(5, 1, 0, 2, ("C#")),        //   3     2    5    C#
-    Key(5, 3, 0, 4, ("D#")),        //   4     3    5    D#
-    Key(-1, -1, 0, 6, ("")),        //   5     4
-    Key(5, 6, 0, 8, ("F#")),        //   6     5    5    F#
-    Key(5, 8, 0, 10, ("G#")),       //   7     6    5    G#
-    Key(5, 10, 0, 12, ("A#")),      //   8     7    5    A#
-    Key(-1, -1, 0, 14, ("")),       //   9     8
-    Key(6, 1, 0, 16, ("C#")),       //  10     9    6    C#
-    Key(6, 3, 0, 18, ("D#")),       //  11     0    6    D#
-    Key(-1, -1, 0, 20, ("")),       //  12     -
-    Key(6, 6, 0, 22, ("F#")),       //  13     =    6    F#
+    Key(-1, -1, 0, 0, ""),        //   2     1
+    Key(5, 1, 0, 2, "C#"),        //   3     2    5    C#
+    Key(5, 3, 0, 4, "D#"),        //   4     3    5    D#
+    Key(-1, -1, 0, 6, ""),        //   5     4
+    Key(5, 6, 0, 8, "F#"),        //   6     5    5    F#
+    Key(5, 8, 0, 10, "G#"),       //   7     6    5    G#
+    Key(5, 10, 0, 12, "A#"),      //   8     7    5    A#
+    Key(-1, -1, 0, 14, ""),       //   9     8
+    Key(6, 1, 0, 16, "C#"),       //  10     9    6    C#
+    Key(6, 3, 0, 18, "D#"),       //  11     0    6    D#
+    Key(-1, -1, 0, 20, ""),       //  12     -
+    Key(6, 6, 0, 22, "F#"),       //  13     =    6    F#
     Key(-1, -1, -1, -1, null),      //  14    Back
 
     Key(-1, -1, -1, -1, null),      //  15    Tab
-    Key(5, 0, 1, 1, ("C")),         //  16     q    5    C
-    Key(5, 2, 1, 3, ("D")),         //  17     w    5    D
-    Key(5, 4, 1, 5, ("E")),         //  18     e    5    E
-    Key(5, 5, 1, 7, ("F")),         //  19     r    5    F
-    Key(5, 7, 1, 9, ("G")),         //  20     t    5    G
-    Key(5, 9, 1, 11, ("A")),        //  21     y    5    A
-    Key(5, 11, 1, 13, ("B")),       //  22     u    5    B
-    Key(6, 0, 1, 15, ("C")),        //  23     i    6    C
-    Key(6, 2, 1, 17, ("D")),        //  24     o    6    D
-    Key(6, 4, 1, 19, ("E")),        //  25     p    6    E
-    Key(6, 5, 1, 21, ("F")),        //  26     [    6    F
-    Key(6, 7, 1, 23, ("G")),        //  27     ]    6    G
+    Key(5, 0, 1, 1, "C"),         //  16     q    5    C
+    Key(5, 2, 1, 3, "D"),         //  17     w    5    D
+    Key(5, 4, 1, 5, "E"),         //  18     e    5    E
+    Key(5, 5, 1, 7, "F"),         //  19     r    5    F
+    Key(5, 7, 1, 9, "G"),         //  20     t    5    G
+    Key(5, 9, 1, 11, "A"),        //  21     y    5    A
+    Key(5, 11, 1, 13, "B"),       //  22     u    5    B
+    Key(6, 0, 1, 15, "C"),        //  23     i    6    C
+    Key(6, 2, 1, 17, "D"),        //  24     o    6    D
+    Key(6, 4, 1, 19, "E"),        //  25     p    6    E
+    Key(6, 5, 1, 21, "F"),        //  26     [    6    F
+    Key(6, 7, 1, 23, "G"),        //  27     ]    6    G
     Key(-1, -1, -1, -1, null),      //  28    Ent
 
     Key(-1, -1, -1, -1, null),      //  29    Ctrl
-    Key(3, 8, 2, 2, ("G#")),        //  30     a    3    G#
-    Key(3, 10, 2, 4, ("A#")),       //  31     s    3    A#
-    Key(-1, -1, 2, 6, ("")),        //  32     d
-    Key(4, 1, 2, 8, ("C#")),        //  33     f    4    C#
-    Key(4, 3, 2, 10, ("D#")),       //  34     g    4    D#
-    Key(-1, -1, 2, 12, ("")),       //  35     h
-    Key(4, 6, 2, 14, ("F#")),       //  36     j    4    F#
-    Key(4, 8, 2, 16, ("G#")),       //  37     k    4    G#
-    Key(4, 10, 2, 18, ("A#")),      //  38     l    4    A#
-    Key(-1, -1, 2, 20, ("")),       //  39     ;
-    Key(5, 1, 2, 22, ("C#")),       //  40     '    5    C#
+    Key(3, 8, 2, 2, "G#"),        //  30     a    3    G#
+    Key(3, 10, 2, 4, "A#"),       //  31     s    3    A#
+    Key(-1, -1, 2, 6, ""),        //  32     d
+    Key(4, 1, 2, 8, "C#"),        //  33     f    4    C#
+    Key(4, 3, 2, 10, "D#"),       //  34     g    4    D#
+    Key(-1, -1, 2, 12, ""),       //  35     h
+    Key(4, 6, 2, 14, "F#"),       //  36     j    4    F#
+    Key(4, 8, 2, 16, "G#"),       //  37     k    4    G#
+    Key(4, 10, 2, 18, "A#"),      //  38     l    4    A#
+    Key(-1, -1, 2, 20, ""),       //  39     ;
+    Key(5, 1, 2, 22, "C#"),       //  40     '    5    C#
     Key(-1, -1, -1, -1, null),      //  41     `
 
     Key(-1, -1, -1, -1, null),      //  42    Shift
     Key(-1, -1, -1, -1, null),      //  43     \  (not line continuation)
-    Key(3, 9, 3, 3, ("A")),         //  44     z    3    A
-    Key(3, 11, 3, 5, ("B")),        //  45     x    3    B
-    Key(4, 0, 3, 7, ("C")),         //  46     c    4    C
-    Key(4, 2, 3, 9, ("D")),         //  47     v    4    D
-    Key(4, 4, 3, 11, ("E")),        //  48     b    4    E
-    Key(4, 5, 3, 13, ("F")),        //  49     n    4    F
-    Key(4, 7, 3, 15, ("G")),        //  50     m    4    G
-    Key(4, 9, 3, 17, ("A")),        //  51     ,    4    A
-    Key(4, 11, 3, 19, ("B")),       //  52     .    4    B
-    Key(5, 0, 3, 21, ("C"))         //  53     /    5    C
+    Key(3, 9, 3, 3, "A"),         //  44     z    3    A
+    Key(3, 11, 3, 5, "B"),        //  45     x    3    B
+    Key(4, 0, 3, 7, "C"),         //  46     c    4    C
+    Key(4, 2, 3, 9, "D"),         //  47     v    4    D
+    Key(4, 4, 3, 11, "E"),        //  48     b    4    E
+    Key(4, 5, 3, 13, "F"),        //  49     n    4    F
+    Key(4, 7, 3, 15, "G"),        //  50     m    4    G
+    Key(4, 9, 3, 17, "A"),        //  51     ,    4    A
+    Key(4, 11, 3, 19, "B"),       //  52     .    4    B
+    Key(5, 0, 3, 21, "C")         //  53     /    5    C
 ];
 
 
@@ -371,10 +371,10 @@ HMENU CreateTheMenu(int iNumDevs)
     // Create "On/Off" popup menu
     hMenuPopup = CreateMenu();
 
-    AppendMenu(hMenuPopup, MF_STRING, IDM_OPEN, ("&Open"));
-    AppendMenu(hMenuPopup, MF_STRING | MF_CHECKED, IDM_CLOSE, ("&Closed"));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_OPEN, "&Open");
+    AppendMenu(hMenuPopup, MF_STRING | MF_CHECKED, IDM_CLOSE, "&Closed");
 
-    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, ("&Status"));
+    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, "&Status");
 
     // Create "Device" popup menu
     hMenuPopup = CreateMenu();
@@ -393,7 +393,7 @@ HMENU CreateTheMenu(int iNumDevs)
     }
 
     CheckMenuItem(hMenuPopup, 0, MF_BYPOSITION | MF_CHECKED);
-    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, ("&Device"));
+    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, "&Device");
 
     // Create "Channel" popup menu
     hMenuPopup = CreateMenu();
@@ -404,7 +404,7 @@ HMENU CreateTheMenu(int iNumDevs)
         AppendMenu(hMenuPopup, MF_STRING | (i ? MF_UNCHECKED : MF_CHECKED), IDM_CHANNEL + i, szBuffer.toUTF16z);
     }
 
-    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, ("&Channel"));
+    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, "&Channel");
 
     // Create "Voice" popup menu
     hMenuPopup = CreateMenu();
@@ -427,7 +427,7 @@ HMENU CreateTheMenu(int iNumDevs)
         AppendMenu(hMenuPopup, MF_STRING | MF_POPUP, cast(UINT)hMenuSubPopup, szBuffer.toUTF16z);
     }
 
-    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, ("&Voice"));
+    AppendMenu(hMenu, MF_STRING | MF_POPUP, cast(UINT)hMenuPopup, "&Voice");
     return hMenu;
 }
 
@@ -532,7 +532,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Get size of capital letters in system font
             hdc = GetDC(hwnd);
 
-            GetTextExtentPoint(hdc, ("M"), 1, &size);
+            GetTextExtentPoint(hdc, "M", 1, &size);
             cxCaps = size.cx;
             cyChar = size.cy;
 
@@ -551,7 +551,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (iNumDevs == 0)
             {
                 MessageBeep(MB_ICONSTOP);
-                MessageBox(hwnd, ("No MIDI output devices!"), appName.toUTF16z, MB_OK | MB_ICONSTOP);
+                MessageBox(hwnd, "No MIDI output devices!", appName.toUTF16z, MB_OK | MB_ICONSTOP);
                 return -1;
             }
 
@@ -575,7 +575,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 if (midiOutOpen(&hMidiOut, iDevice, 0, 0, 0))
                 {
                     MessageBeep(MB_ICONEXCLAMATION);
-                    MessageBox(hwnd, ("Cannot open MIDI device"),
+                    MessageBox(hwnd, "Cannot open MIDI device",
                                appName.toUTF16z, MB_OK | MB_ICONEXCLAMATION);
                 }
                 else

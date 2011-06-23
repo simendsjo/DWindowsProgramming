@@ -172,7 +172,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     return 0;
 
                 case IDM_APP_HELP:
-                    MessageBox(hwnd, ("Help not yet implemented!"),
+                    MessageBox(hwnd, "Help not yet implemented!",
                                appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                     return 0;
 

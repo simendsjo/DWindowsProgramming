@@ -192,7 +192,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             ofn.Flags             = 0;
             ofn.nFileOffset       = 0;
             ofn.nFileExtension    = 0;
-            ofn.lpstrDefExt       = ("bmp");
+            ofn.lpstrDefExt       = "bmp";
             ofn.lCustData         = 0;
             ofn.lpfnHook          = NULL;
             ofn.lpTemplateName    = NULL;
@@ -239,7 +239,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (hBitmap == NULL)
                     {
-                        MessageBox(hwnd, ("Cannot load DIB file"),
+                        MessageBox(hwnd, "Cannot load DIB file",
                                    appName.toUTF16z, MB_OK | MB_ICONEXCLAMATION);
                     }
 

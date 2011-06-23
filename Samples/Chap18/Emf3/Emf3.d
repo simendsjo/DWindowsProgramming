@@ -108,8 +108,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hdcEMF = CreateEnhMetaFile(NULL,  ("emf3.emf"), NULL,
-                                       ("EMF3\0EMF Demo #3\0"));
+            hdcEMF = CreateEnhMetaFile(NULL,  "emf3.emf", NULL,
+                                       "EMF3\0EMF Demo #3\0");
 
             SelectObject(hdcEMF, CreateSolidBrush(RGB(0, 0, 255)));
 
@@ -149,7 +149,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             rect.top    =     rect.bottom / 4;
             rect.bottom = 3 * rect.bottom / 4;
 
-            hemf = GetEnhMetaFile( ("emf3.emf"));
+            hemf = GetEnhMetaFile("emf3.emf");
 
             PlayEnhMetaFile(hdc, hemf, &rect);
             DeleteEnhMetaFile(hemf);

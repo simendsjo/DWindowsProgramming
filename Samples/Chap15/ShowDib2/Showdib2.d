@@ -223,7 +223,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (pbmfh is null)
                     {
-                        MessageBox(hwnd, ("Cannot load DIB file"),
+                        MessageBox(hwnd, "Cannot load DIB file",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                         return 0;
                     }
@@ -264,7 +264,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     SetCursor(LoadCursor(NULL, IDC_ARROW));
 
                     if (!bSuccess)
-                        MessageBox(hwnd, ("Cannot save DIB file"),
+                        MessageBox(hwnd, "Cannot save DIB file",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
 
                     return 0;
@@ -283,7 +283,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (NULL == (hdcPrn = printdlg.hDC))
                     {
-                        MessageBox(hwnd, ("Cannot obtain Printer DC"),
+                        MessageBox(hwnd, "Cannot obtain Printer DC",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                         return 0;
                     }
@@ -293,7 +293,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     if (!(RC_BITBLT & GetDeviceCaps(hdcPrn, RASTERCAPS)))
                     {
                         DeleteDC(hdcPrn);
-                        MessageBox(hwnd, ("Printer cannot print bitmaps"),
+                        MessageBox(hwnd, "Printer cannot print bitmaps",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                         return 0;
                     }
@@ -328,7 +328,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     DeleteDC(hdcPrn);
 
                     if (!bSuccess)
-                        MessageBox(hwnd, ("Could not print bitmap"),
+                        MessageBox(hwnd, "Could not print bitmap",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
 
                     return 0;

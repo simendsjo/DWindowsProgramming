@@ -134,7 +134,7 @@ void ThreadFunc()
             DeleteObject(hBrush);
         }
         
-        Thread.sleep(dur!("msecs")(70));
+        Thread.sleep(dur!"msecs"(70));
     }
 }
 

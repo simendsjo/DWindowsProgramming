@@ -116,7 +116,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (LOWORD(wParam))
             {
                 case IDM_HELP:
-                    MessageBox(hwnd, ("Help not yet implemented!"),
+                    MessageBox(hwnd, "Help not yet implemented!",
                                appName.toUTF16z, MB_OK | MB_ICONEXCLAMATION);
                     return 0;
                 default:
@@ -173,7 +173,7 @@ void AddHelpToSys(HINSTANCE hInstance, HWND hwnd)
     HMENU hMenu;
 
     hMenu   = GetSystemMenu(hwnd, FALSE);
-    hBitmap = StretchBitmap(LoadBitmap(hInstance, ("BitmapHelp")));
+    hBitmap = StretchBitmap(LoadBitmap(hInstance, "BitmapHelp"));
     AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
     AppendMenu(hMenu, MF_BITMAP, IDM_HELP, cast(PTSTR)cast(LONG) hBitmap);
 }
@@ -189,12 +189,12 @@ HMENU CreateMyMenu(HINSTANCE hInstance)
 
     hMenu = CreateMenu();
 
-    hMenuPopup = LoadMenu(hInstance, ("MenuFile"));
-    hBitmap    = StretchBitmap(LoadBitmap(hInstance, ("BitmapFile")));
+    hMenuPopup = LoadMenu(hInstance, "MenuFile");
+    hBitmap    = StretchBitmap(LoadBitmap(hInstance, "BitmapFile"));
     AppendMenu(hMenu, MF_BITMAP | MF_POPUP, cast(int)hMenuPopup, cast(PTSTR)cast(LONG) hBitmap);
 
-    hMenuPopup = LoadMenu(hInstance, ("MenuEdit"));
-    hBitmap    = StretchBitmap(LoadBitmap(hInstance, ("BitmapEdit")));
+    hMenuPopup = LoadMenu(hInstance, "MenuEdit");
+    hBitmap    = StretchBitmap(LoadBitmap(hInstance, "BitmapEdit"));
     AppendMenu(hMenu, MF_BITMAP | MF_POPUP, cast(int)hMenuPopup, cast(PTSTR)cast(LONG) hBitmap);
 
     hMenuPopup = CreateMenu();
@@ -275,7 +275,7 @@ HBITMAP GetBitmapFont(int i)
     SIZE  size;
     TEXTMETRIC tm;  // textmetric maybe?
 
-    hdc = CreateIC(("DISPLAY"), NULL, NULL, NULL);
+    hdc = CreateIC("DISPLAY", NULL, NULL, NULL);
     GetTextMetrics(hdc, &tm);
 
     hdcMem = CreateCompatibleDC(hdc);

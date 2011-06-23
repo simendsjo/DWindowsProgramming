@@ -144,6 +144,9 @@
     A Big Thanks to Charles Petzold for writing a fantastic Windows API programming book and 
     for allowing me to host these code samples online.
 
+== Contributors ==
+    Leonardo Maffi contributed a Python script that got rid of stray parens, thanks!
+
 == Licensing ==
     All code examples' original copyright belongs to Charles Petzold.
     Please see the answer to the 3rd question here:

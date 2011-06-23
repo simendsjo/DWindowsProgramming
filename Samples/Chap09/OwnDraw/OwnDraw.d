@@ -144,12 +144,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             cyChar = HIWORD(GetDialogBaseUnits());
 
             // Create the owner-draw pushbuttons
-            hwndSmaller = CreateWindow(("button"), (""),
+            hwndSmaller = CreateWindow("button", "",
                                         WS_CHILD | WS_VISIBLE | BS_OWNERDRAW,
                                         0, 0, mixin(BTN_WIDTH), mixin(BTN_HEIGHT),
                                         hwnd, cast(HMENU)ID_SMALLER, hInst, NULL);
 
-            hwndLarger = CreateWindow(("button"), (""),
+            hwndLarger = CreateWindow("button", "",
                                        WS_CHILD | WS_VISIBLE | BS_OWNERDRAW,
                                        0, 0, mixin(BTN_WIDTH), mixin(BTN_HEIGHT),
                                        hwnd, cast(HMENU)ID_LARGER, hInst, NULL);

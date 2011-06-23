@@ -392,7 +392,7 @@ BOOL DlgProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (pdp.iDevice == IDM_DEVICE_SCREEN)
                     {
-                        hdcDevice = CreateIC(("DISPLAY"), NULL, NULL, NULL);
+                        hdcDevice = CreateIC("DISPLAY", NULL, NULL, NULL);
                     }
                     else
                     {

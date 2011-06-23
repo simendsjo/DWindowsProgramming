@@ -56,7 +56,7 @@ HWND hwndFocus ;
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInst,
                     PSTR szCmdLine, int iCmdShow)
 {
-     static TCHAR szAppName [] = TEXT ("WakeUp") ;
+     static TCHAR szAppName [] = "WakeUp" ;
      HWND         hwnd ;
      MSG          msg ;
      WNDCLASS     wndclass ;
@@ -74,7 +74,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInst,
 
      if (!RegisterClass (&wndclass))
      {
-          MessageBox (NULL, TEXT ("This program requires Windows NT!"),
+          MessageBox (NULL, "This program requires Windows NT!",
                       szAppName, MB_ICONERROR) ;
           return 0 ;
      }
@@ -152,17 +152,17 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                // Create the three child windows
 
-          hwndDTP = CreateWindow (DATETIMEPICK_CLASS, TEXT (""), 
+          hwndDTP = CreateWindow (DATETIMEPICK_CLASS, "", 
                          WS_BORDER | WS_CHILD | WS_VISIBLE | DTS_TIMEFORMAT,
                          2 * cxChar, cyChar, 12 * cxChar, 4 * cyChar / 3, 
                          hwnd, (HMENU) ID_TIMEPICK, hInstance, NULL) ;
 
-          hwndCheck = CreateWindow (TEXT ("Button"), TEXT ("Set Alarm"),
+          hwndCheck = CreateWindow ("Button", "Set Alarm",
                          WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX,
                          16 * cxChar, cyChar, 12 * cxChar, 4 * cyChar / 3,
                          hwnd, (HMENU) ID_CHECKBOX, hInstance, NULL) ;
 
-          hwndPush = CreateWindow (TEXT ("Button"), TEXT ("Turn Off"),
+          hwndPush = CreateWindow ("Button", "Turn Off",
                          WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | WS_DISABLED,
                          28 * cxChar, cyChar, 12 * cxChar, 4 * cyChar / 3,
                          hwnd, (HMENU) ID_PUSHBTN, hInstance, NULL) ;

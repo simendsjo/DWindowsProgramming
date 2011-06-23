@@ -74,7 +74,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
     if (!RegisterClass(&wndclass))
     {
-        MessageBox(NULL, ("This program requires Windows NT!"),
+        MessageBox(NULL, "This program requires Windows NT!",
                    appName.toUTF16z, MB_ICONERROR);
         return 0;
     }
@@ -111,9 +111,9 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
     // Obtain handles to three possible menus & submenus
 
-    hMenuInit  = LoadMenu(hInstance, ("MdiMenuInit"));
-    hMenuHello = LoadMenu(hInstance, ("MdiMenuHello"));
-    hMenuRect  = LoadMenu(hInstance, ("MdiMenuRect"));
+    hMenuInit  = LoadMenu(hInstance, "MdiMenuInit");
+    hMenuHello = LoadMenu(hInstance, "MdiMenuHello");
+    hMenuRect  = LoadMenu(hInstance, "MdiMenuRect");
 
     hMenuInitWindow  = GetSubMenu(hMenuInit,   INIT_MENU_POS);
     hMenuHelloWindow = GetSubMenu(hMenuHello, HELLO_MENU_POS);
@@ -125,7 +125,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
     // Create the frame window
 
-    hwndFrame = CreateWindow(szFrameClass.toUTF16z, ("MDI Demonstration"),
+    hwndFrame = CreateWindow(szFrameClass.toUTF16z, "MDI Demonstration",
                              WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
                              CW_USEDEFAULT, CW_USEDEFAULT,
                              CW_USEDEFAULT, CW_USEDEFAULT,
@@ -177,9 +177,9 @@ struct RECTDATA
 }
 alias RECTDATA* PRECTDATA;
 
-string szFrameClass = ("MdiFrame");
-string szHelloClass = ("MdiHelloChild");
-string szRectClass  = ("MdiRectChild");
+string szFrameClass = "MdiFrame";
+string szHelloClass = "MdiHelloChild";
+string szRectClass  = "MdiRectChild";
 HMENU  hMenuInit, hMenuHello, hMenuRect;
 HMENU  hMenuInitWindow, hMenuHelloWindow, hMenuRectWindow;
 
@@ -198,7 +198,7 @@ LRESULT FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             clientcreate.hWindowMenu  = hMenuInitWindow;
             clientcreate.idFirstChild = IDM_FIRSTCHILD;
 
-            hwndClient = CreateWindow(("MDICLIENT"), NULL,
+            hwndClient = CreateWindow("MDICLIENT", NULL,
                                       WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE,
                                       0, 0, 0, 0, hwnd, cast(HMENU) 1, hinst,
                                       cast(PSTR)&clientcreate);
@@ -211,7 +211,7 @@ LRESULT FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 case IDM_FILE_NEWHELLO: // Create a Hello child window
 
                     mdicreate.szClass = szHelloClass.toUTF16z;
-                    mdicreate.szTitle = ("Hello");
+                    mdicreate.szTitle = "Hello";
                     mdicreate.hOwner  = hinst;
                     mdicreate.x       = CW_USEDEFAULT;
                     mdicreate.y       = CW_USEDEFAULT;
@@ -228,7 +228,7 @@ LRESULT FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 case IDM_FILE_NEWRECT:  // Create a Rect child window
 
                     mdicreate.szClass = szRectClass.toUTF16z;
-                    mdicreate.szTitle = ("Rectangles");
+                    mdicreate.szTitle = "Rectangles";
                     mdicreate.hOwner  = hinst;
                     mdicreate.x       = CW_USEDEFAULT;
                     mdicreate.y       = CW_USEDEFAULT;
@@ -399,7 +399,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
 
             GetClientRect(hwnd, &rect);
 
-            DrawText(hdc, ("Hello, World!"), -1, &rect,
+            DrawText(hdc, "Hello, World!", -1, &rect,
                  DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 
             EndPaint(hwnd, &ps);
@@ -431,8 +431,8 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
         case WM_QUERYENDSESSION:
         case WM_CLOSE:
 
-            if (IDOK != MessageBox(hwnd, ("OK to close window?"),
-                                   ("Hello"),
+            if (IDOK != MessageBox(hwnd, "OK to close window?",
+                                   "Hello",
                                    MB_ICONQUESTION | MB_OKCANCEL))
                 return 0;
 

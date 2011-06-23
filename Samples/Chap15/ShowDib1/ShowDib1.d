@@ -164,7 +164,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (pbmfh == NULL)
                     {
-                        MessageBox(hwnd, ("Cannot load DIB file"),
+                        MessageBox(hwnd, "Cannot load DIB file",
                                    appName.toUTF16z, 0);
                         return 0;
                     }
@@ -207,7 +207,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     SetCursor(LoadCursor(NULL, IDC_ARROW));
 
                     if (!bSuccess)
-                        MessageBox(hwnd, ("Cannot save DIB file"),
+                        MessageBox(hwnd, "Cannot save DIB file",
                                    appName.toUTF16z, 0);
 
                     return 0;

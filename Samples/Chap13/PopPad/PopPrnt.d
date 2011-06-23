@@ -125,7 +125,7 @@ BOOL PopPrntPrintFile(HINSTANCE hInst, HWND hwnd, HWND hwndEdit, PTSTR szTitleNa
     bSuccess   = TRUE;
     bUserAbort = FALSE;
 
-    hDlgPrint = CreateDialog(hInst, ("PrintDlgBox"), hwnd, &PrintDlgProc);
+    hDlgPrint = CreateDialog(hInst, "PrintDlgBox", hwnd, &PrintDlgProc);
 
     SetDlgItemText(hDlgPrint, IDC_FILENAME, szTitleName);
     SetAbortProc(pd.hDC, &AbortProc);

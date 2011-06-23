@@ -168,13 +168,13 @@ BOOL DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     if (!bPaused)
                     {
                         waveOutPause(hWaveOut);
-                        SetDlgItemText(hwnd, IDC_PLAY_PAUSE, ("Resume"));
+                        SetDlgItemText(hwnd, IDC_PLAY_PAUSE, "Resume");
                         bPaused = TRUE;
                     }
                     else
                     {
                         waveOutRestart(hWaveOut);
-                        SetDlgItemText(hwnd, IDC_PLAY_PAUSE, ("Pause"));
+                        SetDlgItemText(hwnd, IDC_PLAY_PAUSE, "Pause");
                         bPaused = FALSE;
                     }
 
@@ -358,7 +358,7 @@ BOOL DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             EnableWindow(GetDlgItem(hwnd, IDC_PLAY_SPEED), TRUE);
             SetFocus(GetDlgItem(hwnd, IDC_PLAY_BEG));
 
-            SetDlgItemText(hwnd, IDC_PLAY_PAUSE, ("Pause"));
+            SetDlgItemText(hwnd, IDC_PLAY_PAUSE, "Pause");
             bPaused       = FALSE;
             dwRepetitions = 1;
             bPlaying      = FALSE;

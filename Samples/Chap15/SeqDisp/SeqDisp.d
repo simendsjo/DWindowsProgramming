@@ -135,7 +135,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             ofn.Flags             = 0;
             ofn.nFileOffset       = 0;
             ofn.nFileExtension    = 0;
-            ofn.lpstrDefExt       =  ("bmp");
+            ofn.lpstrDefExt       =  "bmp";
             ofn.lCustData         = 0;
             ofn.lpfnHook          = NULL;
             ofn.lpTemplateName    = NULL;
@@ -180,7 +180,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (hFile == INVALID_HANDLE_VALUE)
                     {
-                        MessageBox(hwnd,  ("Cannot open file."),
+                        MessageBox(hwnd,  "Cannot open file.",
                                    appName.toUTF16z, MB_ICONWARNING | MB_OK);
                         return 0;
                     }
@@ -192,7 +192,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (!bSuccess || dwBytesRead != BITMAPFILEHEADER.sizeof)
                     {
-                        MessageBox(hwnd,  ("Cannot read file."),
+                        MessageBox(hwnd,  "Cannot read file.",
                                    appName.toUTF16z, MB_ICONWARNING | MB_OK);
                         CloseHandle(hFile);
                         return 0;
@@ -202,7 +202,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (bmfh.bfType != *cast(WORD*) "BM")
                     {
-                        MessageBox(hwnd,  ("File is not a bitmap."),
+                        MessageBox(hwnd,  "File is not a bitmap.",
                                    appName.toUTF16z, MB_ICONWARNING | MB_OK);
                         CloseHandle(hFile);
                         return 0;
@@ -218,7 +218,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (pbmi == NULL || pBits == NULL)
                     {
-                        MessageBox(hwnd,  ("Cannot allocate memory."),
+                        MessageBox(hwnd,  "Cannot allocate memory.",
                                    appName.toUTF16z, MB_ICONWARNING | MB_OK);
 
                         if (pbmi)
@@ -238,7 +238,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (!bSuccess || cast(int)dwBytesRead != iInfoSize)
                     {
-                        MessageBox(hwnd,  ("Cannot read file."),
+                        MessageBox(hwnd,  "Cannot read file.",
                                    appName.toUTF16z, MB_ICONWARNING | MB_OK);
 
                         if (pbmi)
@@ -273,7 +273,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         if (pbmi.bmiHeader.biCompression != BI_RGB &&
                             pbmi.bmiHeader.biCompression != BI_BITFIELDS)
                         {
-                            MessageBox(hwnd,  ("File is compressed."),
+                            MessageBox(hwnd,  "File is compressed.",
                                        appName.toUTF16z, MB_ICONWARNING | MB_OK);
 
                             if (pbmi)

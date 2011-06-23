@@ -111,12 +111,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            pbmfh[0] = DibLoadImage(("Apollo11.bmp"));
-            pbmfh[1] = DibLoadImage(("ApolloTD.bmp"));
+            pbmfh[0] = DibLoadImage("Apollo11.bmp");
+            pbmfh[1] = DibLoadImage("ApolloTD.bmp");
 
             if (pbmfh[0] == NULL || pbmfh[1] == NULL)
             {
-                MessageBox(hwnd, ("Cannot load DIB file"), appName.toUTF16z, 0);
+                MessageBox(hwnd, "Cannot load DIB file", appName.toUTF16z, 0);
                 return 0;
             }
 

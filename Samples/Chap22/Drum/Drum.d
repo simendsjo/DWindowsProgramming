@@ -107,30 +107,30 @@ import DrumFile;
 
 string[NUM_PERC] szPerc =
 [
-    ("Acoustic Bass Drum"), ("Bass Drum 1"),
-    ("Side Stick"), ("Acoustic Snare"),
-    ("Hand Clap"), ("Electric Snare"),
-    ("Low Floor Tom"), ("Closed High Hat"),
-    ("High Floor Tom"), ("Pedal High Hat"),
-    ("Low Tom"), ("Open High Hat"),
-    ("Low-Mid Tom"), ("High-Mid Tom"),
-    ("Crash Cymbal 1"), ("High Tom"),
-    ("Ride Cymbal 1"), ("Chinese Cymbal"),
-    ("Ride Bell"), ("Tambourine"),
-    ("Splash Cymbal"), ("Cowbell"),
-    ("Crash Cymbal 2"), ("Vibraslap"),
-    ("Ride Cymbal 2"), ("High Bongo"),
-    ("Low Bongo"), ("Mute High Conga"),
-    ("Open High Conga"), ("Low Conga"),
-    ("High Timbale"), ("Low Timbale"),
-    ("High Agogo"), ("Low Agogo"),
-    ("Cabasa"), ("Maracas"),
-    ("Short Whistle"), ("Long Whistle"),
-    ("Short Guiro"), ("Long Guiro"),
-    ("Claves"), ("High Wood Block"),
-    ("Low Wood Block"), ("Mute Cuica"),
-    ("Open Cuica"), ("Mute Triangle"),
-    ("Open Triangle")
+    "Acoustic Bass Drum", "Bass Drum 1",
+    "Side Stick", "Acoustic Snare",
+    "Hand Clap", "Electric Snare",
+    "Low Floor Tom", "Closed High Hat",
+    "High Floor Tom", "Pedal High Hat",
+    "Low Tom", "Open High Hat",
+    "Low-Mid Tom", "High-Mid Tom",
+    "Crash Cymbal 1", "High Tom",
+    "Ride Cymbal 1", "Chinese Cymbal",
+    "Ride Bell", "Tambourine",
+    "Splash Cymbal", "Cowbell",
+    "Crash Cymbal 2", "Vibraslap",
+    "Ride Cymbal 2", "High Bongo",
+    "Low Bongo", "Mute High Conga",
+    "Open High Conga", "Low Conga",
+    "High Timbale", "Low Timbale",
+    "High Agogo", "Low Agogo",
+    "Cabasa", "Maracas",
+    "Short Whistle", "Long Whistle",
+    "Short Guiro", "Long Guiro",
+    "Claves", "High Wood Block",
+    "Low Wood Block", "Mute Cuica",
+    "Open Cuica", "Mute Triangle",
+    "Open Triangle"
 ];
 
 string szUntitled = "(Untitled)";
@@ -138,8 +138,8 @@ string szBuffer;
 HANDLE hInst;
 int cxChar, cyChar;
 
-__gshared wchar[MAX_PATH] szFileName = 0;
-__gshared wchar[MAX_PATH] szTitleName= 0;
+__gshared wchar[MAX_PATH] szFileName  = 0;
+__gshared wchar[MAX_PATH] szTitleName = 0;
 __gshared BOOL  bNeedSave;
 __gshared DRUM  drum;
 __gshared HMENU hMenu;
@@ -231,9 +231,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                             SetScrollPos(hwnd, SB_VERT, iTempo, TRUE);
                             SetScrollPos(hwnd, SB_HORZ, drum.iVelocity, TRUE);
-
-                            //~ import std.stdio;
-                            //~ writeln(drum.iNumBeats);
                             
                             DrumSetParams(&drum);
                             InvalidateRect(hwnd, NULL, FALSE);
@@ -313,7 +310,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (x > 0 && x <= 32 && y < 0)
             {
                 SetTextColor(hdc, RGB(255, 255, 255));
-                TextOut(hdc, (40 + drum.iNumBeats) * cxChar, 0, (":|"), 2);
+                TextOut(hdc, (40 + drum.iNumBeats) * cxChar, 0, ":|", 2);
                 SetTextColor(hdc, RGB(0, 0, 0));
 
                 if (drum.iNumBeats % 4 == 0)
@@ -437,12 +434,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 SetTextColor(hdc, x == drum.iNumBeats - 1 ?
                              RGB(0, 0, 0) : RGB(255, 255, 255));
 
-                TextOut(hdc, (41 + x) * cxChar, 0, (":|"), 2);
+                TextOut(hdc, (41 + x) * cxChar, 0, ":|", 2);
 
                 SetTextColor(hdc, RGB(0, 0, 0));
 
                 if (x % 4 == 0)
-                    TextOut(hdc, (40 + x) * cxChar, 0, ("."), 1);
+                    TextOut(hdc, (40 + x) * cxChar, 0, ".", 1);
             }
 
             EndPaint(hwnd, &ps);
@@ -471,7 +468,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             return 0;
 
         case WM_USER_ERROR:
-            ErrorMessage(hwnd, ("Can't set timer event for tempo"),
+            ErrorMessage(hwnd, "Can't set timer event for tempo",
                          to!string(fromWStringz(szTitleName.ptr)));
             goto case;
         

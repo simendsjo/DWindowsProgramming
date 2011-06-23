@@ -112,7 +112,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hwndEdit = CreateWindow(("edit"), NULL,
+            hwndEdit = CreateWindow("edit", NULL,
                                     WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL |
                                     WS_BORDER | ES_LEFT | ES_MULTILINE | ES_NOHIDESEL |
                                     ES_AUTOHSCROLL | ES_AUTOVSCROLL,
@@ -132,7 +132,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (LOWORD(wParam) == ID_EDIT)
                 if (HIWORD(wParam) == EN_ERRSPACE ||
                     HIWORD(wParam) == EN_MAXTEXT)
-                    MessageBox(hwnd, ("Edit control out of space."),
+                    MessageBox(hwnd, "Edit control out of space.",
                                appName.toUTF16z, MB_OK | MB_ICONSTOP);
 
             return 0;

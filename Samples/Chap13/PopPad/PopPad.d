@@ -253,7 +253,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     case EN_ERRSPACE:
                     case EN_MAXTEXT:
-                        MessageBox(hwnd, ("Edit control out of space."),
+                        MessageBox(hwnd, "Edit control out of space.",
                                    appName.toUTF16z, MB_OK | MB_ICONSTOP);
                         return 0;
                     
@@ -272,7 +272,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     if (bNeedSave && IDCANCEL == AskAboutSave(hwnd, to!string(fromWStringz(szTitleName.ptr))))
                         return 0;
 
-                    SetWindowText(hwndEdit, ("\0"));
+                    SetWindowText(hwndEdit, "\0");
                     szFileName[0]  = 0;
                     szTitleName[0] = 0;
                     DoCaption(hwnd, to!string(fromWStringz(szTitleName.ptr)));
@@ -288,7 +288,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     {
                         if (!PopFileRead(hwndEdit, szFileName.ptr))
                         {
-                            OkMessage(hwnd, ("Could not read file %s!"), to!string(fromWStringz(szTitleName.ptr)));
+                            OkMessage(hwnd, "Could not read file %s!", to!string(fromWStringz(szTitleName.ptr)));
                             szFileName[0]  = 0;
                             szTitleName[0] = 0;
                         }
@@ -309,7 +309,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         }
                         else
                         {
-                            OkMessage(hwnd, ("Could not write file %s"), to!string(fromWStringz(szTitleName.ptr)));
+                            OkMessage(hwnd, "Could not write file %s", to!string(fromWStringz(szTitleName.ptr)));
                             return 0;
                         }
                     }
@@ -329,7 +329,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         }
                         else
                         {
-                            OkMessage(hwnd, ("Could not write file %s"), to!string(fromWStringz(szTitleName.ptr)));
+                            OkMessage(hwnd, "Could not write file %s", to!string(fromWStringz(szTitleName.ptr)));
                             return 0;
                         }
                     }
@@ -339,7 +339,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 case IDM_FILE_PRINT:
 
                     if (!PopPrntPrintFile(hInst, hwnd, hwndEdit, szTitleName.ptr))
-                        OkMessage(hwnd, ("Could not print file %s"), to!string(fromWStringz(szTitleName.ptr)));
+                        OkMessage(hwnd, "Could not print file %s", to!string(fromWStringz(szTitleName.ptr)));
 
                     return 0;
 
@@ -402,12 +402,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 // Messages from Help menu
                 case IDM_HELP:
-                    OkMessage(hwnd, ("Help not yet implemented!"),
-                              ("\0"));
+                    OkMessage(hwnd, "Help not yet implemented!",
+                              "\0");
                     return 0;
 
                 case IDM_APP_ABOUT:
-                    DialogBox(hInst, ("AboutBox"), hwnd, &AboutDlgProc);
+                    DialogBox(hInst, "AboutBox", hwnd, &AboutDlgProc);
                     return 0;
                 
                 default:
@@ -443,11 +443,11 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 if (pfr.Flags & FR_FINDNEXT)
                     if (!PopFindFindText(hwndEdit, &iOffset, pfr))
-                        OkMessage(hwnd, ("Text not found!"), ("\0"));
+                        OkMessage(hwnd, "Text not found!", "\0");
 
                 if (pfr.Flags & FR_REPLACE || pfr.Flags & FR_REPLACEALL)
                     if (!PopFindReplaceText(hwndEdit, &iOffset, pfr))
-                        OkMessage(hwnd, ("Text not found!"), ("\0"));
+                        OkMessage(hwnd, "Text not found!", "\0");
 
                 if (pfr.Flags & FR_REPLACEALL)
                 {

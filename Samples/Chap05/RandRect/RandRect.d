@@ -94,7 +94,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
         else
         {
             DrawRectangle(hwnd);
-            Thread.sleep(dur!("msecs")(80));  // necessary on modern hardware to slow things down
+            Thread.sleep(dur!"msecs"(80));  // necessary on modern hardware to slow things down
         }
     }
 

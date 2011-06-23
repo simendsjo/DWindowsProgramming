@@ -176,7 +176,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (LOWORD(wParam))
             {
                 case IDC_SERVER:
-                    DialogBoxParam(hInst, ("Servers"), hwnd, &ServerDlg, cast(LPARAM)szIPAddr.toStringz);
+                    DialogBoxParam(hInst, "Servers", hwnd, &ServerDlg, cast(LPARAM)szIPAddr.toStringz);
                     return TRUE;
 
                 case IDOK:
@@ -241,7 +241,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     // Set timer and change the button to "Cancel"
                     SetTimer(hwnd, ID_TIMER, 1000, NULL);
                     GetWindowText(hwndButton, szOKLabel.ptr, szOKLabel.count);
-                    SetWindowText(hwndButton, ("Cancel"));
+                    SetWindowText(hwndButton, "Cancel");
                     SetWindowLong(hwndButton, GWL_ID, IDCANCEL);
                     return TRUE;
 

@@ -175,7 +175,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
 
             AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-            AppendMenu(hMenu, 0, IDM_DEVMODE, ("Properties"));
+            AppendMenu(hMenu, 0, IDM_DEVMODE, "Properties");
 
             wParam = IDM_SCREEN;
             goto case WM_COMMAND;
@@ -343,13 +343,13 @@ void DoOtherInfo(HDC hdc, HDC hdcInfo, int cxChar, int cyChar)
 
     enum szTechs =
     [
-        ("DT_PLOTTER (Vector plotter)"),
-        ("DT_RASDISPLAY (Raster display)"),
-        ("DT_RASPRINTER (Raster printer)"),
-        ("DT_RASCAMERA (Raster camera)"),
-        ("DT_CHARSTREAM (Character stream)"),
-        ("DT_METAFILE (Metafile)"),
-        ("DT_DISPFILE (Display file)")
+        "DT_PLOTTER (Vector plotter)",
+        "DT_RASDISPLAY (Raster display)",
+        "DT_RASPRINTER (Raster printer)",
+        "DT_RASCAMERA (Raster camera)",
+        "DT_CHARSTREAM (Character stream)",
+        "DT_METAFILE (Metafile)",
+        "DT_DISPFILE (Display file)"
     ];
 
     string buffer;

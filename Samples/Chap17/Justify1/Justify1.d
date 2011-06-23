@@ -308,7 +308,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (NULL == (hdcPrn = pd.hDC))
                     {
-                        MessageBox(hwnd, ("Cannot obtain Printer DC"),
+                        MessageBox(hwnd, "Cannot obtain Printer DC",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                         return 0;
                     }
@@ -363,7 +363,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     DeleteDC(hdcPrn);
 
                     if (!fSuccess)
-                        MessageBox(hwnd, ("Could not print text"),
+                        MessageBox(hwnd, "Could not print text",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
 
                     return 0;

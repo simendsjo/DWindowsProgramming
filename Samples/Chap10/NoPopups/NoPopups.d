@@ -106,9 +106,9 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_CREATE:
             hInstance = cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE);
 
-            hMenuMain = LoadMenu(hInstance, ("MenuMain"));
-            hMenuFile = LoadMenu(hInstance, ("MenuFile"));
-            hMenuEdit = LoadMenu(hInstance, ("MenuEdit"));
+            hMenuMain = LoadMenu(hInstance, "MenuMain");
+            hMenuFile = LoadMenu(hInstance, "MenuFile");
+            hMenuEdit = LoadMenu(hInstance, "MenuEdit");
 
             SetMenu(hwnd, hMenuMain);
             return 0;

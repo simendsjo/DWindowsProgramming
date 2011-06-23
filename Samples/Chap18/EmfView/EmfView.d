@@ -171,7 +171,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             ofn.Flags             = 0;
             ofn.nFileOffset       = 0;
             ofn.nFileExtension    = 0;
-            ofn.lpstrDefExt       = ("emf");
+            ofn.lpstrDefExt       = "emf";
             ofn.lCustData         = 0;
             ofn.lpfnHook          = NULL;
             ofn.lpTemplateName    = NULL;
@@ -231,7 +231,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (hemf == NULL)
                     {
-                        MessageBox(hwnd, ("Cannot load metafile"),
+                        MessageBox(hwnd, "Cannot load metafile",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                     }
 
@@ -265,7 +265,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         hemf = hemfCopy;
                     }
                     else
-                        MessageBox(hwnd, ("Cannot save metafile"),
+                        MessageBox(hwnd, "Cannot save metafile",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
 
                     return 0;
@@ -281,7 +281,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (NULL == (hdcPrn = printdlg.hDC))
                     {
-                        MessageBox(hwnd, ("Cannot obtain printer DC"),
+                        MessageBox(hwnd, "Cannot obtain printer DC",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                         return 0;
                     }
@@ -317,7 +317,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     DeleteDC(hdcPrn);
 
                     if (!bSuccess)
-                        MessageBox(hwnd, ("Could not print metafile"),
+                        MessageBox(hwnd, "Could not print metafile",
                                    appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
 
                     return 0;
@@ -334,23 +334,23 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     // Format header file information
                     i = wsprintf(pBuffer,
-                                 ("Bounds = (%i, %i) to (%i, %i) pixels\n"),
+                                 "Bounds = (%i, %i) to (%i, %i) pixels\n",
                                  header.rclBounds.left, header.rclBounds.top,
                                  header.rclBounds.right, header.rclBounds.bottom);
 
                     i += wsprintf(pBuffer + i,
-                                  ("Frame = (%i, %i) to (%i, %i) mms\n"),
+                                  "Frame = (%i, %i) to (%i, %i) mms\n",
                                   header.rclFrame.left, header.rclFrame.top,
                                   header.rclFrame.right, header.rclFrame.bottom);
 
                     i += wsprintf(pBuffer + i,
-                                  ("Resolution = (%i, %i) pixels = (%i, %i) mms\n"),
+                                  "Resolution = (%i, %i) pixels = (%i, %i) mms\n",
                                   header.szlDevice.cx, header.szlDevice.cy,
                                   header.szlMillimeters.cx,
                                   header.szlMillimeters.cy);
 
                     i += wsprintf(pBuffer + i,
-                                  ("Size = %i, Records = %i, Handles = %i, Palette entries = %i\n"),
+                                  "Size = %i, Records = %i, Handles = %i, Palette entries = %i\n",
                                   header.nBytes, header.nRecords,
                                   header.nHandles, header.nPalEntries);
 
@@ -358,12 +358,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (iLength)
                     {
-                        i += wsprintf(pBuffer + i, ("Description = "));
+                        i += wsprintf(pBuffer + i, "Description = ");
                         GetEnhMetaFileDescription(hemf, iLength, pBuffer + i);
                         pBuffer [lstrlen(pBuffer)] = '\t';
                     }
 
-                    MessageBox(hwnd, pBuffer, ("Metafile Properties"), MB_OK);
+                    MessageBox(hwnd, pBuffer, "Metafile Properties", MB_OK);
                     GC.free(pBuffer);
                     return 0;
 
@@ -413,7 +413,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     return 0;
 
                 case IDM_APP_ABOUT:
-                    MessageBox(hwnd, ("Enhanced Metafile Viewer\n(c) Charles Petzold, 1998"),
+                    MessageBox(hwnd, "Enhanced Metafile Viewer\n(c) Charles Petzold, 1998",
                                appName.toUTF16z, MB_OK);
                     return 0;
 

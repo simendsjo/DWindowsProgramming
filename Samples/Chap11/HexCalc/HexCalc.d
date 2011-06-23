@@ -72,7 +72,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
      if (!RegisterClass (&wndclass))
      {
-          MessageBox (NULL, ("This program requires Windows NT!"),
+          MessageBox (NULL, "This program requires Windows NT!",
                       appName.toUTF16z, MB_ICONERROR) ;
           return 0 ;
      }
@@ -166,7 +166,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (hButton)
             {
                 SendMessage(hButton, BM_SETSTATE, 1, 0);
-                Thread.sleep( dur!("msecs")( 100 ) );
+                Thread.sleep( dur!"msecs"( 100 ) );
                 SendMessage(hButton, BM_SETSTATE, 0, 0);
             }
             else

@@ -125,10 +125,10 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
                                   "BITMAPV4HEADER",
                                   "BITMAPV5HEADER"];
     
-    static string[] szCompression = [("BI_RGB"), ("BI_RLE8"),
-                                      ("BI_RLE4"),
-                                      ("BI_BITFIELDS"),
-                                      ("unknown")];
+    static string[] szCompression = ["BI_RGB", "BI_RLE8",
+                                      "BI_RLE4",
+                                      "BI_BITFIELDS",
+                                      "unknown"];
     BITMAPCOREHEADER* pbmch;
     BITMAPFILEHEADER* pbmfh;
     BITMAPV5HEADER* pbmih;
@@ -140,7 +140,7 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
     TCHAR* szV;
 
     // Display the file name
-    hwndPrint(hwnd, ("File: %s\r\n\r\n"), szFileName);
+    hwndPrint(hwnd, "File: %s\r\n\r\n", szFileName);
 
     // Open the file
     hFile = CreateFile(szFileName.toUTF16z, GENERIC_READ, FILE_SHARE_READ, NULL,
@@ -148,7 +148,7 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
 
     if (hFile == INVALID_HANDLE_VALUE)
     {
-        hwndPrint(hwnd, ("Cannot open file.\r\n\r\n"));
+        hwndPrint(hwnd, "Cannot open file.\r\n\r\n");
         return;
     }
 
@@ -157,7 +157,7 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
 
     if (dwHighSize)
     {
-        hwndPrint(hwnd, ("Cannot deal with >4G files.\r\n\r\n"));
+        hwndPrint(hwnd, "Cannot deal with >4G files.\r\n\r\n");
         CloseHandle(hFile);
         return;
     }
@@ -167,7 +167,7 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
 
     if (!pFile)
     {
-        hwndPrint(hwnd, ("Cannot allocate memory.\r\n\r\n"));
+        hwndPrint(hwnd, "Cannot allocate memory.\r\n\r\n");
         CloseHandle(hFile);
         return;
     }
@@ -183,7 +183,7 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
 
     if (!bSuccess || (dwBytesRead != dwFileSize))
     {
-        hwndPrint(hwnd, ("Could not read file.\r\n\r\n"));
+        hwndPrint(hwnd, "Could not read file.\r\n\r\n");
         CloseHandle(hFile);
         GC.free(pFile);
         return;
@@ -193,17 +193,17 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
     CloseHandle(hFile);
 
     // Display file size
-    hwndPrint(hwnd, ("File size = %s bytes\r\n\r\n"), dwFileSize);
+    hwndPrint(hwnd, "File size = %s bytes\r\n\r\n", dwFileSize);
 
     // Display BITMAPFILEHEADER structure
     pbmfh = cast(BITMAPFILEHEADER*)pFile;
 
-    hwndPrint(hwnd, ("BITMAPFILEHEADER\r\n"));
-    hwndPrint(hwnd, ("\t.bfType = 0x%x\r\n"), pbmfh.bfType);
-    hwndPrint(hwnd, ("\t.bfSize = %s\r\n"), pbmfh.bfSize);
-    hwndPrint(hwnd, ("\t.bfReserved1 = %s\r\n"), pbmfh.bfReserved1);
-    hwndPrint(hwnd, ("\t.bfReserved2 = %s\r\n"), pbmfh.bfReserved2);
-    hwndPrint(hwnd, ("\t.bfOffBits = %s\r\n\r\n"), pbmfh.bfOffBits);
+    hwndPrint(hwnd, "BITMAPFILEHEADER\r\n");
+    hwndPrint(hwnd, "\t.bfType = 0x%x\r\n", pbmfh.bfType);
+    hwndPrint(hwnd, "\t.bfSize = %s\r\n", pbmfh.bfSize);
+    hwndPrint(hwnd, "\t.bfReserved1 = %s\r\n", pbmfh.bfReserved1);
+    hwndPrint(hwnd, "\t.bfReserved2 = %s\r\n", pbmfh.bfReserved2);
+    hwndPrint(hwnd, "\t.bfOffBits = %s\r\n\r\n", pbmfh.bfOffBits);
 
     // Determine which information structure we have
     pbmih = cast(BITMAPV5HEADER*)(pFile + BITMAPFILEHEADER.sizeof);
@@ -230,12 +230,12 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
             break;
 
         default:
-            hwndPrint(hwnd, ("Unknown header size of %s.\r\n\r\n"), pbmih.bV5Size);
+            hwndPrint(hwnd, "Unknown header size of %s.\r\n\r\n", pbmih.bV5Size);
             GC.free(pFile);
             return;
     }
 
-    hwndPrint(hwnd, ("%s\r\n"), szInfoName[i]);
+    hwndPrint(hwnd, "%s\r\n", szInfoName[i]);
 
     // Display the BITMAPCOREHEADER fields
 
@@ -243,43 +243,43 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
     {
         pbmch = cast(BITMAPCOREHEADER*)pbmih;
 
-        hwndPrint(hwnd, ("\t.bcSize = %s\r\n"), pbmch.bcSize);
-        hwndPrint(hwnd, ("\t.bcWidth = %s\r\n"), pbmch.bcWidth);
-        hwndPrint(hwnd, ("\t.bcHeight = %s\r\n"), pbmch.bcHeight);
-        hwndPrint(hwnd, ("\t.bcPlanes = %s\r\n"), pbmch.bcPlanes);
-        hwndPrint(hwnd, ("\t.bcBitCount = %s\r\n\r\n"), pbmch.bcBitCount);
+        hwndPrint(hwnd, "\t.bcSize = %s\r\n", pbmch.bcSize);
+        hwndPrint(hwnd, "\t.bcWidth = %s\r\n", pbmch.bcWidth);
+        hwndPrint(hwnd, "\t.bcHeight = %s\r\n", pbmch.bcHeight);
+        hwndPrint(hwnd, "\t.bcPlanes = %s\r\n", pbmch.bcPlanes);
+        hwndPrint(hwnd, "\t.bcBitCount = %s\r\n\r\n", pbmch.bcBitCount);
         GC.free(pFile);
         return;
     }
 
     // Display the BITMAPINFOHEADER fields
 
-    hwndPrint(hwnd, ("\t.b%sSize = %s\r\n"), szV, pbmih.bV5Size);
-    hwndPrint(hwnd, ("\t.b%sWidth = %s\r\n"), szV, pbmih.bV5Width);
-    hwndPrint(hwnd, ("\t.b%sHeight = %s\r\n"), szV, pbmih.bV5Height);
-    hwndPrint(hwnd, ("\t.b%sPlanes = %s\r\n"), szV, pbmih.bV5Planes);
-    hwndPrint(hwnd, ("\t.b%sBitCount = %s\r\n"), szV, pbmih.bV5BitCount);
-    hwndPrint(hwnd, ("\t.b%sCompression = %s\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sSize = %s\r\n", szV, pbmih.bV5Size);
+    hwndPrint(hwnd, "\t.b%sWidth = %s\r\n", szV, pbmih.bV5Width);
+    hwndPrint(hwnd, "\t.b%sHeight = %s\r\n", szV, pbmih.bV5Height);
+    hwndPrint(hwnd, "\t.b%sPlanes = %s\r\n", szV, pbmih.bV5Planes);
+    hwndPrint(hwnd, "\t.b%sBitCount = %s\r\n", szV, pbmih.bV5BitCount);
+    hwndPrint(hwnd, "\t.b%sCompression = %s\r\n", szV,
            szCompression [min(4, pbmih.bV5Compression)]);
 
-    hwndPrint(hwnd, ("\t.b%sSizeImage = %s\r\n"), szV, pbmih.bV5SizeImage);
-    hwndPrint(hwnd, ("\t.b%sXPelsPerMeter = %s\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sSizeImage = %s\r\n", szV, pbmih.bV5SizeImage);
+    hwndPrint(hwnd, "\t.b%sXPelsPerMeter = %s\r\n", szV,
            pbmih.bV5XPelsPerMeter);
-    hwndPrint(hwnd, ("\t.b%sYPelsPerMeter = %s\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sYPelsPerMeter = %s\r\n", szV,
            pbmih.bV5YPelsPerMeter);
-    hwndPrint(hwnd, ("\t.b%sClrUsed = %s\r\n"), szV, pbmih.bV5ClrUsed);
-    hwndPrint(hwnd, ("\t.b%sClrImportant = %s\r\n\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sClrUsed = %s\r\n", szV, pbmih.bV5ClrUsed);
+    hwndPrint(hwnd, "\t.b%sClrImportant = %s\r\n\r\n", szV,
            pbmih.bV5ClrImportant);
 
     if (pbmih.bV5Size == BITMAPINFOHEADER.sizeof)
     {
         if (pbmih.bV5Compression == BI_BITFIELDS)
         {
-            hwndPrint(hwnd, ("Red Mask   = %08x\r\n"),
+            hwndPrint(hwnd, "Red Mask   = %08x\r\n",
                    pbmih.bV5RedMask);
-            hwndPrint(hwnd, ("Green Mask = %08x\r\n"),
+            hwndPrint(hwnd, "Green Mask = %08x\r\n",
                    pbmih.bV5GreenMask);
-            hwndPrint(hwnd, ("Blue Mask  = %08x\r\n\r\n"),
+            hwndPrint(hwnd, "Blue Mask  = %08x\r\n\r\n",
                    pbmih.bV5BlueMask);
         }
 
@@ -288,39 +288,39 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
     }
 
     // Display additional BITMAPV4HEADER fields
-    hwndPrint(hwnd, ("\t.b%sRedMask   = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sRedMask   = %08x\r\n", szV,
            pbmih.bV5RedMask);
-    hwndPrint(hwnd, ("\t.b%sGreenMask = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sGreenMask = %08x\r\n", szV,
            pbmih.bV5GreenMask);
-    hwndPrint(hwnd, ("\t.b%sBlueMask  = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sBlueMask  = %08x\r\n", szV,
            pbmih.bV5BlueMask);
-    hwndPrint(hwnd, ("\t.b%sAlphaMask = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sAlphaMask = %08x\r\n", szV,
            pbmih.bV5AlphaMask);
-    hwndPrint(hwnd, ("\t.b%sCSType = %s\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sCSType = %s\r\n", szV,
            pbmih.bV5CSType);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzRed.ciexyzX   = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzRed.ciexyzX   = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzRed.ciexyzX);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzRed.ciexyzY   = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzRed.ciexyzY   = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzRed.ciexyzY);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzRed.ciexyzZ   = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzRed.ciexyzZ   = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzRed.ciexyzZ);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzGreen.ciexyzX = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzGreen.ciexyzX = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzGreen.ciexyzX);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzGreen.ciexyzY = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzGreen.ciexyzY = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzGreen.ciexyzY);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzGreen.ciexyzZ = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzGreen.ciexyzZ = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzGreen.ciexyzZ);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzBlue.ciexyzX  = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzBlue.ciexyzX  = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzBlue.ciexyzX);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzBlue.ciexyzY  = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzBlue.ciexyzY  = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzBlue.ciexyzY);
-    hwndPrint(hwnd, ("\t.b%sEndpoints.ciexyzBlue.ciexyzZ  = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sEndpoints.ciexyzBlue.ciexyzZ  = %08x\r\n", szV,
            pbmih.bV5Endpoints.ciexyzBlue.ciexyzZ);
-    hwndPrint(hwnd, ("\t.b%sGammaRed   = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sGammaRed   = %08x\r\n", szV,
            pbmih.bV5GammaRed);
-    hwndPrint(hwnd, ("\t.b%sGammaGreen = %08x\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sGammaGreen = %08x\r\n", szV,
            pbmih.bV5GammaGreen);
-    hwndPrint(hwnd, ("\t.b%sGammaBlue  = %08x\r\n\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sGammaBlue  = %08x\r\n\r\n", szV,
            pbmih.bV5GammaBlue);
 
     if (pbmih.bV5Size == BITMAPV4HEADER.sizeof)
@@ -331,12 +331,12 @@ void DisplayDibHeaders(HWND hwnd, string szFileName)
 
     // Display additional BITMAPV5HEADER fields
 
-    hwndPrint(hwnd, ("\t.b%sIntent = %s\r\n"), szV, pbmih.bV5Intent);
-    hwndPrint(hwnd, ("\t.b%sProfileData = %s\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sIntent = %s\r\n", szV, pbmih.bV5Intent);
+    hwndPrint(hwnd, "\t.b%sProfileData = %s\r\n", szV,
            pbmih.bV5ProfileData);
-    hwndPrint(hwnd, ("\t.b%sProfileSize = %s\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sProfileSize = %s\r\n", szV,
            pbmih.bV5ProfileSize);
-    hwndPrint(hwnd, ("\t.b%sReserved = %s\r\n\r\n"), szV,
+    hwndPrint(hwnd, "\t.b%sReserved = %s\r\n\r\n", szV,
            pbmih.bV5Reserved);
 
     GC.free(pFile);
@@ -356,7 +356,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hwndEdit = CreateWindow(("edit"), NULL,
+            hwndEdit = CreateWindow("edit", NULL,
                                     WS_CHILD | WS_VISIBLE | WS_BORDER |
                                     WS_VSCROLL | WS_HSCROLL |
                                     ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY,
@@ -378,7 +378,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             ofn.Flags             = 0;
             ofn.nFileOffset       = 0;
             ofn.nFileExtension    = 0;
-            ofn.lpstrDefExt       = ("bmp");
+            ofn.lpstrDefExt       = "bmp";
             ofn.lCustData         = 0;
             ofn.lpfnHook          = NULL;
             ofn.lpTemplateName    = NULL;

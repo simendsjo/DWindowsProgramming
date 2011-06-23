@@ -135,7 +135,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             if (midiOutOpen(&hMidiOut, MIDIMAPPER, 0, 0, 0))
             {
                 MessageBeep(MB_ICONEXCLAMATION);
-                MessageBox(hwnd, ("Cannot open MIDI output device!"),
+                MessageBox(hwnd, "Cannot open MIDI output device!",
                            appName.toUTF16z, MB_ICONEXCLAMATION | MB_OK);
                 return -1;
             }

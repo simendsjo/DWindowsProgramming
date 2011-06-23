@@ -50,7 +50,7 @@ void PopFileInitialize(HWND hwnd)
     ofn.Flags             = 0;               // Set in Open and Close functions
     ofn.nFileOffset       = 0;
     ofn.nFileExtension    = 0;
-    ofn.lpstrDefExt       = ("txt");
+    ofn.lpstrDefExt       = "txt";
     ofn.lCustData         = 0L;
     ofn.lpfnHook          = NULL;
     ofn.lpTemplateName    = NULL;

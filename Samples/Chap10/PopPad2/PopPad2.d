@@ -97,7 +97,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
 auto AskConfirmation(HWND hwnd)
 {
-    return MessageBox(hwnd,  ("Really want to close PopPad2?"), appName.toUTF16z, MB_YESNO | MB_ICONQUESTION);
+    return MessageBox(hwnd,  "Really want to close PopPad2?", appName.toUTF16z, MB_YESNO | MB_ICONQUESTION);
 }
 
 extern (Windows)
@@ -109,7 +109,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hwndEdit = CreateWindow( ("edit"), NULL,
+            hwndEdit = CreateWindow( "edit", NULL,
                                      WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL |
                                      WS_BORDER | ES_LEFT | ES_MULTILINE |
                                      ES_AUTOHSCROLL | ES_AUTOVSCROLL,
@@ -203,12 +203,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                         return 0;
 
                     case IDM_HELP_HELP:
-                        MessageBox(hwnd, ("Help not yet implemented!"),
+                        MessageBox(hwnd, "Help not yet implemented!",
                                    appName.toUTF16z, MB_OK | MB_ICONEXCLAMATION);
                         return 0;
 
                     case IDM_APP_ABOUT:
-                        MessageBox(hwnd, ("POPPAD2 (c) Charles Petzold, 1998"),
+                        MessageBox(hwnd, "POPPAD2 (c) Charles Petzold, 1998",
                                    appName.toUTF16z, MB_OK | MB_ICONINFORMATION);
                         return 0;
 

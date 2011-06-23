@@ -55,7 +55,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 {
     if (DialogBox(hInstance, appName.toUTF16z, NULL, &DlgProc) == -1)
     {
-        MessageBox(NULL, ("This program requires Windows NT!"),
+        MessageBox(NULL, "This program requires Windows NT!",
                    appName.toUTF16z, MB_ICONERROR);
     }
 
@@ -235,7 +235,7 @@ BOOL DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         // Message generated from waveOutOpen call
         case MM_WOM_OPEN:
-            SetDlgItemText(hwnd, IDC_ONOFF, ("Turn Off"));
+            SetDlgItemText(hwnd, IDC_ONOFF, "Turn Off");
 
             // Send two buffers to waveform output device
             FillBuffer(pBuffer1, iFreq);
@@ -262,7 +262,7 @@ BOOL DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             waveOutUnprepareHeader(hWaveOut, pWaveHdr1, WAVEHDR.sizeof);
             waveOutUnprepareHeader(hWaveOut, pWaveHdr2, WAVEHDR.sizeof);
 
-            SetDlgItemText(hwnd, IDC_ONOFF, ("Turn On"));
+            SetDlgItemText(hwnd, IDC_ONOFF, "Turn On");
 
             hWaveOut = cast(typeof(hWaveOut))NULL;
         
