@@ -112,9 +112,9 @@ void hwndPrint(A, B, C...)(A hwnd, B szFormat, C values)
         string szBuffer = format(szFormat, values);
     }
 
-    SendMessage (hwnd, EM_SETSEL, cast(WPARAM) -1, cast(LPARAM) -1) ;
-    SendMessage (hwnd, EM_REPLACESEL, FALSE, cast(LPARAM)szBuffer.toUTF16z) ;
-    SendMessage (hwnd, EM_SCROLLCARET, 0, 0) ;            
+    SendMessage (hwnd, EM_SETSEL, cast(WPARAM) -1, cast(LPARAM) -1);
+    SendMessage (hwnd, EM_REPLACESEL, FALSE, cast(LPARAM)szBuffer.toUTF16z);
+    SendMessage (hwnd, EM_SCROLLCARET, 0, 0);            
     
 }
 

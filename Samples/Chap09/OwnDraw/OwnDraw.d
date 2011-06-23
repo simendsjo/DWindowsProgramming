@@ -47,7 +47,7 @@ Button[] buttons =
     Button(BS_OWNERDRAW,       "OWNERDRAW"    ),
 ];
 
-HINSTANCE hInst ;
+HINSTANCE hInst;
 
 extern (Windows)
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)

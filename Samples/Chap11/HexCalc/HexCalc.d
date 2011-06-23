@@ -72,21 +72,21 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
      if (!RegisterClass (&wndclass))
      {
-          MessageBox (NULL, "This program requires Windows NT!",
-                      appName.toUTF16z, MB_ICONERROR) ;
-          return 0 ;
+          MessageBox(NULL, "This program requires Windows NT!",
+                     appName.toUTF16z, MB_ICONERROR);
+          return 0;
      }
 
-     hwnd = CreateDialog (hInstance, appName.toUTF16z, null, NULL) ;
+     hwnd = CreateDialog (hInstance, appName.toUTF16z, null, NULL);
 
-     ShowWindow (hwnd, iCmdShow) ;
+     ShowWindow (hwnd, iCmdShow);
 
      while (GetMessage (&msg, NULL, 0, 0))
      {
-          TranslateMessage (&msg) ;
-          DispatchMessage (&msg) ;
+          TranslateMessage (&msg);
+          DispatchMessage (&msg);
      }
-     return msg.wParam ;
+     return msg.wParam;
 }
 
 void ShowNumber(HWND hwnd, UINT iNumber)

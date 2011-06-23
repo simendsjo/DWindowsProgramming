@@ -194,7 +194,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     static int cxClient, cyClient;
     HDC hdc;
     PAINTSTRUCT ps;
-    wchar[2]szBuffer ;
+    wchar[2] szBuffer;
 
     switch (message)
     {

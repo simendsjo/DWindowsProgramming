@@ -168,7 +168,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hEvent = CreateEvent (NULL, FALSE, FALSE, NULL) ;
+            hEvent = CreateEvent (NULL, FALSE, FALSE, NULL);
 
             params.hwnd = hwnd;
             params.hEvent = hEvent;

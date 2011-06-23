@@ -59,7 +59,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     wndclass.cbClsExtra    = 0;
     wndclass.cbWndExtra    = 0;
     wndclass.hInstance     = hInstance;
-    wndclass.hIcon         = LoadIcon (hInstance, appName.toUTF16z) ;
+    wndclass.hIcon         = LoadIcon (hInstance, appName.toUTF16z);
     wndclass.hCursor       = LoadCursor(NULL, IDC_ARROW);
     wndclass.hbrBackground = cast(HBRUSH) GetStockObject(WHITE_BRUSH);
     wndclass.lpszMenuName  = appName.toUTF16z;

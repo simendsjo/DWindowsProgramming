@@ -85,7 +85,7 @@ double SineGenerator(double dFreq, ref double pdAngle)
 // Fill a buffer with a composite waveform
 VOID FillBuffer(INS ins, ref PBYTE pBuffer, int iNumSamples)
 {
-    static double[MAX_PARTIALS] dAngle ;
+    static double[MAX_PARTIALS] dAngle;
     dAngle[] = 0.0;
     
     double dAmp, dFrq, dComp, dFrac;

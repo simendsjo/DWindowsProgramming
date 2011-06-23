@@ -103,6 +103,7 @@
     or e-mail me at: andrej.mitrovich<at>gmail.com
 
 == Todo ==
+    - Drown RC noise when building.
     - Check if examples compile and run on Vista.
     - Maybe replace the duplicated winmain() functions with a wrapper.
     - Use with statements where possible.

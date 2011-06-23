@@ -7,20 +7,20 @@ module WaveTable;
 
 struct ENV
 {
-     int iTime ;
-     int iValue ;
+     int iTime;
+     int iValue;
 }
 
 struct PRT
 {
      ENV[] ampArray;
-     ENV[] freqArray ;
+     ENV[] freqArray;
 }
 
 struct INS
 {
-     int   iMsecTime ;
-     PRT[] pprt ;
+     int   iMsecTime;
+     PRT[] pprt;
 }
 
 enum envTrumAmp01 = [ENV(1, 0), ENV(20, 305), ENV(36, 338), ENV(141, 288), ENV(237, 80), ENV(360, 0)];

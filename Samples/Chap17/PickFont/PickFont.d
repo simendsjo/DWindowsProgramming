@@ -461,7 +461,7 @@ void SetLogFontFromFields(HWND hdlg, DLGPARAMS* pdp)
 
 void SetFieldsFromTextMetric(HWND hdlg, DLGPARAMS* pdp)
 {
-    string szBuffer ;
+    string szBuffer;
     TCHAR* szYes = ("Yes\0"w.dup.ptr);
     TCHAR* szNo  = ("No\0"w.dup.ptr);
     string[] szFamily = ["Don't Know", "Roman", "Swiss", "Modern",
