@@ -45,11 +45,10 @@ void checkTools()
 {
     system("echo int x; > test.h");
     auto res = system("htod test.h");
-    
     if (res == -1 || res == 1)
     {
         skipHeaderCompile = true;
-        writeln(0, "Warning: The builder will use existing D header files and won't generate them dynaimcally. You need to download and install HTOD. Please see the Links section in the Readme file.");
+        writeln("Warning: The builder will use existing D header files and won't generate them dynaimcally. You need to download and install HTOD. Please see the Links section in the Readme file.");
     }
     
     try { std.file.remove("test.h"); } catch {};
@@ -101,15 +100,14 @@ string[] getFilesByExt(string dir, string ext, string ext2 = null)
     return result;
 }
 
-__gshared bool forcedExit;
 __gshared bool Debug;
 __gshared bool cleanOnly;
 __gshared bool skipHeaderCompile;
 __gshared bool skipResCompile;
 __gshared bool silent;
-__gshared string soloProject;
-__gshared alias reduce!("a ~ ' ' ~ b") flatten;
-__gshared string[] failedBuilds;
+string soloProject;
+
+alias reduce!("a ~ ' ' ~ b") flatten;
 
 string[] getProjectDirs(string root)
 {
