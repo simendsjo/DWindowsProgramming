@@ -103,6 +103,7 @@
     or e-mail me at: andrej.mitrovich<at>gmail.com
 
 == Todo ==
+    - Use -v to track down stray module imports and then remove them.
     - Drown RC noise when building.
     - Check if examples compile and run on Vista.
     - Maybe replace the duplicated winmain() functions with a wrapper.

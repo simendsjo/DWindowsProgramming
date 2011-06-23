@@ -11,9 +11,9 @@ import std.file;
 import std.process;
 import std.parallelism;
 
-string RC_INCLUDE_1 = r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include";
-string RC_INCLUDE_2 = r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include";
-string RC_INCLUDE_3 = r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include";
+string[] RCINCLUDES = [r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include",
+                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include",
+                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include"];
     
 extern(C) int kbhit();
 extern(C) int getch();    
@@ -36,6 +36,16 @@ class FailedBuildException : Exception
     }    
 }
     
+bool allExist(string[] paths...)
+{
+    foreach (path; paths)
+    {
+        if (!path.exists)
+            return false;
+    }
+    return true;
+}
+
 void checkWinLib()
 {
     enforce("win32.lib".exists, "You have to compile the WindowsAPI bindings first. Use the build_unicode.bat script in the win32 folder");
@@ -66,26 +76,21 @@ void checkTools()
     try { std.file.remove("test.rc");  } catch {};
     try { std.file.remove("test.res"); } catch {};
     
-    if (!skipResCompile &&
-        !(RC_INCLUDE_1.exists && 
-          RC_INCLUDE_2.exists &&
-          RC_INCLUDE_3.exists))
+    if (!skipResCompile && !RCINCLUDES.allExist)
     {
-        auto includes = getenv("RCINCLUDES").split(";");
-        
-        if (!includes.length || includes.length != 3)
+        auto includes = getenv("RCINCLUDES").split(";");        
+        if (includes.allExist && includes.length == RCINCLUDES.length)
         {
-            skipResCompile = true;
-            writeln("Warning: RC Compiler Include dirs not found. Builder will will use precompiled resources. See README for more details.");
-            Thread.sleep(dur!("seconds")(3));
+            RCINCLUDES = includes;
+            skipResCompile = false;
         }
-        else
-        {
-            RC_INCLUDE_1 = includes[0];
-            RC_INCLUDE_2 = includes[1];
-            RC_INCLUDE_3 = includes[2];
-        }
-    }        
+    }   
+
+    if (skipResCompile)
+    {
+        Thread.sleep(dur!("seconds")(3));
+        writeln("Warning: RC Compiler Include dirs not found. Builder will will use precompiled resources. See README for more details.");
+    }    
     
 }
 
@@ -147,9 +152,9 @@ bool buildProject(string dir)
     if (!skipHeaderCompile) 
         headers = dir.getFilesByExt("h");
     
-    resources.length && system("rc /i" ~ `"` ~ RC_INCLUDE_1 ~ `"` ~ 
-                                 " /i" ~ `"` ~ RC_INCLUDE_2 ~ `"` ~
-                                 " /i" ~ `"` ~ RC_INCLUDE_3 ~ `"` ~ 
+    resources.length && system("rc /i" ~ `"` ~ RCINCLUDES[0] ~ `"` ~ 
+                                 " /i" ~ `"` ~ RCINCLUDES[1] ~ `"` ~
+                                 " /i" ~ `"` ~ RCINCLUDES[2] ~ `"` ~ 
                                  " " ~ resources[0].getName ~ ".rc");
 
     headers.length && system("htod " ~ headers[0]);
