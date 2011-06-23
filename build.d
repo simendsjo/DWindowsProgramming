@@ -12,8 +12,8 @@ import std.process;
 import std.parallelism;
 
 string[] RCINCLUDES = [r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include",
-                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include",
-                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include"];
+                       r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include",
+                       r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include"];
     
 extern(C) int kbhit();
 extern(C) int getch();    
@@ -36,7 +36,7 @@ class FailedBuildException : Exception
     }    
 }
     
-bool allExist(string[] paths...)
+bool allExist(string[] paths)
 {
     foreach (path; paths)
     {
