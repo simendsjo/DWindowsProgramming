@@ -16,12 +16,12 @@
     21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.053.
 
 == Building Requirements ==
-    - XP 32bit or Win7 32bit system, 64bit versions haven't been tested but they might work 
-      (let me know if it works for you or not).
+    - XP 32bit or Win7 32bit system. The current DMD compiler (2.053), cannot compile 64bit
+      object code. However you should be able to run 32bit executables on a 64bit system.
       
-      Non-NT systems are not suppported.
+      Only NT systems are suppported.
 
-    - DMD v2.053 compiler. Download it from: http://www.digitalmars.com/d/download.html
+    - DMD v2.053 compiler, or newer. Download it from: http://www.digitalmars.com/d/download.html
       Usage instructions (nice bookmark): http://d-programming-language.org/dmd-windows.html
       
     Note: If you can't compile the samples with a newer version of DMD, file a bug report or 
