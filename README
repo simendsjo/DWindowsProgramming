@@ -16,7 +16,7 @@
     21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.053.
 
 == Building Requirements ==
-    - XP 32bit or Win7 32bit system. The current DMD compiler (2.053), cannot compile 64bit
+    - XP 32bit or Win7 32bit system. The current DMD compiler (2.053) cannot compile 64bit
       object code. However you should be able to run 32bit executables on a 64bit system.
       
       Only NT systems are suppported.
