@@ -1,1 +1,0 @@
-These examples are fully functional, however they require DMD 2.054 due to the function imports feature, which hasn't been released yet at time of writing.

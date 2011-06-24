@@ -108,8 +108,6 @@
     - Check if examples compile and run on Vista.
     - Maybe replace the duplicated winmain() functions with a wrapper.
     - Use with statements where possible.
-    - Examples in Chap21\todo are fully functional, however they require DMD 2.054 due to the
-      function imports feature, which hasn't been released yet at time of writing.
     - Examples in Chap22\todo have not been translated yet.
     - Try compiling 64bit binaries via GDC.
     - Some examples have a Note at the top, saying they're not tested. They need to be
