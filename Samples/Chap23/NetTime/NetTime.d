@@ -6,9 +6,9 @@
 module NetTIme;
 
 /+
- + Note: Not properly tested. The original C example doesn't seem to work too.
+ + Note: Doesn't seem to work. The original C example doesn't work either.
  + 
-+/
+ +/
 
 import core.memory;
 import core.runtime;
@@ -148,6 +148,16 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, message, wParam, lParam);
 }
 
+wstring fromWStringz(const wchar* s)
+{
+    if (s is null) return null;
+
+    wchar* ptr;
+    for (ptr = cast(wchar*)s; *ptr; ++ptr) {}
+
+    return to!wstring(s[0..ptr-s]);
+}
+
 TCHAR[32] szOKLabel = 0;
 
 extern (Windows)
@@ -216,7 +226,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     sa.sin_family = AF_INET;
                     sa.sin_port = htons(IPPORT_TIMESERVER);
                     
-                    // todo: S_un was undefined..
+                    // @BUG@: S_un is not in the bindings
                     //~ sa.sin_addr.S_un.S_addr = inet_addr(szIPAddr.toStringz);
                     sa.sin_addr.S_addr = inet_addr(szIPAddr.toStringz);
 
@@ -335,15 +345,14 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 extern (Windows)
 BOOL ServerDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    static char* szServer;
+    static wchar[] szServer;
     static WORD  wServer = IDC_SERVER1;
-    char[64] szLabel;
-    szLabel = 0;
+    wchar[64] szLabel = 0;
 
     switch (message)
     {
         case WM_INITDIALOG:
-            szServer = cast(char*)lParam;
+            szServer = fromWStringz(cast(wchar*)lParam).dup;
             CheckRadioButton(hwnd, IDC_SERVER1, IDC_SERVER10, wServer);
             return TRUE;
 
@@ -365,9 +374,9 @@ BOOL ServerDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     return TRUE;
 
                 case IDOK:
-                    GetDlgItemTextA(hwnd, wServer, szLabel.ptr, szLabel.count);
+                    GetDlgItemText(hwnd, wServer, szLabel.ptr, szLabel.count);
                 
-                    szServer = cast(char*)szLabel[szLabel.indexOf("(") .. szLabel.indexOf(")")].toStringz;
+                    szServer = szLabel[szLabel.indexOf("(") .. szLabel.indexOf(")")];
                     EndDialog(hwnd, TRUE);
                     return TRUE;
 
