@@ -91,7 +91,6 @@ void checkTools()
         Thread.sleep(dur!("seconds")(3));
         writeln("Warning: RC Compiler Include dirs not found. Builder will will use precompiled resources. See README for more details.");
     }    
-    
 }
 
 string[] getFilesByExt(string dir, string ext, string ext2 = null)
@@ -184,6 +183,7 @@ bool buildProject(string dir)
 void buildProjectDirs(string[] dirs, bool cleanOnly = false)
 {
     __gshared string[] failedBuilds;
+    __gshared string[] serialBuilds;
     
     foreach (dir; parallel(dirs, 1))
     {
@@ -194,34 +194,21 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
             enforce(key != 'q', new ForcedExitException);
         }
         
-        // DLL Examples require special commands, using batch file workarounds for now.
+        // @BUG@ Using chdir in parallel builds wreaks havoc on other threads.
+        // @BUG@ -od doesn't currently work with map/implib/header generation.
         if (dir.basename == "EdrTest" ||
             dir.basename == "ShowBit" ||
             dir.basename == "StrProg")
         {
-            if (cleanOnly)
-            {
-                try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
-                try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};  
-                try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
-            }
-            else
-            {
-                auto res = system(dir ~ r"\" ~ "build.bat");
-                if (res == 1 || res == -1)
-                    failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
-            }
+            serialBuilds ~= dir;
         }
         else
         {
             if (cleanOnly)
             {
                 try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
-                
-                    // @BUG@ DMD 2.053 still outputs map files in the CWD instead of project folder,
-                // update this when 2.054 comes out.                        
-                //~ try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
-                    
+                // @BUG@ In 2.053 map file generation doesn't follow -od flag                    
+                //~ //try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
                 try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
             }
             else
@@ -229,6 +216,27 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
                 if (!buildProject(dir))
                     failedBuilds ~= rel2abs(dir) ~ r"\" ~ dir.basename ~ ".exe";
             }
+        }
+    }
+    
+    foreach (dir; serialBuilds)
+    {
+        chdir(rel2abs(dir) ~ r"\");
+        
+        if (cleanOnly)
+        {
+            try { system("del *.obj"); } catch{};
+            try { system("del *.map"); } catch{};  
+            try { system("del *.exe"); } catch{};
+            try { system("del *.di");  } catch{};
+            try { system("del *.dll"); } catch{};
+            try { system("del *.lib"); } catch{};
+        }
+        else
+        {
+            auto res = system("build.bat " ~ (Debug ? "-g" : "-L-Subsystem:Windows"));
+            if (res == 1 || res == -1)
+                failedBuilds ~= rel2abs(curdir) ~ r"\.exe";
         }
     }
     
@@ -245,9 +253,9 @@ int main(string[] args)
         else if (arg == "debug") Debug = true;
         else
         {
-            if (getDrive(arg))
+            if (arg.getDrive)
             {
-                if (exists(arg) && isdir(arg))
+                if (arg.exists && arg.isdir)
                 {
                     soloProject = arg;
                 }
