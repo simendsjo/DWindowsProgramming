@@ -65,7 +65,7 @@ void checkTools()
     try { std.file.remove("test.d"); } catch {};    
     
     system("echo //void > test.rc");
-    res = system("rc test.rc");    
+    res = system("rc test.rc > nul");
     if (res == -1 || res == 1)
     {
         skipResCompile = true;
@@ -73,12 +73,12 @@ void checkTools()
         Thread.sleep(dur!("seconds")(3));
     }
     
-    try { std.file.remove("test.rc");  } catch {};
-    try { std.file.remove("test.res"); } catch {};
+    try { std.file.remove("test.rc");   } catch {};
+    try { std.file.remove("test.res");  } catch {};
     
     if (!skipResCompile && !RCINCLUDES.allExist)
     {
-        auto includes = getenv("RCINCLUDES").split(";");        
+        auto includes = getenv("RCINCLUDES").split(";");
         if (includes.allExist && includes.length == RCINCLUDES.length)
         {
             RCINCLUDES = includes;
@@ -151,10 +151,14 @@ bool buildProject(string dir)
     if (!skipHeaderCompile) 
         headers = dir.getFilesByExt("h");
     
-    resources.length && system("rc /i" ~ `"` ~ RCINCLUDES[0] ~ `"` ~ 
-                                 " /i" ~ `"` ~ RCINCLUDES[1] ~ `"` ~
-                                 " /i" ~ `"` ~ RCINCLUDES[2] ~ `"` ~ 
-                                 " " ~ resources[0].getName ~ ".rc");
+    if (resources.length)
+    {
+        system("rc /i" ~ `"` ~ RCINCLUDES[0] ~ `"` ~ 
+               " /i" ~ `"` ~ RCINCLUDES[1] ~ `"` ~
+               " /i" ~ `"` ~ RCINCLUDES[2] ~ `"` ~ 
+               " " ~ resources[0].getName ~ ".rc"
+               " > nul");
+    }
 
     headers.length && system("htod " ~ headers[0]);
     
@@ -185,6 +189,8 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
     __gshared string[] failedBuilds;
     __gshared string[] serialBuilds;
     
+    if (cleanOnly) writeln("Cleaning..");
+    
     foreach (dir; parallel(dirs, 1))
     {
         if (!cleanOnly && kbhit())
@@ -206,10 +212,10 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
         {
             if (cleanOnly)
             {
-                try { system("del " ~ dir ~ r"\" ~ "*.obj"); } catch{};
+                try { system("del " ~ dir ~ r"\" ~ "*.obj > nul"); } catch{};
                 // @BUG@ In 2.053 map file generation doesn't follow -od flag                    
                 //~ //try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
-                try { system("del " ~ dir ~ r"\" ~ "*.exe"); } catch{};
+                try { system("del " ~ dir ~ r"\" ~ "*.exe > nul"); } catch{};
             }
             else
             {
@@ -225,12 +231,12 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
         
         if (cleanOnly)
         {
-            try { system("del *.obj"); } catch{};
-            try { system("del *.map"); } catch{};  
-            try { system("del *.exe"); } catch{};
-            try { system("del *.di");  } catch{};
-            try { system("del *.dll"); } catch{};
-            try { system("del *.lib"); } catch{};
+            try { system("del *.obj > nul"); } catch{};
+            try { system("del *.map > nul"); } catch{};  
+            try { system("del *.exe > nul"); } catch{};
+            try { system("del *.di  > nul");  } catch{};
+            try { system("del *.dll > nul"); } catch{};
+            try { system("del *.lib > nul"); } catch{};
         }
         else
         {
