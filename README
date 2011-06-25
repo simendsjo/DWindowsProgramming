@@ -3,7 +3,7 @@
     code samples.
     
     The code samples demonstrate the use of Windows API systems, such as GDI and multimedia APIs. 
-    There are over 140 D code samples translated from the original C code samples from the book.
+    There are over 120 D code samples translated from the original C code samples from the book.
     
     See the `List of Examples and Description` section in this README to see the list of
     examples and their explanation.
