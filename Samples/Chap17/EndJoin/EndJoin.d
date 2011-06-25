@@ -128,7 +128,7 @@ LRESULT WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
             for (i = 0; i < 3; i++)
             {
                 SelectObject(hdc, ExtCreatePen(PS_SOLID | PS_GEOMETRIC |
-                             iEnd [i] | iJoin [i], 10, &lb, 0, NULL));
+                             iEnd[i] | iJoin[i], 10, &lb, 0, NULL));
                 BeginPath(hdc);
 
                 MoveToEx(hdc, 10 + 30 * i, 25, NULL);

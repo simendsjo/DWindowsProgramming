@@ -17,8 +17,6 @@ import win32.wingdi;
 import win32.winbase;
 import win32.commdlg;
 
-//~ import resource;
-
 string appName     = "ShowBit";
 string description = "Show Bitmaps from BITLIB (Press Key)";
 HINSTANCE hinst;

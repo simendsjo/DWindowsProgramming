@@ -134,14 +134,12 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Get size of printable area of page
-
                     cxPage = GetDeviceCaps(hdcPrn, HORZRES);
                     cyPage = GetDeviceCaps(hdcPrn, VERTRES);
 
                     fSuccess = FALSE;
 
                     // Do the printer page
-
                     SetCursor(LoadCursor(NULL, IDC_WAIT));
                     ShowCursor(TRUE);
 
@@ -169,7 +167,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     return 0;
 
                 case IDM_ABOUT:
-                    MessageBox(hwnd,  "Font Demonstration Program\n(c) Charles Petzold, 1998",
+                    MessageBox(hwnd, "Font Demonstration Program\n(c) Charles Petzold, 1998",
                                appName.toUTF16z, MB_ICONINFORMATION | MB_OK);
                     return 0;
 
@@ -212,7 +210,6 @@ void PaintRoutine(HWND hwnd, HDC hdc, int cxArea, int cyArea)
     hFont = EzCreateFont(hdc, "Times New Roman", 1200, 0, 0, TRUE);
 
     SelectObject(hdc, hFont);
-
     GetTextExtentPoint32(hdc, szString.toUTF16z, szString.count, &size);
 
     BeginPath(hdc);
@@ -242,7 +239,6 @@ void PaintRoutine(HWND hwnd, HDC hdc, int cxArea, int cyArea)
         SelectObject(hdc, CreatePen(PS_SOLID, 1, RGB(cast(ubyte)uniform(0, 256), cast(ubyte)uniform(0, 256), cast(ubyte)uniform(0, 256))));
 
         PolyBezier(hdc, pt.ptr, 4);
-
         DeleteObject(SelectObject(hdc, GetStockObject(BLACK_PEN)));
     }
 

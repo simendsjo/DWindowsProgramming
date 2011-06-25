@@ -168,12 +168,10 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Generate WM_PAINT message to erase background
-
                     InvalidateRect(hwnd, NULL, TRUE);
                     UpdateWindow(hwnd);
 
                     // Open the file
-
                     hFile = CreateFile(szFileName.ptr, GENERIC_READ,
                                        FILE_SHARE_READ, NULL, OPEN_EXISTING,
                                        FILE_FLAG_SEQUENTIAL_SCAN, NULL);
@@ -186,7 +184,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Read in the BITMAPFILEHEADER
-
                     bSuccess = ReadFile(hFile, &bmfh, BITMAPFILEHEADER.sizeof,
                                         &dwBytesRead, NULL);
 
@@ -199,7 +196,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Check that it's a bitmap
-
                     if (bmfh.bfType != *cast(WORD*) "BM")
                     {
                         MessageBox(hwnd,  "File is not a bitmap.",
@@ -209,7 +205,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Allocate memory for header and bits
-
                     iInfoSize = bmfh.bfOffBits - BITMAPFILEHEADER.sizeof;
                     iBitsSize = bmfh.bfSize - bmfh.bfOffBits;
 
@@ -252,7 +247,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Get the DIB width and height
-
                     bTopDown = FALSE;
 
                     if (pbmi.bmiHeader.biSize == BITMAPCOREHEADER.sizeof)
@@ -288,11 +282,9 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Get the row length
-
                     iRowLength = ((cxDib * cBits + 31) & ~31) >> 3;
 
                     // Read and display
-
                     SetCursor(LoadCursor(NULL, IDC_WAIT));
                     ShowCursor(TRUE);
 

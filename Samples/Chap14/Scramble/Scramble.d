@@ -67,7 +67,6 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
         hBitmap = CreateCompatibleBitmap(hdcScr, cx, cy);
 
         SelectObject(hdcMem, hBitmap);
-
         
         for (i = 0; i < 2; i++)
         {
@@ -75,17 +74,17 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
             {
                 if (i == 0)
                 {
-                    iKeep [j] [0] = x1 = cx * (uniform(0, 10));
-                    iKeep [j] [1] = y1 = cy * (uniform(0, 10));
-                    iKeep [j] [2] = x2 = cx * (uniform(0, 10));
-                    iKeep [j] [3] = y2 = cy * (uniform(0, 10));
+                    iKeep[j][0] = x1 = cx * (uniform(0, 10));
+                    iKeep[j][1] = y1 = cy * (uniform(0, 10));
+                    iKeep[j][2] = x2 = cx * (uniform(0, 10));
+                    iKeep[j][3] = y2 = cy * (uniform(0, 10));
                 }
                 else
                 {
-                    x1 = iKeep [NUM - 1 - j] [0];
-                    y1 = iKeep [NUM - 1 - j] [1];
-                    x2 = iKeep [NUM - 1 - j] [2];
-                    y2 = iKeep [NUM - 1 - j] [3];
+                    x1 = iKeep[NUM - 1 - j][0];
+                    y1 = iKeep[NUM - 1 - j][1];
+                    x2 = iKeep[NUM - 1 - j][2];
+                    y2 = iKeep[NUM - 1 - j][3];
                 }
 
                 BitBlt(hdcMem,  0,  0, cx, cy, hdcScr, x1, y1, SRCCOPY);

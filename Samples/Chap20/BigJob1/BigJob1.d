@@ -101,7 +101,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     return msg.wParam;
 }
 
-enum REP = 1000000;
+enum REP = 10_000_000;
 enum STATUS_READY    = 0;
 enum STATUS_WORKING  = 1;
 enum STATUS_DONE     = 2;
@@ -187,7 +187,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         case WM_PAINT:
             hdc = BeginPaint(hwnd, &ps);
-
             GetClientRect(hwnd, &rect);
 
             szBuffer = format(szMessage[iStatus], REP, lTime);

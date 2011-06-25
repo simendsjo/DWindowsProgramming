@@ -74,7 +74,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
         return 0;
     }
 
-    MessageBox(null, "Reduce the volume on your speakers or in your volume control panel before you continue.".toUTF16z, "Warning", MB_OK | MB_ICONWARNING);
+    MessageBox(null, "Reduce the volume on your speakers or in the volume control panel before you continue.", "Warning", MB_OK | MB_ICONWARNING);
 
     hwnd = CreateWindow(appName.toUTF16z,              // window class name
                         description.toUTF16z,          // window caption

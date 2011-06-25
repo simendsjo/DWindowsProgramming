@@ -285,12 +285,11 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 case IDM_SEQUENCE_STOPPED:
                     // Finish at end of sequence
-
                     DrumEndSequence(FALSE);
                     return 0;
 
                 case IDM_APP_ABOUT:
-                    DialogBox(hInst, "AboutBox".toUTF16z, hwnd, &AboutProc);
+                    DialogBox(hInst, "AboutBox", hwnd, &AboutProc);
                     return 0;
                 
                 default:
@@ -314,11 +313,11 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 SetTextColor(hdc, RGB(0, 0, 0));
 
                 if (drum.iNumBeats % 4 == 0)
-                    TextOut(hdc, (40 + drum.iNumBeats) * cxChar, 0, ".".toUTF16z, 1);
+                    TextOut(hdc, (40 + drum.iNumBeats) * cxChar, 0, ".", 1);
 
                 drum.iNumBeats = cast(short)x;
 
-                TextOut(hdc, (40 + drum.iNumBeats) * cxChar, 0, ":|".toUTF16z, 2);
+                TextOut(hdc, (40 + drum.iNumBeats) * cxChar, 0, ":|", 2);
 
                 bNeedSave = TRUE;
             }

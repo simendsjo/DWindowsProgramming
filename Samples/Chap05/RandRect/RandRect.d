@@ -24,7 +24,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int i
     int result;
     void exceptionHandler(Throwable e) { throw e; }
 
-
     try
     {
         Runtime.initialize(&exceptionHandler);
@@ -135,7 +134,9 @@ void DrawRectangle(HWND hwnd)
     SetRect (&rect, uniform(0, cxClient), uniform(0, cyClient),
                     uniform(0, cxClient), uniform(0, cyClient));
 
-    hBrush = CreateSolidBrush(RGB(cast(byte)uniform(0, 256), cast(byte)uniform(0, 256), cast(byte)uniform(0, 256)));
+    hBrush = CreateSolidBrush(RGB(cast(byte)uniform(0, 256), 
+                                  cast(byte)uniform(0, 256), 
+                                  cast(byte)uniform(0, 256)));
 
     hdc = GetDC(hwnd);
     FillRect(hdc, &rect, hBrush);

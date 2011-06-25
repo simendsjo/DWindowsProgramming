@@ -117,7 +117,6 @@ HBITMAP CreateBitmapObjectFromDibFile(HDC hdc, string szFileName)
         return NULL;
 
     // Read in the whole file
-
     dwFileSize = GetFileSize(hFile, &dwHighSize);
 
     if (dwHighSize)
@@ -127,7 +126,6 @@ HBITMAP CreateBitmapObjectFromDibFile(HDC hdc, string szFileName)
     }
 
     pbmfh = cast(typeof(pbmfh))GC.malloc(dwFileSize);
-
     if (!pbmfh)
     {
         CloseHandle(hFile);
@@ -138,7 +136,6 @@ HBITMAP CreateBitmapObjectFromDibFile(HDC hdc, string szFileName)
     CloseHandle(hFile);
 
     // Verify the file
-
     if (!bSuccess || (dwBytesRead != dwFileSize)
         || (pbmfh.bfType != *cast(WORD*) "BM")
         || (pbmfh.bfSize != dwFileSize))
@@ -226,7 +223,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     ShowCursor(TRUE);
 
                     hdc     = GetDC(hwnd);
-                    writeln("filename is: ", szFileName);
                     hBitmap = CreateBitmapObjectFromDibFile(hdc, to!string(szFileName[]));
                     ReleaseDC(hwnd, hdc);
 

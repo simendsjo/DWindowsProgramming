@@ -63,11 +63,9 @@
           linking. 
 
 == List of Examples and their Description ==
-The examples are located in the Samples directory.
-Note: These samples are described alphabetically, but they could appear in a different order
+
+Note: These samples are described alphabetically, but they might appear in a different order
 in the book.
-    
-todo: describe chapters too.
 
 Chap01:
     HelloMsg - Creates a simple Dialog Box without a window.
@@ -155,83 +153,84 @@ Chap10:
     PopPad2  - Same as PopPad1 but also loads a menu with cut/copy/paste actions.
                 
 Chap11:         
-    About1  -   Displays a simple about dialog box.
-                
-    About2  -   Displays a dialog box which adds controls to change the background shape and color.
-    About3  -   Displays custom shapes in a dialog box.
-    Colors2 -   Same as Colors1, but places the scrollbars inside their own dialog box.
-    Colors3 -   Instantiates a standard Windows color selection dialog box.
-    HexCalc -   A hex calculator with buttons used for calculations. Can also control it with the
-                keyboard.
-    PopPad3 -   An enhanced version of the PopPad2 editor, adding searching, file handling and
-                copy/paste functionality, as well as font selection.
+    About1  - Displays a simple about dialog box.
+              
+    About2  - Displays a dialog box which adds controls to change the background shape and color.
+    About3  - Displays custom shapes in a dialog box.
+    Colors2 - Same as Colors1, but places the scrollbars inside their own dialog box.
+    Colors3 - Instantiates a standard Windows color selection dialog box.
+    HexCalc - A hex calculator with buttons used for calculations. Can also control it with the
+              keyboard.
+    PopPad3 - An enhanced version of the PopPad2 editor, adding searching, file handling and
+              copy/paste functionality, as well as font selection.
                 
 Chap12:         
-    ClipText -  A simple clipboard viewer.
-    ClipView -  A dynamic version of the above, automatically displays new clipboard contents.
+    ClipText - A simple clipboard viewer.
+    ClipView - A dynamic version of the above, automatically displays new clipboard contents.
                 
 Chap13 (Note: You can use a virtual printer driver such as CutePDF to print documents to a PDF file)
-    DevCaps2 -  Uses menus to select between displaying various draw/print capable devices,
-                and their various functions and capabilities.
-    FormFeed -  Feeds a form to a printer device.
-    PopPad   -  Same as PopPad3, but also adds printing functionality.
-    Print1   -  Prints a customly drawn shape.
-    Print2   -  Same as above, but adds option to abort printing.
-    Print3   -  Same as Print1, but pops up a dialog box that shows the printing state (Note: this
-                dialog box closes pretty fast if you're using a virtual printer driver)
-                
-Chap14:         
-    BitBlt   -  Bit-blits an icon loaded from a resource to the screen.
-    BitMask  -  Uses a mask to limit drawing an image to an eliptic area.
-    Blowup   -  Draws contents from the clipboard and resizes the image to the size of the window.
-    Bounce   -  Animates a ball that bounces to the corners of the window.
-    Bricks1  -  Draws a small resource-loaded icon tiled seamlessly on the screen.
-    Bricks2  -  Same as above, but this time draws the icon programmaticaly and then tiles it on the
-                screen.
-    Bricks3  -  Creates a pattern brush out of a resource-loaded image. This has the added advantage
-                of avoiding flicker when resizing the window.
-    GrafMenu -  Uses a graphical menu and also demonstrates custom item-selection drawing.
-    HelloBit -  Draws text to a bitmap, and based on a menu item selection either stretches it
-                or draws it in a pattern and bit-blits it to the screen.
-    Scramble -  Creates a snapshot of the entire screen, and then draws scrambled rectangle sections
-                for a few seconds.
-    Sketch   -  Draws black and white pixels on the screen based on the state of the left and right 
-                mouse buttons.
-    Stretch  -  Uses the location of the system menu icon as the source to a bit-blit operation.
-                It stretches the icon of the system menu to the size of the window.
+    DevCaps2 - Uses menus to select between displaying various draw/print capable devices,
+               and their various functions and capabilities.
+    FormFeed - Feeds a form to a printer device.
+    PopPad   - Same as PopPad3, but also adds printing functionality.
+    Print1   - Prints a customly drawn shape.
+    Print2   - Same as above, but adds option to abort printing.
+    Print3   - Same as Print1, but pops up a dialog box that shows the printing state (Note: this
+               dialog box closes pretty fast if you're using a virtual printer driver)
+               
+Chap14:        
+    BitBlt   - Bit-blits an icon loaded from a resource to the screen.
+    BitMask  - Uses a mask to limit drawing an image to an eliptic area.
+    Blowup   - Draws contents from the clipboard and resizes the image to the size of the window.
+    Bounce   - Animates a ball that bounces to the corners of the window.
+    Bricks1  - Draws a small resource-loaded icon tiled seamlessly on the screen.
+    Bricks2  - Same as above, but this time draws the icon programmaticaly and then tiles it on the
+               screen.
+    Bricks3  - Creates a pattern brush out of a resource-loaded image. This has the added advantage
+               of avoiding flicker when resizing the window.
+    GrafMenu - Uses a graphical menu and also demonstrates custom item-selection drawing.
+    HelloBit - Draws text to a bitmap, and based on a menu item selection either stretches it
+               or draws it in a pattern and bit-blits it to the screen.
+    Scramble - Creates a snapshot of the entire screen, and then draws scrambled rectangle sections
+               for a few seconds.
+    Sketch   - Draws black and white pixels on the screen based on the state of the left and right 
+               mouse buttons.
+    Stretch  - Uses the location of the system menu icon as the source to a bit-blit operation.
+               It stretches the icon of the system menu to the size of the window.
                 
 Chap15:         
-    Apollo11 -  Loads bitmap images from the disk and displays them in a window.
-    DibConv  -  Converts a Device Independent Bitmap (DIB) to a Device Dependent Bitmap (DDB)
-                and displays it on the screen.
-    DibHeads -  Displays the header information of a bitmap file.
-    DibSect  -  Displays a bitmap in a window.
-    SeqDisp  -  Displays a bitmap sequentially, in a row-by-row fashion.
-    ShowDib1 -  Loads and saves a bitmap.
-    ShowDib2 -  Same as above, but adds menu options that can display the image in actual size,
-                centered, stretched to window, and stretched to window isotropically. Also adds
-                cut/copy/paste functionality.
+    Apollo11 - Loads bitmap images from the disk and displays them in a window.
+    DibConv  - Converts a Device Independent Bitmap (DIB) to a Device Dependent Bitmap (DDB)
+               and displays it on the screen.
+    DibHeads - Displays the header information of a bitmap file.
+    DibSect  - Displays a bitmap in a window.
+    SeqDisp  - Displays a bitmap sequentially, in a row-by-row fashion.
+    ShowDib1 - Loads and saves a bitmap.
+    ShowDib2 - Same as above, but adds menu options that can display the image in actual size,
+               centered, stretched to window, and stretched to window isotropically. Also adds
+               cut/copy/paste functionality.
                 
 Chap16:         
     The examples from this chapter have not been translated as they cover 8-bit displays,
     which no-longer exist.
                 
 Chap17:         
-    ChosFont -  Displays Unicode text and a list of the currently selected font's properties.
-    EndJoin  -  Draws ends and joins of a path.
-    EZTest   -  Draws text in increasing sizes and shows its dimensions.
-    FontClip -  Draws paths clipped to some text.
-    FontFill -  Fills the inside of each character drawn.
-    FontOut1 -  Draws an outline of a font's text.
-    FontOut2 -  Same as above, but uses dotted lines instead.
-    FontRot  -  Draws text in several degrees rotated on an axis.
-    Justify1 -  Draws left-aligned text with word wrapping functionality.
-    Justify2 -  Draws text which, based on a menu option, can be aligned left, right, centered,
-                or stretched. The font can be selected.
-    PickFont -  Shows numerous font options which can be used to manipulate how the font is drawn.
-    UniChars -  Similar to Chap06/StokFont, but this time draws characters in a Unicode table.
+    ChosFont - Displays Unicode text and a list of the currently selected font's properties.
+    EndJoin  - Draws ends and joins of a path.
+    EZTest   - Draws text in increasing sizes and shows its dimensions.
+    FontClip - Draws paths clipped to some text.
+    FontFill - Fills the inside of each character drawn.
+    FontOut1 - Draws an outline of a font's text.
+    FontOut2 - Same as above, but uses dotted lines instead.
+    FontRot  - Draws text in several degrees rotated on an axis.
+    Justify1 - Draws left-aligned text with word wrapping functionality.
+    Justify2 - Draws text which, based on a menu option, can be aligned left, right, centered,
+               or stretched. The font can be selected.
+    PickFont - Shows numerous font options which can be used to manipulate how the font is drawn.
+    UniChars - Similar to Chap06/StokFont, but this time draws characters in a Unicode table.
                 
-Chap18:         
+Chap18: 
+    Todo: Document these.     
     Emf1     -  
     Emf10    -  
     Emf11    -  
@@ -253,7 +252,8 @@ Chap19:
               align the windows by side, cascade, or maximize. Can instantiate any number
               of windows.
                 
-Chap20: Note: C and D multithreaded programming differ in significant ways. These are not 
+Chap20: 
+        Note: C and D multithreaded programming differ in significant ways. These are not 
         typical examples of programming multithreaded D code, they use globally shared
         variables to simulate the C examples. 
         
@@ -264,38 +264,53 @@ Chap20: Note: C and D multithreaded programming differ in significant ways. Thes
         a better demonstration of multithreaded programming in D.
          
          
-    BigJob1  -  Spawns a work thread which does some processing. The foreground thread (which
-                spawned the work thread) can signal the work thread to stop processing by
-                changing the state of a global variable. The work load was increased by an
-                order of magnitude compared to the C example.
-    BigJob2  -  
-    Multi1   -  
-    Multi2   -  
-    RndRctMT -  
+    BigJob1  - Spawns a work thread which does some processing. The foreground thread (which
+               spawned the work thread) can signal the work thread to stop processing by
+               changing the state of a global variable. The work load was increased by an
+               order of magnitude compared to the C example.
+    BigJob2  - Uses the Windows function WaitForSingleObject to wait for an object to be
+               signalled. @BUG@: Currently this example will freeze in the background and
+               has to be manually killed via the task manager.
+    Multi1   - Creates 4 windows that each have separate window classes. This is a very
+               minimal form of multithreading, as Windows will attempt to automatically 
+               load-balance the window classes on a multi-core system.
+    Multi2   - Similar to above, but this time each window class spawns its own work thread.
+               Based on your system this could significantly improve performance.
+    RndRctMT - A multithreaded version of Chap05\RandRect, which draws random rectangles
+               on the screen.
+               @BUG@: The work thread loops infinitely and doesn't exit on main application
+               exit.
                 
-Chap21:         
-    EdrTest -   
-    ShowBit -   
-    StrProg -   
+Chap21: Note: At the time of writing there are various bugs with using D DLLs.
+              Some of these examples use workarounds to make them compilable.
+    EdrTest - Implicitly loads a DLL, calls its custom drawing function which draws some
+              text on the screen.
+    ShowBit - Explicitly loads a DLL and draws image resources from the DLL.
+    StrProg - Implicitly loads a DLL which internally stores a list of strings (implemented
+              as a hash of strings), and which provides functions to add or remove strings.
+              The application provides menus that allow the user to add or remove strings.
                 
 Chap22:         
-    AddSynth -  
-    BachTocc -  
-    Drum     -  
-    KBMidi   -  
-    SineWave -  
-    TestMci  -  
-    todo     -  
-    WakeUp   -  
+    AddSynth - Generates various sound forms, stores them to a file, loads them back and
+               adds an interface so the user can play them back.
+    BachTocc - Plays a programmatically generated MIDI sequence.
+    Drum     - A sequencer which has a table interface where the user can activate notes,
+               change the tempo and volume, and save and load patterns in RIFF format.
+    KBMidi   - Converts PC keyboard key presses into MIDI notes, and plays them back
+               via the sound card (Make sure to select Status\Open first).
+    SineWave - Plays back a sinewave at a specific frequency. The frequency can be manipulated
+               with a horizontal scrollbar.
+    TestMci  - Sends and recieves Media Control Interface (MCI) commands. (Try typing in
+               "open cdaudio" without the quotes and press enter. Some other commands are:
+               play cdaudio, pause cdaudio, stop cdaudio, status cdaudio position,
+               status cdaudio time format).
+    WakeUp   - Generates a pulsating waveform which is used as the sound of an alarm clock.
+               The alarm clock can be set and the user can wait for the alarm to be set off.
                 
 Chap23:         
-    NetTime -   
-
-Extra:
-    ColorConsole - 
-    DPaint       - 
-    DWinSeq      - 
-
+    NetTime -  Retrieves timing information from various selectable timing servers.
+               @BUG@: Currently this example doesn't seem to succesfully retrieve any
+               timing info. The C example doesn't work either.
 
 == Optional Tools ==
     - HTOD: http://www.digitalmars.com/d/2.0/htod.html    
@@ -396,6 +411,8 @@ Extra:
     Charles Petzold FAQ: http://www.charlespetzold.com/faq.html
     Programming Windows Errata #1: http://www.computersciencelab.com/PetzoldErrata.htm
     Programming Windows Errata #2: http://www.jasondoucette.com/books/pw5/pw5errata.html
+    MSDN GDI page: http://msdn.microsoft.com/en-us/library/dd145203%28v=vs.85%29.aspx
+    MSDN list of Windows APIs: http://msdn.microsoft.com/en-us/library/ff818516.aspx
     Windows API bindings: http://dsource.org/projects/bindings/wiki/WindowsApi
     RDMD: http://www.digitalmars.com/d/2.0/rdmd.html
     RDMD@github: https://github.com/D-Programming-Language/tools

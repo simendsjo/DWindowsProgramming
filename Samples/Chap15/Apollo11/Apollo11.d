@@ -120,7 +120,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                 return 0;
             }
 
-            // Get pointers to the info structure & the bits
+            // Get pointers to the info structure && the bits
             pbmi  [0] = cast(BITMAPINFO *)(pbmfh[0] + 1);
             pbmi  [1] = cast(BITMAPINFO *)(pbmfh[1] + 1);
 
@@ -129,8 +129,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             // Get the DIB width and height (assume BITMAPINFOHEADER)
             // Note that cyDib is the absolute value of the header value!!!
-            cxDib [0] =      pbmi[0].bmiHeader.biWidth;
-            cxDib [1] =      pbmi[1].bmiHeader.biWidth;
+            cxDib [0] = pbmi[0].bmiHeader.biWidth;
+            cxDib [1] = pbmi[1].bmiHeader.biWidth;
 
             cyDib [0] = abs(pbmi[0].bmiHeader.biHeight);
             cyDib [1] = abs(pbmi[1].bmiHeader.biHeight);
