@@ -22,8 +22,8 @@ import win32.winbase;
 
 import resource;
 
-string appName     = "HelloBlit";
-string description = "HelloBlit";
+string appName     = "HelloBit";
+string description = "HelloBit";
 HINSTANCE hinst;
 
 extern (Windows)
