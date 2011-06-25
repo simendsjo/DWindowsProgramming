@@ -3,6 +3,7 @@ module name;
 import core.memory;
 import core.runtime;
 import core.thread;
+import core.stdc.config;
 //~ import std.concurrency;
 import std.conv;
 import std.math;

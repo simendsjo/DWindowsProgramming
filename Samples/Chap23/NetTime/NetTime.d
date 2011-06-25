@@ -13,6 +13,7 @@ module NetTIme;
 import core.memory;
 import core.runtime;
 import core.thread;
+import core.stdc.config;
 import std.conv;
 import std.math;
 import std.range;
@@ -323,7 +324,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     // Get the time and swap the bytes
                     iSize  = recv(sock, cast(ubyte*)&ulTime, 4, 0);
-                    ulTime = ntohl(cast(uint)ulTime);   // todo: ulong to uint? Hmm..
+                    ulTime = ntohl(cast(c_ulong)ulTime);
                     EditPrintf(hwndEdit, format("Received current time of %s seconds since Jan. 1 1900.\r\n", ulTime));
 
                     // Change the system time

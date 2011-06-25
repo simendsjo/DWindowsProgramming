@@ -7,6 +7,7 @@ module Checker4;
 
 import core.runtime;
 import core.thread;
+import core.stdc.config;
 import std.conv;
 import std.math;
 import std.range;
@@ -72,7 +73,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     }
 
     wndclass.lpfnWndProc   = &ChildWndProc;
-    wndclass.cbWndExtra    = int.sizeof;
+    wndclass.cbWndExtra    = c_long.sizeof;
     wndclass.hIcon         = NULL;
     wndclass.lpszClassName = childClass.toUTF16z;
 

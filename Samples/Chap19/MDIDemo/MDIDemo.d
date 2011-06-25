@@ -8,6 +8,7 @@ module MDIDemo;
 import core.memory;
 import core.runtime;
 import core.thread;
+import core.stdc.config;
 import std.algorithm : min, max;
 import std.conv;
 import std.math;
@@ -351,7 +352,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
 
             pHelloData.iColor  = IDM_COLOR_BLACK;
             pHelloData.clrText = RGB(0, 0, 0);
-            SetWindowLong(hwnd, 0, cast(int)pHelloData);
+            SetWindowLong(hwnd, 0, cast(c_long)pHelloData);
 
             // Save some window handles
 
@@ -471,7 +472,7 @@ LRESULT RectWndProc(HWND hwnd, UINT message,
             pRectData = cast(PRECTDATA)HeapAlloc(GetProcessHeap(),
                                              HEAP_ZERO_MEMORY, RECTDATA.sizeof);
 
-            SetWindowLong(hwnd, 0, cast(int)pRectData);
+            SetWindowLong(hwnd, 0, cast(c_long)pRectData);
 
             // Start the timer going
             SetTimer(hwnd, 1, 250, NULL);
