@@ -218,24 +218,24 @@ Chap17:
     UniChars - Similar to Chap06/StokFont, but this time draws characters in a Unicode table.
                 
 Chap18: 
-    Emf1     -  Creates and displays an enhanced metafile (EMF).
-    Emf2     -  Creates an enhanced metafile, saves it to disk, and then displays it.
-    Emf3     -  Creates non-default pens and brushes and stores it to an EMF.
-    Emf4     -  Draws a bitmap in a metafile device context.
-    Emf5     -  Enumerates individual records of a metafile.
-    Emf6     -  Copies and modifies metafile records before rendering them.
-    Emf7     -  Embeds images into a metafile.
-    Emf8     -  Accurately display a metafile with a proper aspect ratio by using
-                the sizing information in the header of the metafile.
-    Emf9     -  Uses sizing information from a metafile header to both display the metafile
-                accurately on the screen, and correctly print it out.
-    Emf10    -  Demonstrates scaling and aspect ratio handling of a metafile.
-    Emf11    -  Uses mapping modes with metafiles.
-    Emf12    -  Shows more usage of mapping modes.
-    Emf13    -  Loads an existing metafile, and uses a mapping mode to calculate
-                the destionation rectangle.
-    EmfView  -  Saves and loads metafiles, and transfers them from and to the clipboard.
-    Metafile -  Creates and shows an old-format metafile.
+    Emf1     - Creates and displays an enhanced metafile (EMF).
+    Emf2     - Creates an enhanced metafile, saves it to disk, and then displays it.
+    Emf3     - Creates non-default pens and brushes and stores it to an EMF.
+    Emf4     - Draws a bitmap in a metafile device context.
+    Emf5     - Enumerates individual records of a metafile.
+    Emf6     - Copies and modifies metafile records before rendering them.
+    Emf7     - Embeds images into a metafile.
+    Emf8     - Accurately display a metafile with a proper aspect ratio by using
+               the sizing information in the header of the metafile.
+    Emf9     - Uses sizing information from a metafile header to both display the metafile
+               accurately on the screen, and correctly print it out.
+    Emf10    - Demonstrates scaling and aspect ratio handling of a metafile.
+    Emf11    - Uses mapping modes with metafiles.
+    Emf12    - Shows more usage of mapping modes.
+    Emf13    - Loads an existing metafile, and uses a mapping mode to calculate
+               the destionation rectangle.
+    EmfView  - Saves and loads metafiles, and transfers them from and to the clipboard.
+    Metafile - Creates and shows an old-format metafile.
                 
 Chap19:         
     MDIDemo - Instantiates multiple windows within the main window, and adds options to
