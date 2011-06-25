@@ -5,8 +5,8 @@
     The code samples demonstrate the use of Windows API systems, such as GDI and multimedia APIs. 
     There are over 120 D code samples translated from the original C code samples from the book.
     
-    See the `List of Examples and Description` section in this README to see the list of
-    examples and their explanation.
+    See the `List of Examples and Description` section for more information about what the
+    examples contain.
     
     This project has been created by Andrej Mitrovic.
     
@@ -18,14 +18,13 @@
     21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.053.
 
 == Building Requirements ==
-    - XP 32bit or Win7 32bit system. The current DMD compiler (2.053) cannot compile 64bit
+    - Windows XP 32bit or Windows 7 32bit. The current DMD compiler (2.053) cannot compile 64bit
       object code. However you should be able to run 32bit executables on a 64bit system.
-      
-      Only NT systems are suppported.
 
     - DMD v2.053 compiler, or newer. Download it from: http://www.digitalmars.com/d/download.html
       Usage instructions (nice bookmark): http://d-programming-language.org/dmd-windows.html
       
+    Note: Only NT systems are suppported.
     Note: If you can't compile the samples with a newer version of DMD, file a bug report or 
     send me an e-mail (see the contact section), and I'll fix the samples as soon as possible.
 
@@ -404,7 +403,8 @@ Chap23:
     Uncrustify - Code Beautifier: http://sourceforge.net/projects/uncrustify/develop
     UniversalIndentGUI - GUI Frontend for Code Beautifiers: 
     http://universalindent.sourceforge.net/
-    Using Resources in D: http://prowiki.org/wiki4d/wiki.cgi?D__Tutorial/WindowsResources
+    Using Resources in D Tutorial: http://prowiki.org/wiki4d/wiki.cgi?D__Tutorial/WindowsResources
+    Unicode Character Viewer: http://rishida.net/scripts/uniview/
 
 == How the examples were ported ==
     A few notes about the issues found when porting C code to D can be read about here:
