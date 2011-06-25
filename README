@@ -49,18 +49,6 @@
     Other options are:
     - Clean .obj, .map, .exe files:
         rdmd build.d clean
-        
-    - Debug version that spawns a console for printing, and builds with debug flags for 
-      debugging via ddbg:
-        rdmd build.d debug
-    
-    If there are any errors when building you should get an information error message back.
-
-    Note: Currently parallel builds are not incorporated. This is due to a bug related to how 
-          the chdir() call works.
-    Note: At the time of writing DMD can't build 64 binaries. Alternatively the GDC compiler
-          could be used, however at the time of writing it doesn't seem to support pragma lib
-          linking. 
 
 == List of Examples and their Description ==
 
