@@ -312,7 +312,7 @@ Chap23:
         - RC needs to be in your PATH if you want to compile resources.
         
         Note: This is a big download, depending on what you select in the setup.
-        Note: DigitalMars have a resource compiler, but it still requires header files. 
+        Note: DigitalMars has a resource compiler, but it still requires header files. 
               See the "Using Resources in D" Tutorial in the Links section.
 
         - Create the RCINCLUDES environment variable and add paths to the header files needed
@@ -344,9 +344,7 @@ Chap23:
 
 == Todo ==
     - Use -v to track down stray module imports and then remove them.
-    - Drown RC noise when building.
     - Check if examples compile and run on Vista.
-    - Maybe replace the duplicated winmain() functions with a wrapper.
     - Use with statements where possible.
     - Examples in Chap22\todo have not been translated yet.
     - Try compiling 64bit binaries via GDC.
@@ -355,22 +353,14 @@ Chap23:
     - Replace calls to wsprintf in Chap18\EmfView18.d with std.string.format(). (Note: 
       wsprintf returns the length of the written string)
     - Get rid of malloc/free calls and replace pointers with arrays where appropriate.
-    - Replace Windows type aliases like TCHAR to wchar, since I'm exclusively using Unicode. 
+    - Replace Windows type aliases like TCHAR to wchar, since we're exclusively using Unicode. 
     - Replace excessive string copying with saner code. This is mostly caused by my own 
       lazyness (This will be improved upon later. I mean the examples, not my lazyness :p).
     - Go through the Errata pages to see if any examples have resource leaks or other bugs, 
       and fix the equivalent D examples.
     - In many cases variables with Hungarian notation should be renamed. Most pTypeVar 
       variables no longer reflect their true type.
-    - Various syntax issues were left unresolved. In particular the C code used the form 
-      `TEXT("SomeString")` throughout the code to make it Unicode-safe. I simply replaced 
-      most of these calls by removing the TEXT symbol, which left a lot of weird-looking 
-      `("SomeString")` code snippets. The parenthesis need to go.
-    - For loops should be replaced with foreach loops where this makes sense. For loops work 
-      fine in most cases, but I prefer the latter.
-    - Due to the usage of a prewritten main.d prototype there are a lot of unecessary imports 
-      in various modules. Removing them would be tedious by hand, and there doesn't seem to 
-      be any tool yet that could help us resolve this.
+    - For loops should be replaced with foreach loops where this makes sense. 
     - UpdDemo was not ported since it cannot work due to a missing FTP server. See Errata2 in 
       the links section, Chapter23.
 
@@ -383,6 +373,9 @@ Chap23:
     
     A Big Thanks to Charles Petzold for writing a fantastic Windows API programming book and 
     for allowing me to host these code samples online.
+    
+    And, of course, a Thanks goes to the Microsoft team for building and maintaining the large
+    family of Windows APIs that still work even after all these years. Cheers!
 
 == Contributors ==
     Leonardo Maffi contributed a Python script that got rid of stray parens, thanks!
