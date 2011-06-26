@@ -80,7 +80,7 @@ Chap05:
     Clover   - Draws a complex Clover shape by using regions and combinations.
     DevCaps1 - Displays capabilities of the drawing device (the display screen).
     LineDemo - Draws lines, rectangles and ellipses layered on top of each other.
-    RandRect - Draws random rectangles (time pauses were added to avoid flicker)
+    RandRect - Draws random rectangles (time pauses were added to avoid flicker).
     SineWave - Draws a full phase of a sine wave.
     WhatSize - Displays the size of the window, dynamically reflecting any changes.
                
@@ -142,7 +142,6 @@ Chap10:
                 
 Chap11:         
     About1  - Displays a simple about dialog box.
-              
     About2  - Displays a dialog box which adds controls to change the background shape and color.
     About3  - Displays custom shapes in a dialog box.
     Colors2 - Same as Colors1, but places the scrollbars inside their own dialog box.
@@ -154,7 +153,7 @@ Chap11:
                 
 Chap12:         
     ClipText - A simple clipboard viewer.
-    ClipView - A dynamic version of the above, automatically displays new clipboard contents.
+    ClipView - A dynamic version of the above which automatically displays new clipboard contents.
                 
 Chap13 (Note: You can use a virtual printer driver such as CutePDF to print documents to a PDF file)
     DevCaps2 - Uses menus to select between displaying various draw/print capable devices,
@@ -243,24 +242,22 @@ Chap19:
               of windows.
                 
 Chap20: 
-        Note: C and D multithreaded programming differ in significant ways. These are not 
-        typical examples of programming multithreaded D code, they use globally shared
-        variables to simulate the C examples. 
-        
-        Techniques such as message passing and thread pools should be used instead of 
-        Windows multithreading API primitives. 
-        
-        Please take a look at the documentation of std.concurrency and std.parallelism for
-        a better demonstration of multithreaded programming in D.
-         
+    Note: C and D multithreaded programming differ in significant ways. These are not 
+    typical examples of programming multithreaded D code, they use globally shared
+    variables to simulate the C examples. 
+    
+    Techniques such as message passing and thread pools should be used instead of 
+    Windows multithreading API primitives. 
+    
+    Please take a look at the documentation of std.concurrency and std.parallelism for
+    a better demonstration of multithreaded programming in D.
          
     BigJob1  - Spawns a work thread which does some processing. The foreground thread (which
                spawned the work thread) can signal the work thread to stop processing by
                changing the state of a global variable. The work load was increased by an
                order of magnitude compared to the C example.
     BigJob2  - Uses the Windows function WaitForSingleObject to wait for an object to be
-               signalled. @BUG@: Currently this example will freeze in the background and
-               has to be manually killed via the task manager.
+               signalled. 
     Multi1   - Creates 4 windows that each have separate window classes. This is a very
                minimal form of multithreading, as Windows will attempt to automatically 
                load-balance the window classes on a multi-core system.
@@ -268,8 +265,6 @@ Chap20:
                Based on your system this could significantly improve performance.
     RndRctMT - A multithreaded version of Chap05\RandRect, which draws random rectangles
                on the screen.
-               @BUG@: The work thread loops infinitely and doesn't exit on main application
-               exit.
                 
 Chap21: Note: At the time of writing there are various bugs with using D DLLs.
               Some of these examples use workarounds to make them compilable.

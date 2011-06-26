@@ -26,7 +26,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int i
     int result;
     void exceptionHandler(Throwable e) { throw e; }
 
-
     try
     {
         Runtime.initialize(&exceptionHandler);

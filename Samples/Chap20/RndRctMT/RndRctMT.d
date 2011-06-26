@@ -155,6 +155,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         case WM_DESTROY:
             PostQuitMessage(0);
+            ExitProcess(0);
             return 0;
         
         default:

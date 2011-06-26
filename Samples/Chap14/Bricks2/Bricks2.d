@@ -126,7 +126,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         case WM_PAINT:
             hdc = BeginPaint(hwnd, &ps);
-
             hdcMem = CreateCompatibleDC(hdc);
             SelectObject(hdcMem, hBitmap);
 

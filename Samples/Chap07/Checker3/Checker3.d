@@ -26,7 +26,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int i
     int result;
     void exceptionHandler(Throwable e) { throw e; }
 
-
     try
     {
         Runtime.initialize(&exceptionHandler);
@@ -179,11 +178,12 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             GetClientRect(hwnd, &rect);
             Rectangle(hdc, 0, 0, rect.right, rect.bottom);      // painting is now simplified
 
+            // paint diagonal lines
             if (GetWindowLong(hwnd, 0))
             {
-                MoveToEx(hdc, 0,          0, NULL);
+                MoveToEx(hdc, 0, 0, NULL);
                 LineTo(hdc, rect.right, rect.bottom);
-                MoveToEx(hdc, 0,          rect.bottom, NULL);
+                MoveToEx(hdc, 0, rect.bottom, NULL);
                 LineTo(hdc, rect.right, 0);
             }
 
