@@ -253,7 +253,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     SetTimer(hwnd, ID_TIMER, 1000, NULL);
                     GetWindowText(hwndButton, szOKLabel.ptr, szOKLabel.count);
                     SetWindowText(hwndButton, "Cancel");
-                    SetWindowLong(hwndButton, GWL_ID, IDCANCEL);
+                    SetWindowLongPtr(hwndButton, GWL_ID, IDCANCEL);
                     return TRUE;
 
                 case IDCANCEL:
@@ -261,7 +261,7 @@ BOOL MainDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     sock = 0;
                     WSACleanup();
                     SetWindowText(hwndButton, szOKLabel.ptr);
-                    SetWindowLong(hwndButton, GWL_ID, IDOK);
+                    SetWindowLongPtr(hwndButton, GWL_ID, IDOK);
 
                     KillTimer(hwnd, ID_TIMER);
                     EditPrintf(hwndEdit, "\r\nSocket closed.\r\n");

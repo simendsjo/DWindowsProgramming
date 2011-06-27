@@ -115,7 +115,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                                     WS_CHILDWINDOW | WS_VISIBLE,
                                                     0, 0, 0, 0,
                                                     hwnd, cast(HMENU)(y << 8 | x),  // child ID
-                                                    cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),  // hInstance
+                                                    cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE),  // hInstance
                                                     NULL);
 
             return 0;
@@ -198,7 +198,7 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            SetWindowLong(hwnd, 0, 0);      // on/off flag
+            SetWindowLongPtr(hwnd, 0, 0);      // on/off flag
             return 0;
 
         case WM_KEYDOWN:
@@ -211,7 +211,7 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             // For Return and Space, fall through to WM_LBUTTONDOWN, which will toggle the square
 
         case WM_LBUTTONDOWN:
-            SetWindowLong(hwnd, 0, 1 ^ GetWindowLong(hwnd, 0));  // toggle int
+            SetWindowLongPtr(hwnd, 0, 1 ^ GetWindowLongPtr(hwnd, 0));  // toggle int
             SetFocus(hwnd);
             InvalidateRect(hwnd, NULL, FALSE);
             return 0;
@@ -219,7 +219,7 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         // For focus messages, invalidate the window for repainting
         case WM_SETFOCUS:
             // get child window ID (can ommit GWL_ID if using GetDlgCtrlID)
-            idFocus = GetWindowLong(hwnd, GWL_ID);
+            idFocus = GetWindowLongPtr(hwnd, GWL_ID);
 
         // Fall through
         case WM_KILLFOCUS:
@@ -233,7 +233,7 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             Rectangle(hdc, 0, 0, rect.right, rect.bottom);
 
             // Draw the "x" mark
-            if (GetWindowLong(hwnd, 0))     // get int state
+            if (GetWindowLongPtr(hwnd, 0))     // get int state
             {
                 MoveToEx(hdc, 0,          0, NULL);
                 LineTo  (hdc, rect.right, rect.bottom);

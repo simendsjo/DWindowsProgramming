@@ -143,7 +143,7 @@ BOOL ColorScrDlg(HWND hDlg, UINT message,
 
         case WM_VSCROLL:
             hCtrl      = cast(HWND)lParam;
-            iCtrlID    = GetWindowLong(hCtrl, GWL_ID);
+            iCtrlID    = GetWindowLongPtr(hCtrl, GWL_ID);
             iIndex     = iCtrlID - 10;
             hwndParent = GetParent(hDlg);
 

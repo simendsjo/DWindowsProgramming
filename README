@@ -25,6 +25,7 @@
       Usage instructions (nice bookmark): http://d-programming-language.org/dmd-windows.html
       
     Note: Only NT systems are suppported.
+    Note: The sample code might not be 64bit-ready yet.
     Note: If you can't compile the samples with a newer version of DMD, file a bug report or 
     send me an e-mail (see the contact section), and I'll fix the samples as soon as possible.
 
@@ -442,6 +443,8 @@ Chap23:
     - Floats and Doubles are default-initialized to NaN. This causes hardware halts or throws 
       exceptions if we forget to initialize them, based on the configuration. A good way to catch 
       exactly where a fault occured isto use the DDBG debugger.
+    - Replace GetWindowLong and SetWindowLong with the 64-bit compatible GetWindowLongPtr and
+      SetWindowLongPtr.
 
     At this point I try to compile the module and typically get some of the following errors:
     - linker errors meas we're probably missing a pragma call. E.g. if you import 

@@ -99,7 +99,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
-
+    
     return msg.wParam;
 }
 

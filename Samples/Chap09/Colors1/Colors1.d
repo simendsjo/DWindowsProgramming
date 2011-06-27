@@ -124,7 +124,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            hInstance = cast(HINSTANCE) GetWindowLong(hwnd, GWL_HINSTANCE);
+            hInstance = cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE);
 
             // Create the white-rectangle window against which the
             // scroll bars will be positioned. The child window ID is 9.
@@ -163,7 +163,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                             hInstance, NULL);
 
                 // override scrollbar's window procedure, keep old one since we'll use it
-                OldScroll[i] = cast(WNDPROC) SetWindowLong(hwndScroll[i], GWL_WNDPROC, cast(LONG)&ScrollProc);
+                OldScroll[i] = cast(WNDPROC) SetWindowLongPtr(hwndScroll[i], GWL_WNDPROC, cast(LONG)&ScrollProc);
                 hBrush[i]    = CreateSolidBrush(crPrim[i]);
             }
 
@@ -204,7 +204,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             return 0;
 
         case WM_VSCROLL:
-            i = GetWindowLong(cast(HWND)lParam, GWL_ID);
+            i = GetWindowLongPtr(cast(HWND)lParam, GWL_ID);
 
             switch (LOWORD(wParam))
             {
@@ -253,11 +253,11 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             return 0;
 
         case WM_CTLCOLORSCROLLBAR:
-            i = GetWindowLong(cast(HWND)lParam, GWL_ID);
+            i = GetWindowLongPtr(cast(HWND)lParam, GWL_ID);
             return cast(LRESULT)hBrush[i];
 
         case WM_CTLCOLORSTATIC:
-            i = GetWindowLong(cast(HWND)lParam, GWL_ID);
+            i = GetWindowLongPtr(cast(HWND)lParam, GWL_ID);
 
             if (i >= 3 && i <= 8)  // static text controls
             {
@@ -292,7 +292,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 extern (Windows)
 LRESULT ScrollProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    int id = GetWindowLong(hwnd, GWL_ID);
+    int id = GetWindowLongPtr(hwnd, GWL_ID);
 
     switch (message)
     {

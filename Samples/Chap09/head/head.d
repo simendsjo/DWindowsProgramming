@@ -141,7 +141,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                     cxChar * 48 + GetSystemMetrics(SM_CXVSCROLL),
                                     cyChar * 24,
                                     hwnd, cast(HMENU)ID_LIST,
-                                    cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                                    cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE),
                                     NULL);
 
             GetCurrentDirectory(MAX_PATH + 1, szBuffer.ptr);
@@ -150,10 +150,10 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                     WS_CHILDWINDOW | WS_VISIBLE | SS_LEFT,
                                     cxChar, cyChar, cxChar * MAX_PATH, cyChar,
                                     hwnd, cast(HMENU)ID_TEXT,
-                                    cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                                    cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE),
                                     NULL);
 
-            OldList = cast(WNDPROC)SetWindowLong(hwndList, GWL_WNDPROC,
+            OldList = cast(WNDPROC)SetWindowLongPtr(hwndList, GWL_WNDPROC,
                                                  cast(LPARAM)&ListProc);
 
             SendMessage(hwndList, LB_DIR, DIRATTR, cast(LPARAM)"*.*".toUTF16z);

@@ -149,7 +149,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_CREATE:
             // Some initialization stuff
 
-            hInstance = cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE);
+            hInstance = cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE);
 
             icex.dwSize = icex.sizeof;
             icex.dwICC  = ICC_DATE_CLASSES;
@@ -203,9 +203,9 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             hwndFocus = hwndDTP;
 
             // Subclass the three child windows
-            SubbedProc[ID_TIMEPICK] = cast(WNDPROC)SetWindowLong(hwndDTP, GWL_WNDPROC, cast(LONG)&SubProc);
-            SubbedProc[ID_CHECKBOX] = cast(WNDPROC)SetWindowLong(hwndCheck, GWL_WNDPROC, cast(LONG)&SubProc);
-            SubbedProc[ID_PUSHBTN]  = cast(WNDPROC)SetWindowLong(hwndPush, GWL_WNDPROC, cast(LONG)&SubProc);
+            SubbedProc[ID_TIMEPICK] = cast(WNDPROC)SetWindowLongPtr(hwndDTP, GWL_WNDPROC, cast(LONG)&SubProc);
+            SubbedProc[ID_CHECKBOX] = cast(WNDPROC)SetWindowLongPtr(hwndCheck, GWL_WNDPROC, cast(LONG)&SubProc);
+            SubbedProc[ID_PUSHBTN]  = cast(WNDPROC)SetWindowLongPtr(hwndPush, GWL_WNDPROC, cast(LONG)&SubProc);
 
             // Set the date and time picker control to the current time
             // plus 9 hours, rounded down to next lowest hour
@@ -358,7 +358,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 extern (Windows)
 LRESULT SubProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    int idNext, id = GetWindowLong(hwnd, GWL_ID);
+    int idNext, id = GetWindowLongPtr(hwnd, GWL_ID);
 
     switch (message)
     {

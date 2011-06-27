@@ -116,7 +116,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                                    0, 0, 0, 0,
                                                    hwnd,
                                                    cast(HMENU)(y << 8 | x), // ID
-                                                   cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                                                   cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE),
                                                    NULL);
 
             return 0;
@@ -164,11 +164,11 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-            SetWindowLong(hwnd, 0, 0);      // on/off flag in the extra space when we registered wnd class
+            SetWindowLongPtr(hwnd, 0, 0);      // on/off flag in the extra space when we registered wnd class
             return 0;
 
         case WM_LBUTTONDOWN:
-            SetWindowLong(hwnd, 0, 1 ^ GetWindowLong(hwnd, 0));     // toggle int
+            SetWindowLongPtr(hwnd, 0, 1 ^ GetWindowLongPtr(hwnd, 0));     // toggle int
             InvalidateRect(hwnd, NULL, FALSE);      // invalidate entire child window client area
             return 0;
 
@@ -179,7 +179,7 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             Rectangle(hdc, 0, 0, rect.right, rect.bottom);      // painting is now simplified
 
             // paint diagonal lines
-            if (GetWindowLong(hwnd, 0))
+            if (GetWindowLongPtr(hwnd, 0))
             {
                 MoveToEx(hdc, 0, 0, NULL);
                 LineTo(hdc, rect.right, rect.bottom);

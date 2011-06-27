@@ -209,7 +209,7 @@ LRESULT EllipPushWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             goto case WM_LBUTTONUP;
 
         case WM_LBUTTONUP:
-            SendMessage(GetParent(hwnd), WM_COMMAND, GetWindowLong(hwnd, GWL_ID), cast(LPARAM)hwnd);
+            SendMessage(GetParent(hwnd), WM_COMMAND, GetWindowLongPtr(hwnd, GWL_ID), cast(LPARAM)hwnd);
             return 0;
 
         default:

@@ -352,7 +352,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
 
             pHelloData.iColor  = IDM_COLOR_BLACK;
             pHelloData.clrText = RGB(0, 0, 0);
-            SetWindowLong(hwnd, 0, cast(c_long)pHelloData);
+            SetWindowLongPtr(hwnd, 0, cast(c_long)pHelloData);
 
             // Save some window handles
 
@@ -372,7 +372,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
 
                     // Change the text color
 
-                    pHelloData = cast(PHELLODATA)GetWindowLong(hwnd, 0);
+                    pHelloData = cast(PHELLODATA)GetWindowLongPtr(hwnd, 0);
 
                     hMenu = GetMenu(hwndFrame);
 
@@ -395,7 +395,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
 
             hdc = BeginPaint(hwnd, &ps);
 
-            pHelloData = cast(PHELLODATA)GetWindowLong(hwnd, 0);
+            pHelloData = cast(PHELLODATA)GetWindowLongPtr(hwnd, 0);
             SetTextColor(hdc, pHelloData.clrText);
 
             GetClientRect(hwnd, &rect);
@@ -416,7 +416,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
 
             // Check or uncheck menu item
 
-            pHelloData = cast(PHELLODATA)GetWindowLong(hwnd, 0);
+            pHelloData = cast(PHELLODATA)GetWindowLongPtr(hwnd, 0);
             CheckMenuItem(hMenuHello, pHelloData.iColor,
                           (lParam == cast(LPARAM)hwnd) ? MF_CHECKED : MF_UNCHECKED);
 
@@ -440,7 +440,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
             break;  // i.e., call DefMDIChildProc
 
         case WM_DESTROY:
-            pHelloData = cast(PHELLODATA)GetWindowLong(hwnd, 0);
+            pHelloData = cast(PHELLODATA)GetWindowLongPtr(hwnd, 0);
             HeapFree(GetProcessHeap(), 0, pHelloData);
             return 0;
 
@@ -472,7 +472,7 @@ LRESULT RectWndProc(HWND hwnd, UINT message,
             pRectData = cast(PRECTDATA)HeapAlloc(GetProcessHeap(),
                                              HEAP_ZERO_MEMORY, RECTDATA.sizeof);
 
-            SetWindowLong(hwnd, 0, cast(c_long)pRectData);
+            SetWindowLongPtr(hwnd, 0, cast(c_long)pRectData);
 
             // Start the timer going
             SetTimer(hwnd, 1, 250, NULL);
@@ -486,7 +486,7 @@ LRESULT RectWndProc(HWND hwnd, UINT message,
 
             if (wParam != SIZE_MINIMIZED)
             {
-                pRectData = cast(PRECTDATA)GetWindowLong(hwnd, 0);
+                pRectData = cast(PRECTDATA)GetWindowLongPtr(hwnd, 0);
 
                 pRectData.cxClient = LOWORD(lParam);
                 pRectData.cyClient = HIWORD(lParam);
@@ -496,7 +496,7 @@ LRESULT RectWndProc(HWND hwnd, UINT message,
 
         case WM_TIMER:         // Display a random rectangle
 
-            pRectData = cast(PRECTDATA)GetWindowLong(hwnd, 0);
+            pRectData = cast(PRECTDATA)GetWindowLongPtr(hwnd, 0);
 
             xLeft   = uniform(0, pRectData.cxClient);
             xRight  = uniform(0, pRectData.cxClient);
@@ -537,7 +537,7 @@ LRESULT RectWndProc(HWND hwnd, UINT message,
             return 0;
 
         case WM_DESTROY:
-            pRectData = cast(PRECTDATA)GetWindowLong(hwnd, 0);
+            pRectData = cast(PRECTDATA)GetWindowLongPtr(hwnd, 0);
             HeapFree(GetProcessHeap(), 0, pRectData);
             KillTimer(hwnd, 1);
             return 0;

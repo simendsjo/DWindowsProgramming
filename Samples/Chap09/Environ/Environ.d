@@ -176,7 +176,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                     cxChar * 48 + GetSystemMetrics(SM_CXVSCROLL),
                                     cyChar * 24,
                                     hwnd, cast(HMENU)ID_LIST,
-                                    cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                                    cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE),
                                     NULL);
 
             // static text window with word wrapping
@@ -185,7 +185,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                                     cxChar, cyChar,
                                     GetSystemMetrics(SM_CXSCREEN), cyChar * 4,
                                     hwnd, cast(HMENU)ID_TEXT,
-                                    cast(HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                                    cast(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE),
                                     NULL);
 
             FillListBox(hwndList);

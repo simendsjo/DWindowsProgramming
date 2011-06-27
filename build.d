@@ -139,7 +139,7 @@ bool buildProject(string dir)
     string LIBPATH = r".";
     string FLAGS = Debug ? 
                    "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -g" 
-                 : "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -L-Subsystem:Windows";
+                 : "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -L-Subsystem:Windows:4";
     
     // there's only one resource and header file for each example
     string[] resources;
