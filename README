@@ -13,9 +13,8 @@
     Project Homepage: https://github.com/AndrejMitrovic/Windows_Programming_in_D
 
 == Latest Update  ==
-    22nd June 2011 - Added single-project compilation by CD-ing to the directory and issuing
-                     the call `rdmd ..\..\..\build "%cd%`
-    21st June 2011 - Built and tested on WinXP 32bit and Windows7 32bit systems with DMD v2.053.
+    View the git log for the changesets. 
+    Git log info: http://book.git-scm.com/3_reviewing_history_-_git_log.html
 
 == Building Requirements ==
     - Windows XP 32bit or Windows 7 32bit. The current DMD compiler (2.053) cannot compile 64bit
@@ -52,9 +51,10 @@
         rdmd build.d clean
 
 == List of Examples and their Description ==
-
+ 
 Note: These samples are described alphabetically, but they might appear in a different order
 in the book.
+
 
 Chap01:
     HelloMsg - Creates a simple Dialog Box without a window.
@@ -267,8 +267,10 @@ Chap20:
     RndRctMT - A multithreaded version of Chap05\RandRect, which draws random rectangles
                on the screen.
                 
-Chap21: Note: At the time of writing there are various bugs with using D DLLs.
-              Some of these examples use workarounds to make them compilable.
+Chap21:       
+    At the time of writing there are various bugs with using D DLLs.
+    Some of these examples use workarounds to make them compilable.
+              
     EdrTest - Implicitly loads a DLL, calls its custom drawing function which draws some
               text on the screen.
     ShowBit - Explicitly loads a DLL and draws image resources from the DLL.
@@ -297,6 +299,14 @@ Chap23:
     NetTime -  Retrieves timing information from various selectable timing servers.
                @BUG@: Currently this example doesn't seem to succesfully retrieve any
                timing info. The C example doesn't work either.
+
+Extra:
+    These examples are not part of the book, but custom-made examples to demonstrate some
+    other parts of the API or some aspect of GDI not covered in the book.
+    
+    BackBuffer - Uses a simple back-buffer double-buffering mechanism to draw on the screen
+                 without flicker.
+
 
 == Optional Tools ==
     - HTOD: http://www.digitalmars.com/d/2.0/htod.html    
