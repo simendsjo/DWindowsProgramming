@@ -4,6 +4,7 @@ todo2.txt
 appendLicense.d
 license.txt
 build.d.deps
-/Samples/Extra/*
+/Samples/Extra2/*
+/Samples/MSDN/*
 build-d-*
 resource.d

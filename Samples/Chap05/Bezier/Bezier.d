@@ -99,7 +99,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     static POINT[4] apt;
 
-
     switch(message)
     {
         case WM_CREATE:

@@ -120,7 +120,7 @@ string[] getProjectDirs(string root)
     // direntries is not a range in 2.053
     foreach (string dir; dirEntries(root, SpanMode.shallow))
     {
-        if (dir.isdir)
+        if (dir.isdir && dir.basename != "MSDN" && dir.basename != "Extra2")
         {
             foreach (string subdir; dirEntries(dir, SpanMode.shallow))
             {

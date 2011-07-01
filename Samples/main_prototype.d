@@ -99,3 +99,8 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
     return msg.wParam;
 }
+
+//~ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
+//~ {
+    //~ return 0;
+//~ }
