@@ -100,7 +100,8 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     return msg.wParam;
 }
 
-//~ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
+//~ extern(Windows)
+//~ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 //~ {
-    //~ return 0;
+    //~ return DefWindowProc(hwnd, message, wParam, lParam);
 //~ }
