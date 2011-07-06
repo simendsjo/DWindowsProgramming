@@ -178,7 +178,8 @@ bool buildProject(string dir)
         if (res == -1 || res == 1)
             return false;
         
-        try { system("del " ~ appName ~ ".map"); } catch{};
+        
+        try { system("del " ~ rel2abs(dir) ~ r"\" ~ "*.map > nul"); } catch{};  
     }
     
     return true;
@@ -234,7 +235,7 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
             try { system("del *.obj > nul"); } catch{};
             try { system("del *.map > nul"); } catch{};  
             try { system("del *.exe > nul"); } catch{};
-            try { system("del *.di  > nul");  } catch{};
+            try { system("del *.di  > nul"); } catch{};
             try { system("del *.dll > nul"); } catch{};
             try { system("del *.lib > nul"); } catch{};
         }
@@ -331,6 +332,8 @@ int main(string[] args)
     {
         writeln("\nAll examples succesfully built.");
     }
+    
+    try { system("del *.map > nul"); } catch{};
     
     return 0;
 }
