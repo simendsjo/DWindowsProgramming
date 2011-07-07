@@ -177,9 +177,6 @@ bool buildProject(string dir)
         
         if (res == -1 || res == 1)
             return false;
-        
-        
-        try { system("del " ~ rel2abs(dir) ~ r"\" ~ "*.map > nul"); } catch{};  
     }
     
     return true;
@@ -214,8 +211,6 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
             if (cleanOnly)
             {
                 try { system("del " ~ dir ~ r"\" ~ "*.obj > nul"); } catch{};
-                // @BUG@ In 2.053 map file generation doesn't follow -od flag                    
-                //~ //try { system("del " ~ dir ~ r"\" ~ "*.map"); } catch{};
                 try { system("del " ~ dir ~ r"\" ~ "*.exe > nul"); } catch{};
             }
             else
@@ -233,7 +228,6 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
         if (cleanOnly)
         {
             try { system("del *.obj > nul"); } catch{};
-            try { system("del *.map > nul"); } catch{};  
             try { system("del *.exe > nul"); } catch{};
             try { system("del *.di  > nul"); } catch{};
             try { system("del *.dll > nul"); } catch{};
@@ -332,8 +326,6 @@ int main(string[] args)
     {
         writeln("\nAll examples succesfully built.");
     }
-    
-    try { system("del *.map > nul"); } catch{};
     
     return 0;
 }
