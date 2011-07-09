@@ -351,6 +351,8 @@ Extra:
     or e-mail me at: andrej.mitrovich<at>gmail.com
 
 == Todo ==
+    - Add 'indent' option to build script to run the indenter on all files or on a 
+      specific project.
     - Use -v to track down stray module imports and then remove them.
     - Check if examples compile and run on Vista.
     - Use with statements where possible.
