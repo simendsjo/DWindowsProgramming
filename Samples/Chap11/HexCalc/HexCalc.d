@@ -8,7 +8,7 @@ module HexCalc;
 import core.runtime;
 import core.thread;
 import std.conv;
-import std.ctype;
+import std.ascii;
 import std.math;
 import std.range;
 import std.string;
@@ -186,7 +186,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             else if (LOWORD(wParam) == VK_ESCAPE) // escape
                 ShowNumber(hwnd, iNumber = 0);
 
-            else if (isxdigit(LOWORD(wParam)))    // hex digit
+            else if (isHexDigit(LOWORD(wParam)))    // hex digit
             {
                 if (bNewNumber)
                 {
@@ -198,7 +198,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 if (iNumber <= MAXDWORD >> 4)
                     ShowNumber(hwnd, iNumber = 16 * iNumber + wParam -
-                                               (isdigit(wParam) ? '0' : 'A' - 10));
+                                               (isDigit(wParam) ? '0' : 'A' - 10));
                 else
                     MessageBeep(0);
             }

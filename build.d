@@ -199,7 +199,6 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
         }
         
         // @BUG@ Using chdir in parallel builds wreaks havoc on other threads.
-        // @BUG@ -od doesn't currently work with map/implib/header generation.
         if (dir.basename == "EdrTest" ||
             dir.basename == "ShowBit" ||
             dir.basename == "StrProg")

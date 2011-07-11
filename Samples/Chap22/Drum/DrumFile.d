@@ -30,19 +30,12 @@ import DrumTime;
 OPENFILENAME ofn;
 
 // The API expects these to be arrays of pointers.
-TCHAR*[3] szFilter;
-
-// CTFE workaround
-static this()
-{
-    szFilter =
-    [
-        "Drum Files (*.DRM)".toUTF16z,
-        "*.drm".toUTF16z,
-        "".toUTF16z    
-    ];
-
-}
+TCHAR*[3] szFilter =
+[
+    "Drum Files (*.DRM)\0"w.dup.ptr,
+    "*.drm\0"w.dup.ptr,
+    "\0"w.dup.ptr
+];
 
 wchar* szDrumID;
 wchar* szListID;

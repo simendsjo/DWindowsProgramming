@@ -149,7 +149,6 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Load the entire DIB into memory
-
                     SetCursor(LoadCursor(NULL, IDC_WAIT));
                     ShowCursor(TRUE);
 
@@ -170,12 +169,10 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
 
                     // Get pointers to the info structure & the bits
-
                     pbmi  = cast(BITMAPINFO*)(pbmfh + 1);
                     pBits = cast(BYTE*)pbmfh + pbmfh.bfOffBits;
 
                     // Get the DIB width and height
-
                     if (pbmi.bmiHeader.biSize == BITMAPCOREHEADER.sizeof)
                     {
                         cxDib = (cast(BITMAPCOREHEADER*)pbmi).bcWidth;

@@ -109,7 +109,6 @@ HBITMAP CreateBitmapObjectFromDibFile(HDC hdc, string szFileName)
     HBITMAP hBitmap;
 
     // Open the file: read access, prohibit write access
-
     hFile = CreateFile(szFileName.toUTF16z, GENERIC_READ, FILE_SHARE_READ, NULL,
                        OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 

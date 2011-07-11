@@ -193,7 +193,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                     if (filename[1] == '-')
                     {
                         // drive
-                        SetCurrentDirectory((filename[2 .. $-2].toupper ~ r":\").toUTF16z);
+                        SetCurrentDirectory((filename[2 .. $-2].toUpper ~ r":\").toUTF16z);
                         SetWindowText(hwndText, getcwd.toUTF16z);
                         SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
                         SendMessage(hwndList, LB_DIR, DIRATTR, cast(LPARAM)"*.*".toUTF16z);
