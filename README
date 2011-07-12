@@ -25,8 +25,6 @@
       
     Note: Only NT systems are suppported.
     Note: The sample code might not be 64bit-ready yet.
-    Note: If you can't compile the samples with a newer version of DMD, file a bug report or 
-    send me an e-mail (see the contact section), and I'll fix the samples as soon as possible.
 
 == Building ==
     - Make sure you've installed DMD and have its DMD2\Windows\Bin directory location in the 
@@ -49,6 +47,9 @@
     Other options are:
     - Clean .obj, .map, .exe files:
         rdmd build.d clean
+        
+    Note: If you can't compile the samples with a newer version of DMD, file a bug report or 
+    send me an e-mail (see the contact section), and I'll fix the samples as soon as possible.        
 
 == List of Examples and their Description ==
  
@@ -396,6 +397,7 @@ Extra:
     http://www.charlespetzold.com/faq.html
 
 == Links ==
+    D2 Programming Language Homepage: http://d-programming-language.org/
     How to make extensionless files open in your editor in WinXP: http://perishablepress.com/press/2006/08/08/associate-extensionless-files-with-notepad/
         Note: Also, make sure you hit the 'Open with' button and select your editor.
     Programming Windows Homepage: http://www.charlespetzold.com/pw5/
