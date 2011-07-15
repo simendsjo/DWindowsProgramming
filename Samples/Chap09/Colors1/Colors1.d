@@ -210,6 +210,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 case SB_PAGEDOWN:
                     color[i] += 15;
+                    goto case;
 
                 // fall through
                 case SB_LINEDOWN:
@@ -218,6 +219,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 case SB_PAGEUP:
                     color[i] -= 15;
+                    goto case;
 
                 // fall through
                 case SB_LINEUP:

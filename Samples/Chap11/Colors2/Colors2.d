@@ -151,6 +151,7 @@ BOOL ColorScrDlg(HWND hDlg, UINT message,
             {
                 case SB_PAGEDOWN:
                     iColor[iIndex] += 15;    // fall through
+                    goto case;
 
                 case SB_LINEDOWN:
                     iColor[iIndex] = cast(ubyte)min(255, iColor[iIndex] + 1);
@@ -158,6 +159,7 @@ BOOL ColorScrDlg(HWND hDlg, UINT message,
 
                 case SB_PAGEUP:
                     iColor[iIndex] -= 15;    // fall through
+                    goto case;
 
                 case SB_LINEUP:
                     iColor[iIndex] = cast(ubyte)max(0, iColor[iIndex] - 1);

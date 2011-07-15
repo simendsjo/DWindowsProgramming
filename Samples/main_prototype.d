@@ -100,8 +100,34 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     return msg.wParam;
 }
 
-//~ extern(Windows)
-//~ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
-//~ {
-    //~ return DefWindowProc(hwnd, message, wParam, lParam);
-//~ }
+extern(Windows)
+LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    HDC hdc;
+    PAINTSTRUCT ps;
+    
+    switch (message)
+    {
+        case WM_CREATE:
+        {
+            return 0;
+        }
+        
+        case WM_PAINT:
+        {
+            hdc = BeginPaint(hwnd, &ps);
+            scope(exit) EndPaint(hwnd, &ps);
+            return 0;
+        }
+        
+        case WM_DESTROY:
+        {
+            PostQuitMessage(0);
+            return 0;
+        }
+
+        default:
+    }
+    
+    return DefWindowProc(hwnd, message, wParam, lParam);
+}

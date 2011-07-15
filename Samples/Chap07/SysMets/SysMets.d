@@ -204,6 +204,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             // Save the width of the three columns
             iMaxWidth = 40 * cxChar + 22 * cxCaps;
+            goto case;
 
         // Fall through for mouse wheel information
         case WM_SETTINGCHANGE:

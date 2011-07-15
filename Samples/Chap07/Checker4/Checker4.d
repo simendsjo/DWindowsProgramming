@@ -203,12 +203,14 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         case WM_KEYDOWN:
             // Send most key presses to the parent window, except return or space
-            if(wParam != VK_RETURN && wParam != VK_SPACE)
+            if (wParam != VK_RETURN && wParam != VK_SPACE)
             {
                 SendMessage(GetParent(hwnd), message, wParam, lParam);
                 return 0;
             }
+            
             // For Return and Space, fall through to WM_LBUTTONDOWN, which will toggle the square
+            goto case;
 
         case WM_LBUTTONDOWN:
             SetWindowLongPtr(hwnd, 0, 1 ^ GetWindowLongPtr(hwnd, 0));  // toggle int
@@ -220,6 +222,7 @@ LRESULT ChildWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_SETFOCUS:
             // get child window ID (can ommit GWL_ID if using GetDlgCtrlID)
             idFocus = GetWindowLongPtr(hwnd, GWL_ID);
+            goto case;
 
         // Fall through
         case WM_KILLFOCUS:

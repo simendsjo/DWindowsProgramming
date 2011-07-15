@@ -384,6 +384,8 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (LOWORD(wParam) == IDM_EDIT_COPY)
                         return 0;
+                    
+                    goto case;
 
                 // fall through if IDM_EDIT_CUT
                 case IDM_EDIT_DELETE:

@@ -383,6 +383,7 @@ LRESULT HelloWndProc(HWND hwnd, UINT message,
                     pHelloData.clrText = clrTextArray[wParam - IDM_COLOR_BLACK];
 
                     InvalidateRect(hwnd, NULL, FALSE);
+                    break;
 
                 default:
             }

@@ -306,6 +306,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                             
                         default:
                     }
+                    break;
                     
                 default:
             }
