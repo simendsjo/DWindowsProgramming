@@ -160,7 +160,9 @@ bool buildProject(string dir)
                " > nul");
     }
 
-    headers.length && system("htod " ~ headers[0]);
+    // @BUG@ htod can't output via -of or -od, causes multithreading issues
+    //~ headers.length && system("htod " ~ headers[0]);
+    //~ headers.length && system("copy resource.d " ~ rel2abs(dir) ~ r"\resource.d");
     
     // get sources after any .h header files were converted to .d header files
     auto sources   = dir.getFilesByExt("d", "res");

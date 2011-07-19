@@ -1,4 +1,4 @@
-/* Converted to D from .\resource.h by htod */
+/* Converted to D from D:\dev\projects\DWindowsProgramming\Samples\Chap17\ChosFont\resource.h by htod */
 module resource;
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.

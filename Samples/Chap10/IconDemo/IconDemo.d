@@ -56,7 +56,7 @@ int myWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
     wndclass.cbClsExtra    = 0;
     wndclass.cbWndExtra    = 0;
     wndclass.hInstance     = hInstance;
-    wndclass.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON));
+    wndclass.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE(IDC_ICON));
     wndclass.hCursor       = LoadCursor(NULL, IDC_ARROW);
     wndclass.hbrBackground = cast(HBRUSH)GetStockObject(WHITE_BRUSH);
 
@@ -107,7 +107,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
         case WM_CREATE:
             hInstance = (cast(LPCREATESTRUCT)lParam).hInstance;
-            hIcon     = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON));
+            hIcon     = LoadIcon(hInstance, MAKEINTRESOURCE(IDC_ICON));
             cxIcon    = GetSystemMetrics(SM_CXICON);
             cyIcon    = GetSystemMetrics(SM_CYICON);
             return 0;
