@@ -137,7 +137,7 @@ LRESULT WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             return 0;
 
         case WM_SETFOCUS:
-            // GetDlgItem takes a parent hwnd and child ID to get child hwnd
+            // GetDlgItem takes a parent hwnd and child ID to get child hwnd.
             // child will update idFocus
             SetFocus(GetDlgItem(hwnd, idFocus));
             return 0;
