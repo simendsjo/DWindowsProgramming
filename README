@@ -35,6 +35,11 @@
     - Build the samples by issuing this call from the command line:
         rdmd build.d
         
+    Warning: DMD 2.054 has a faulty RDMD which doesn't work on Windows7 systems.
+    As a workaround use these calls:
+        dmd build.d
+        build.exe
+        
     - To build only a single example, CD to its directory and run:
         rdmd ..\..\..\build.d "%cd%"
         
