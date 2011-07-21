@@ -14,6 +14,9 @@ import std.parallelism;
 string[] RCINCLUDES = [r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include",
                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include",
                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include"];
+
+__gshared string LIBPATH = r".";
+
     
 extern(C) int kbhit();
 extern(C) int getch();    
@@ -132,11 +135,11 @@ string[] getProjectDirs(string root)
     return result;
 }
 
+
 bool buildProject(string dir)
 {
     string appName = rel2abs(dir).basename;
     string exeName = rel2abs(dir) ~ r"\" ~ appName ~ ".exe";
-    string LIBPATH = r".";
     string FLAGS = Debug ? 
                    "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -g -w -wi" 
                  : "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -L-Subsystem:Windows:4";
@@ -247,8 +250,11 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
 
 int main(string[] args)
 {
+    LIBPATH = dirname(args[0]);
+    if (LIBPATH == ".")
+        LIBPATH = getcwd();
     args.popFront;
-    
+
     foreach (arg; args)
     {
         if (arg == "clean") cleanOnly = true;
