@@ -394,7 +394,10 @@ Extra:
     family of Windows APIs that still work even after all these years. Cheers!
 
 == Contributors ==
-    Leonardo Maffi contributed a Python script that got rid of stray parens, thanks!
+    Simen Endsjø tested the project on an x64 Win7 system and found several issues.
+    Leonardo Maffi created a Python script that got rid of stray parens.
+    
+    Thanks to all contributors!
 
 == Licensing ==
     All code examples' original copyright belongs to Charles Petzold.
