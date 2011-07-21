@@ -321,9 +321,9 @@ Extra:
 
     - Microsoft RC compiler and header files. Without these the build script will use 
       precompiled .res files.
-        - Get it from:        
+        - Unless you have Visual Studio installed, get it from:        
         http://www.microsoft.com/downloads/en/details.aspx?FamilyID=c17ba869-9671-4330-a63e-1fd44e0e2505&displaylang=en
-        - RC needs to be in your PATH if you want to compile resources.
+        - RC needs to be in your PATH if you want to compile resources. If you have Visual Studio installed, you can use the Visual Studio Command Prompt.
         
         Note: This is a big download, depending on what you select in the setup.
         Note: DigitalMars has a resource compiler, but it still requires header files. 
