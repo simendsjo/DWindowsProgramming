@@ -14,6 +14,9 @@ import std.parallelism;
 string[] RCINCLUDES = [r"C:\Program Files\Microsoft SDKs\Windows\v7.1\Include",
                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\include",
                        r"C:\Program Files\Microsoft Visual Studio 10.0\VC\atlmfc\include"];
+
+__gshared string LIBPATH = r".";
+
     
 extern(C) int kbhit();
 extern(C) int getch();    
@@ -132,11 +135,11 @@ string[] getProjectDirs(string root)
     return result;
 }
 
+
 bool buildProject(string dir)
 {
     string appName = rel2abs(dir).basename;
     string exeName = rel2abs(dir) ~ r"\" ~ appName ~ ".exe";
-    string LIBPATH = r".";
     string FLAGS = Debug ? 
                    "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -g -w -wi" 
                  : "-I. -version=Unicode -version=WIN32_WINNT_ONLY -version=WindowsNTonly -version=Windows2000 -version=Windows2003 -version=WindowsXP -version=WindowsVista -L-Subsystem:Windows:4";
@@ -245,10 +248,40 @@ void buildProjectDirs(string[] dirs, bool cleanOnly = false)
     enforce(!failedBuilds.length, new FailedBuildException(failedBuilds));
 }
 
+string getWin32LibPath(string exe)
+{
+    string exePath = dirname(exe);
+    if (exePath == ".")
+    {
+        exePath = getcwd();
+    }
+    else
+    {
+        // rdmd puts the built exe in a temporary directory, so we'll need to
+        // use current directory if rdmd runs the program
+        immutable rdmdTmpPath = ".rdmd";
+        if (exePath.length >= rdmdTmpPath.length &&
+                exePath[$-rdmdTmpPath.length .. $] == rdmdTmpPath)
+        {
+            exePath = getcwd();
+        }
+    }
+
+    return exePath;
+}
+
+unittest
+{
+    assert(getWin32LibPath("build.exe") == getcwd());
+    assert(getWin32LibPath(r"c:\dummyfolder\build.exe") == r"c:\dummyfolder");
+    assert(getWin32LibPath(r"whatever\.rdmd\build.exe") == getcwd());
+}
+
 int main(string[] args)
 {
+    LIBPATH = getWin32LibPath(args[0]);
     args.popFront;
-    
+
     foreach (arg; args)
     {
         if (arg == "clean") cleanOnly = true;
